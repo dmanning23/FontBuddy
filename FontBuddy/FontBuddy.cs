@@ -27,7 +27,7 @@ namespace FontBuddy
 		/// <summary>
 		/// The font this dude is "helping" with
 		/// </summary>
-		public SpriteFont Font { get; set; }
+		public virtual SpriteFont Font { get; set; }
 
 		#endregion //Properties
 
@@ -39,15 +39,6 @@ namespace FontBuddy
 		public FontBuddy()
 		{
 			Font = null;
-		}
-
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="rFont">you loaded a font yourself!!!</param>
-		public FontBuddy(SpriteFont rFont)
-		{
-			Font = rFont;
 		}
 
 		public void LoadContent(ContentManager rContent, string strResource)

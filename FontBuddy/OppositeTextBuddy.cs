@@ -115,21 +115,6 @@ namespace FontBuddy
 				titlePosition.X += (font.MeasureString(strSubString) * titleScale).X;
 			}
 			
-			//draw "dannobot games"
-			string strDannobot = "dannobot games  ";
-			float fCreditX = ScreenRect.Right - (font.MeasureString(strDannobot).X * 0.3f);
-			float fCreditY = ScreenRect.Bottom - (font.MeasureString(strDannobot).Y * 0.3f);
-			spriteBatch.DrawString(
-				font,
-				"dannobot games",
-				new Vector2(fCreditX, fCreditY),
-				new Color(0.85f, 0.85f, 0.85f, TransitionAlpha),
-				0,
-				Origin,
-				0.3f,
-				SpriteEffects.None,
-				0);
-			
 			spriteBatch.End();
 		}
 
