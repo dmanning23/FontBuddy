@@ -1,4 +1,9 @@
 using System;
+using System.Text;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddy
 {
@@ -32,15 +37,6 @@ namespace FontBuddy
 		{
 			ShakeAmount = 40.0f;
 			ShakeSpeed = 10.0f;
-		}
-
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="rFont">you loaded a font yourself!!!</param>
-		public ShakyTextBuddy(SpriteFont rFont) : this()
-		{
-			Font = rFont;
 		}
 
 		/// <summary>
@@ -138,7 +134,7 @@ namespace FontBuddy
 					SpriteEffects.None,
 					0);
 				
-				textPosition.X += Font.MeasureString(strSubString.ToString()).X * fScale.X;
+				textPosition.X += Font.MeasureString(strSubString.ToString()).X * fScale;
 				textPosition.X += fKerning;
 			}
 

@@ -1,4 +1,9 @@
 using System;
+using System.Text;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddy
 {
@@ -6,116 +11,93 @@ namespace FontBuddy
 	/// So what this one does:  Takes two colors, draws the shadow in one and text in the other.
 	/// After a specified amount of time has passed, the colors wipe across and switch
 	/// </summary>
-	public class OppositeTextBuddy : FontBuddy
+	public class OppositeTextBuddy : ShadowTextBuddy
 	{
 		#region Fields
 		
 		/// <summary>
-		/// How much the text shakes, higher values = more shake
-		/// Defaults to 40
+		/// how fast to swap colors... defaults to 1.0f
 		/// </summary>
-		/// <value>The shake amount.</value>
-		public float ShakeAmount { get; set; }
+		public float SwapSpeed { get; set; }
 		
 		/// <summary>
-		/// How fast to shake the text
-		/// defaults to 10
+		/// How often to swap colors... defaults to 0.5f
 		/// </summary>
-		/// <value>The shake speed.</value>
-		public float ShakeSpeed { get; set; }
-		
+		public float SwapSweep { get; set; }
+
 		#endregion //Fields
 
 		#region Methods
 
 		public OppositeTextBuddy ()
 		{
+			SwapSpeed = 1.0f;
+			SwapSweep = 2.0f;
 		}
 
-		public override void DrawText(GameTime gameTime)
+		/// <summary>
+		/// write something on the screen
+		/// </summary>
+		/// <param name="strText">the text to write on the screen</param>
+		/// <param name="Position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
+		/// <param name="eJustification">how to justify the text</param>
+		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
+		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
+		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
+		/// <param name="dTime">the current game time in seconds</param>
+		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
 		{
-			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-			spriteBatch.Begin();
-			SpriteFont font = ScreenManager.MenuTitleFont;
-			
-			//Get the game time in seconds
-			double time = gameTime.TotalGameTime.TotalSeconds;
-			
-			//Draw the game title!
-			
-			string strTitle1 = "Opposites";
-			
-			Vector2 Origin = new Vector2(0.0f, 0.0f);
-			
-			//position of the game title
-			Vector2 titleScale = new Vector2(0.0f);
-			titleScale.X = 1.5f;
-			titleScale.Y = 1.45f;
-			float fTitlePositionX = ScreenRect.Center.X - (font.MeasureString(strTitle1) * titleScale / 2.0f).X;
-			float fTitlePositionY = ScreenRect.Center.Y - ((font.MeasureString(strTitle1) * titleScale).Y * 1.4f);
-			Vector2 titlePosition = new Vector2(fTitlePositionX, fTitlePositionY);
-			
-			//position of the shadow
-			Vector2 shadowScale = new Vector2(0.0f);
-			shadowScale.X = 1.45f;
-			shadowScale.Y = 1.4f;
-			float fShadowPositionX = ScreenRect.Center.X - (font.MeasureString(strTitle1) * shadowScale / 2.0f).X;
-			float fShadowPositionY = ScreenRect.Center.Y - ((font.MeasureString(strTitle1) * shadowScale).Y * 1.4f);
-			Vector2 shadowPosition = new Vector2(fShadowPositionX, fShadowPositionY);
-			
-			//draw each individual letter of the title
-			for (int i = 0; i < strTitle1.Length; i++)
+			//this is some shit we are gonna use to positaion a shadow
+			Vector2 shadowPosition = Position;
+
+			//draw the individual letter of the shadow first
+			double dLetterTime = dTime;
+			for (int i = 0; i < strText.Length; i++)
 			{
-				//draw the shadow
-				
 				//Add a tenth of a second for each letter in the string
-				time -= (((double)i) * 0.025);
-				float pulsate = MathHelper.Clamp((0.75f * (float)(Math.Sin(time * 1.0f))), -0.5f, 0.5f);
-				string strSubString = "" + strTitle1[i];
-				
+				dLetterTime -= (((double)i) * 0.025);
+				float pulsate = MathHelper.Clamp((float)(SwapSpeed * Math.Sin(dLetterTime * SwapSweep)), -1.0f, 1.0f);
+				StringBuilder strSubString = new StringBuilder(strText[i]);
+
 				//Clamp (because we dont want pure black and white)
-				float fShadowColorValue = MathHelper.Clamp((pulsate * -1.0f) + 0.5f, 0.15f, .85f);
-				Color myShadowColor = new Color(fShadowColorValue, fShadowColorValue, fShadowColorValue, TransitionAlpha);
-				spriteBatch.DrawString(
-					font,
+				Color shadowColor = Color.Lerp(shadowColor, myColor, pulsate);
+				mySpriteBatch.DrawString(
+					Font,
 					strSubString,
-					shadowPosition,
-					myShadowColor,
+					shadowPosition + ShadowOffset,
+					shadowColor,
 					0,
-					Origin,
-					shadowScale,
+					Vector2.Zero,
+					fScale * ShadowSize,
 					SpriteEffects.None,
 					0);
-				
-				shadowPosition.X += (font.MeasureString(strSubString) * shadowScale).X;
+
+				shadowPosition.X += (Font.MeasureString(strSubString) * fScale).X;
 			}
-			
-			time = gameTime.TotalGameTime.TotalSeconds; //reset the time
-			for (int i = 0; i < strTitle1.Length; i++)
+
+			dLetterTime = dTime; //reset the time
+			for (int i = 0; i < strText.Length; i++)
 			{
 				//draw the title
-				
-				time -= (((double)i) * 0.025);
-				float pulsate = MathHelper.Clamp((0.75f * (float)(Math.Sin(time * 1.0f))), -0.5f, 0.5f);
-				string strSubString = "" + strTitle1[i];
-				
-				float fColorValue = MathHelper.Clamp(pulsate + 0.5f, 0.15f, .85f);
-				Color myColor = new Color(fColorValue, fColorValue, fColorValue, TransitionAlpha);
-				spriteBatch.DrawString(
-					font,
+				dLetterTime -= (((double)i) * 0.025);
+				float pulsate = MathHelper.Clamp((float)(SwapSpeed * Math.Sin(dLetterTime * SwapSweep)), -1.0f, 1.0f);
+				StringBuilder strSubString = new StringBuilder(strText[i]);
+
+				//Clamp (because we dont want pure black and white)
+				Color shadowColor = Color.Lerp(myColor, shadowColor, pulsate);
+				mySpriteBatch.DrawString(
+					Font,
 					strSubString,
-					titlePosition,
-					myColor,
+					Position,
+					shadowColor,
 					0,
-					Origin,
-					titleScale,
+					Vector2.Zero,
+					fScale * ShadowSize,
 					SpriteEffects.None,
 					0);
-				
-				titlePosition.X += (font.MeasureString(strSubString) * titleScale).X;
+
+				Position.X += (Font.MeasureString(strSubString) * fScale).X;
 			}
-			
-			spriteBatch.End();
 		}
 
 		#endregion //Methods

@@ -20,7 +20,6 @@ namespace FontBuddy
 	/// Because that is just way harder in XNA than it needs to be!
 	/// </summary>
 	public class FontBuddy
-
 	{
 		#region Properties
 
@@ -103,7 +102,11 @@ namespace FontBuddy
 			}
 
 			//okay, draw the actual string
-			mySpriteBatch.DrawString(Font, strText, textPosition, myColor, 0,
+			mySpriteBatch.DrawString(Font,
+				strText, 
+				textPosition, 
+				myColor,
+				0.0f,
 				Vector2.Zero,
 				fScale,
 				SpriteEffects.None,

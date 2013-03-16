@@ -2,10 +2,12 @@ using System;
 
 namespace FontBuddy
 {
-	public class PulsateBuddy : FontBuddy
+	public class PulsateBuddy : ShadowTextBuddy
 	{
-		public PulsateBuddy ()
+		public PulsateBuddy()
 		{
+		}
+
 			/// <summary>
 		/// Draws the menu entry. This can be overridden to customize the appearance.
 		/// </summary>
@@ -41,7 +43,6 @@ namespace FontBuddy
 
 			//Draw the menu item
 			spriteBatch.DrawString(font, m_strText, position, color, 0, origin, scale * SizeMultiplier, SpriteEffects.None, 0);
-		}
 		}
 	}
 }

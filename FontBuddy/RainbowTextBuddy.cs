@@ -2,10 +2,12 @@ using System;
 
 namespace FontBuddy
 {
-	public class RainbowTextBuddy : FontBuddy
+	public class RainbowTextBuddy : ShadowTextBuddy
 	{
-		public RainbowTextBuddy ()
+		public RainbowTextBuddy()
 		{
+		}
+
 			/// <summary>
 		/// Draws the background screen.
 		/// </summary>
@@ -118,9 +120,6 @@ namespace FontBuddy
 
 				titlePosition.X += (font.MeasureString(strSubString) * titleScale).X;
 			}
-
-			
-		}
 		}
 	}
 }
