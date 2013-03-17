@@ -35,7 +35,7 @@ namespace FontBuddyLib
 		/// </summary>
 		public ShakyTextBuddy()
 		{
-			ShakeAmount = 40.0f;
+			ShakeAmount = 10.0f;
 			ShakeSpeed = 10.0f;
 		}
 
