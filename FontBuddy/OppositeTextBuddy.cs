@@ -34,8 +34,8 @@ namespace FontBuddyLib
 		/// </summary>
 		public OppositeTextBuddy ()
 		{
-			SwapSpeed = 1.0f;
-			SwapSweep = 2.0f;
+			SwapSpeed = 2.0f;
+			SwapSweep = 0.1f;
 		}
 
 		/// <summary>
@@ -50,6 +50,45 @@ namespace FontBuddyLib
 		/// <param name="dTime">the current game time in seconds</param>
 		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
 		{
+			float fKerning = (Font.MeasureString(" ").X * 0.25f) * fScale;
+
+			//Get the correct location
+			Vector2 textSize = Font.MeasureString(strText) * fScale;
+			switch (eJustification)
+			{
+				case Justify.Right:
+					{
+						//move teh x value
+						for (int i = 0; i < strText.Length; i++)
+						{
+							//get teh size of the character
+							string strSubString = "" + strText[i];
+							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
+							Position.X -= textSize.X;
+
+							//get the kerning too
+							Position.X -= fKerning;
+						}
+					}
+					break;
+
+				case Justify.Center:
+					{
+						//move teh x value
+						for (int i = 0; i < strText.Length; i++)
+						{
+							//get teh size of the character
+							string strSubString = "" + strText[i];
+							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
+							Position.X -= (textSize.X / 2.0f);
+
+							//get the kerning too
+							Position.X -= fKerning / 2.0f;
+						}
+					}
+					break;
+			}
+
 			//this is some shit we are gonna use to positaion a shadow
 			Vector2 shadowPosition = Position;
 
@@ -58,8 +97,9 @@ namespace FontBuddyLib
 			for (int i = 0; i < strText.Length; i++)
 			{
 				//Add a tenth of a second for each letter in the string
-				dLetterTime -= (((double)i) * 0.025);
-				float pulsate = MathHelper.Clamp((float)(SwapSpeed * Math.Sin(dLetterTime * SwapSweep)), -1.0f, 1.0f);
+				dLetterTime -= SwapSweep;
+				float pulsate = MathHelper.Clamp((float)(Math.Sin(dLetterTime * SwapSpeed)), -0.5f, 0.5f);
+				pulsate += 0.5f;
 				string strSubString = "" + strText[i];
 
 				//Clamp (because we dont want pure black and white)
@@ -76,14 +116,16 @@ namespace FontBuddyLib
 					0);
 
 				shadowPosition.X += (Font.MeasureString(strSubString) * fScale).X;
+				shadowPosition.X += fKerning;
 			}
 
 			dLetterTime = dTime; //reset the time
 			for (int i = 0; i < strText.Length; i++)
 			{
 				//draw the title
-				dLetterTime -= (((double)i) * 0.025);
-				float pulsate = MathHelper.Clamp((float)(SwapSpeed * Math.Sin(dLetterTime * SwapSweep)), -1.0f, 1.0f);
+				dLetterTime -= SwapSweep;
+				float pulsate = MathHelper.Clamp((float)(Math.Sin(dLetterTime * SwapSpeed)), -0.5f, 0.5f);
+				pulsate += 0.5f;
 				string strSubString = "" + strText[i];
 
 				//get the opposite color of the shadow
@@ -100,6 +142,7 @@ namespace FontBuddyLib
 					0);
 
 				Position.X += (Font.MeasureString(strSubString) * fScale).X;
+				Position.X += fKerning;
 			}
 
 			//return the end of that string

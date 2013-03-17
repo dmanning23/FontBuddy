@@ -23,13 +23,6 @@ namespace FontBuddyLib
 		/// </summary>
 		public float RainbowSpeed { get; set; }
 
-		/// <summary>
-		/// If the pulsate is turned on/off, it will ease into the rainbowing
-		/// </summary>
-		public bool Selected { get; set; }
-
-		private float m_fSelectionFade;
-
 		#endregion //Members
 
 		#region Properties
@@ -81,7 +74,46 @@ namespace FontBuddyLib
 				mySpriteBatch,
 				dTime);
 
-			dTime *= RainbowSpeed; //TODO: change this number to speed up/slow down color change
+			float fKerning = (Font.MeasureString(" ").X * 0.25f) * fScale;
+
+			//Get the correct location
+			Vector2 textSize = Font.MeasureString(strText) * fScale;
+			switch (eJustification)
+			{
+				case Justify.Right:
+					{
+						//move teh x value
+						for (int i = 0; i < strText.Length; i++)
+						{
+							//get teh size of the character
+							string strSubString = "" + strText[i];
+							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
+							Position.X -= textSize.X;
+
+							//get the kerning too
+							Position.X -= fKerning;
+						}
+					}
+					break;
+
+				case Justify.Center:
+					{
+						//move teh x value
+						for (int i = 0; i < strText.Length; i++)
+						{
+							//get teh size of the character
+							string strSubString = "" + strText[i];
+							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
+							Position.X -= (textSize.X / 2.0f);
+
+							//get the kerning too
+							Position.X -= fKerning / 2.0f;
+						}
+					}
+					break;
+			}
+
+			dTime *= RainbowSpeed;
 			dTime += strText.Length;
 			for (int i = 0; i < strText.Length; i++)
 			{
@@ -115,6 +147,7 @@ namespace FontBuddyLib
 					0);
 
 				Position.X += (Font.MeasureString(strSubString) * fScale).X;
+				Position.X += fKerning;
 			}
 
 			//return the end of that string
