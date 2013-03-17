@@ -1,126 +1,126 @@
 using System;
+using System.Text;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddy
 {
+	/// <summary>
+	/// This dude takes a list of colors and cycles the color of each letter
+	/// </summary>
 	public class RainbowTextBuddy : ShadowTextBuddy
 	{
+		#region Members
+
+		/// <summary>
+		/// how big the pulsate the text
+		/// </summary>
+		public float PulsateSize { get; set; }
+
+		/// <summary>
+		/// How fast to change the color
+		/// </summary>
+		public float RainbowSpeed { get; set; }
+
+		/// <summary>
+		/// If the pulsate is turned on/off, it will ease into the rainbowing
+		/// </summary>
+		public bool Selected { get; set; }
+
+		private float m_fSelectionFade;
+
+		#endregion //Members
+
+		#region Properties
+
+		/// <summary>
+		/// The list of colors to cycles through
+		/// </summary>
+		public List<Color> Colors { get; set; }
+
+		#endregion //Properties
+
+		#region Methods
+
+		/// <summary>
+		/// Cosntructor!
+		/// </summary>
 		public RainbowTextBuddy()
 		{
+			RainbowSpeed = 2.0f;
+			Colors = new List<Color>();
+
+			//well, this is the rainbow buddy, put some shit in there
+			Colors.Add(Color.Purple);
+			Colors.Add(Color.Blue);
+			Colors.Add(Color.Green);
+			Colors.Add(Color.Yellow);
+			Colors.Add(Color.Orange);
+			Colors.Add(Color.Red);
 		}
 
-			/// <summary>
-		/// Draws the background screen.
+		/// <summary>
+		/// write something on the screen
 		/// </summary>
-		public override void Draw(GameTime gameTime)
+		/// <param name="strText">the text to write on the screen</param>
+		/// <param name="Position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
+		/// <param name="eJustification">how to justify the text</param>
+		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
+		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
+		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
+		/// <param name="dTime">the current game time in seconds</param>
+		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
 		{
-			//Get the game time in seconds
-			double time = gameTime.TotalGameTime.TotalSeconds;
+			//First draw the shadow
+			ShadowWriter.Write(strText,
+				Position + ShadowOffset,
+				eJustification,
+				fScale * ShadowSize,
+				ShadowColor,
+				mySpriteBatch,
+				dTime);
 
-			//Draw the game title!
-
-			//the colors used to draw title
-			Color dark = new Color(0.156f, 0.156f, 0.156f, TransitionAlpha);
-
-			string strTitle1 = "Pajamorama";
-
-			//position of the game title
-			Vector2 titleScale = new Vector2(0.0f);
-			titleScale.X = 1.5f;
-			titleScale.Y = 1.45f;
-			float fTitlePositionX = ScreenRect.Center.X - (font.MeasureString(strTitle1) * titleScale / 2.0f).X;
-			float fTitlePositionY = ScreenRect.Center.Y - ((font.MeasureString(strTitle1) * titleScale).Y * 1.4f);
-			Vector2 titlePosition = new Vector2(fTitlePositionX, fTitlePositionY);
-
-			//position of the shadow
-			Vector2 shadowScale = new Vector2(0.0f);
-			shadowScale.X = 1.45f;
-			shadowScale.Y = 1.4f;
-			float fShadowPositionX = ScreenRect.Center.X - (font.MeasureString(strTitle1) * shadowScale / 2.0f).X;
-			float fShadowPositionY = ScreenRect.Center.Y - ((font.MeasureString(strTitle1) * shadowScale).Y * 1.4f);
-			Vector2 shadowPosition = new Vector2(fShadowPositionX, fShadowPositionY);
-
-			//draw each individual letter of the title
-			for (int i = 0; i < strTitle1.Length; i++)
-			{
-				//draw the shadow
-				string strSubString = "" + strTitle1[i];
-				spriteBatch.DrawString(
-					font,
-					strSubString,
-					shadowPosition,
-					dark,
-					0,
-					Vector2.Zero,
-					shadowScale,
-					SpriteEffects.None,
-					0);
-
-				shadowPosition.X += (font.MeasureString(strSubString) * shadowScale).X;
-			}
-
-			time = gameTime.TotalGameTime.TotalSeconds; //reset the time
-			time *= 2.0; //TODO: change this number to speed up/slow down color change
-			time += strTitle1.Length;
-			for (int i = 0; i < strTitle1.Length; i++)
+			dTime *= RainbowSpeed; //TODO: change this number to speed up/slow down color change
+			dTime += strText.Length;
+			for (int i = 0; i < strText.Length; i++)
 			{
 				//draw the title
 
-				//Get the color
-				Color letterColor = Color.White;
-				time -= 0.6;
-				int iIndex = (int)time % 6; //TODO: change 6 to be the number of colors we are cycling through
-				float fRemainder = (float)(time - (int)time);
+				//Get the current color
+				dTime -= 0.6;
+				int iIndex = (int)dTime % Colors.Count;
 
-				switch (iIndex)
+				//get the next color
+				int iNextIndex = iIndex++;
+				if (iNextIndex >= Colors.Count)
 				{
-					case 0:
-					{
-						letterColor = Color.Lerp(Color.Red, Color.Purple, fRemainder);
-					}
-					break;
-					case 1:
-					{
-						letterColor = Color.Lerp(Color.Purple, Color.Blue, fRemainder);
-					}
-					break;
-					case 2:
-					{
-						letterColor = Color.Lerp(Color.Blue, Color.Green, fRemainder);
-					}
-					break;
-					case 3:
-					{
-						letterColor = Color.Lerp(Color.Green, Color.Yellow, fRemainder);
-					}
-					break;
-					case 4:
-					{
-						letterColor = Color.Lerp(Color.Yellow, Color.Orange, fRemainder);
-					}
-					break;
-					case 5:
-					{
-						letterColor = Color.Lerp(Color.Orange, Color.Red, fRemainder);
-					}
-					break;
+					iNextIndex = 0;
 				}
-				
-				string strSubString = "" + strTitle1[i];
 
-				spriteBatch.DrawString(
-					font,
+				//get the ACTUAL lerped color of this letter
+				float fRemainder = (float)(dTime - (int)dTime);
+				Color letterColor = Color.Lerp(Colors[iIndex], Colors[iNextIndex], fRemainder);
+
+				StringBuilder strSubString = new StringBuilder(strText[i]);
+				mySpriteBatch.DrawString(
+					Font,
 					strSubString,
-					titlePosition,
-					FadeAlphaDuringTransition(letterColor),
+					Position,
+					letterColor,
 					0,
 					Vector2.Zero,
-					titleScale,
+					fScale,
 					SpriteEffects.None,
 					0);
 
-				titlePosition.X += (font.MeasureString(strSubString) * titleScale).X;
+				Position.X += (Font.MeasureString(strSubString) * fScale).X;
 			}
+
+			//return the end of that string
+			return Position.X;
 		}
+
+		#endregion //Methods
 	}
 }
-

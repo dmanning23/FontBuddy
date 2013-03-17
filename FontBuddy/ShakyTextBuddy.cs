@@ -50,7 +50,7 @@ namespace FontBuddy
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <returns>float: the x location of the end of the text.</returns>
 		/// <param name="dTime">The current time in seconds</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, float dTime)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
 		{
 			//Get the correct location
 			Vector2 textPosition = Position;
@@ -59,7 +59,7 @@ namespace FontBuddy
 			//set teh y location
 			textPosition.Y -= textSize.Y * 0.5f;
 			
-			float fKerning = (Font.MeasureString(" ").X * 0.25f) * fScale.X;
+			float fKerning = (Font.MeasureString(" ").X * 0.25f) * fScale;
 			
 			switch (eJustification)
 			{
@@ -145,4 +145,3 @@ namespace FontBuddy
 		#endregion //Methods
 	}
 }
-

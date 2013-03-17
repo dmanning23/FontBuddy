@@ -29,6 +29,9 @@ namespace FontBuddy
 
 		#region Methods
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public OppositeTextBuddy ()
 		{
 			SwapSpeed = 1.0f;
@@ -60,7 +63,7 @@ namespace FontBuddy
 				StringBuilder strSubString = new StringBuilder(strText[i]);
 
 				//Clamp (because we dont want pure black and white)
-				Color shadowColor = Color.Lerp(shadowColor, myColor, pulsate);
+				Color shadowColor = Color.Lerp(ShadowColor, myColor, pulsate);
 				mySpriteBatch.DrawString(
 					Font,
 					strSubString,
@@ -83,8 +86,8 @@ namespace FontBuddy
 				float pulsate = MathHelper.Clamp((float)(SwapSpeed * Math.Sin(dLetterTime * SwapSweep)), -1.0f, 1.0f);
 				StringBuilder strSubString = new StringBuilder(strText[i]);
 
-				//Clamp (because we dont want pure black and white)
-				Color shadowColor = Color.Lerp(myColor, shadowColor, pulsate);
+				//get the opposite color of the shadow
+				Color shadowColor = Color.Lerp(myColor, ShadowColor, pulsate);
 				mySpriteBatch.DrawString(
 					Font,
 					strSubString,
@@ -92,15 +95,17 @@ namespace FontBuddy
 					shadowColor,
 					0,
 					Vector2.Zero,
-					fScale * ShadowSize,
+					fScale,
 					SpriteEffects.None,
 					0);
 
 				Position.X += (Font.MeasureString(strSubString) * fScale).X;
 			}
+
+			//return the end of that string
+			return Position.X;
 		}
 
 		#endregion //Methods
 	}
 }
-

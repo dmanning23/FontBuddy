@@ -53,6 +53,15 @@ namespace FontBuddy
 
 		#endregion //Members
 
+		#region Properties
+
+		protected FontBuddy ShadowWriter
+		{
+			get { return _shadowWriter; }
+		}
+
+		#endregion //Properties
+
 		#region Methods
 
 		/// <summary>
@@ -76,7 +85,7 @@ namespace FontBuddy
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
 		{
 			//darw the shadow
 			_shadowWriter.Write(strText,
