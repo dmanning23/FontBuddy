@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FontBuddy
+namespace FontBuddyLib
 {
 	/// <summary>
 	/// This dude writes the text in big pulsating letters, with the outline below it.
@@ -35,8 +35,8 @@ namespace FontBuddy
 		/// </summary>
 		public PulsateBuddy() : base()
 		{
-			PulsateSize = 4.0f;
-			PulsateSpeed = 1.0f;
+			PulsateSize = 1.0f;
+			PulsateSpeed = 4.0f;
 			Selected = true;
 			m_fSelectionFade = 0.0f;
 		}
@@ -51,13 +51,13 @@ namespace FontBuddy
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
 		{
 			//First draw the shadow
 			ShadowWriter.Write(strText,
-				Position + ShadowOffset,
+				Position,
 				eJustification,
-				fScale * ShadowSize,
+				fScale,
 				ShadowColor,
 				mySpriteBatch,
 				dTime);
@@ -80,15 +80,15 @@ namespace FontBuddy
 			}
 
 			//Pulsate the size of the text
-			float pulsate = (float)(Math.Sin(dTime * PulsateSize) + 1.0);
-			float PulseScale = 1 + pulsate * m_fSelectionFade;
+			float pulsate = PulsateSize * (float)(Math.Sin(dTime) + 1.0);
+			float pulseScale = 1 + pulsate * 0.15f * m_fSelectionFade;
 
-			//adjust the position to account for the pulsating
-			float fAdjust = ((Font.MeasureString(strText).X * fScale * PulseScale) - (Font.MeasureString(strText).X * fScale)) / 2.0f;
-			Position.X -= fAdjust;
+			//adjust the y position so it pulsates straight out
+			Vector2 adjust = ((Font.MeasureString(strText) * fScale * pulseScale) - (Font.MeasureString(strText) * fScale)) / 2.0f;
+			Position.Y -= (adjust.Y / 2.0f);
 
 			//Draw the menu item, with the pulsing
-			return DrawText(strText, Position, eJustification, fScale * PulseScale, myColor, mySpriteBatch, dTime);
+			return DrawText(strText, Position, eJustification, fScale * pulseScale, myColor, mySpriteBatch, dTime);
 		}
 	}
 }

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FontBuddy
+namespace FontBuddyLib
 {
 	/// <summary>
 	/// This dude draw some text with a shadow.  You can change some stuff like shadow distance, color
@@ -70,9 +70,9 @@ namespace FontBuddy
 		public ShadowTextBuddy()
 			: base()
 		{
-			ShadowColor = Color.DarkGray;
-			ShadowOffset = new Vector2(0.0f, 50.0f);
-			ShadowSize = 1.1f;
+			ShadowColor = Color.Black;
+			ShadowOffset = new Vector2(0.0f, 3.0f);
+			ShadowSize = 1.05f;
 		}
 
 		/// <summary>
@@ -97,7 +97,7 @@ namespace FontBuddy
 				dTime);
 
 			//draw my text
-			return base.Write(strText, Position, eJustification, fScale, ShadowColor, mySpriteBatch, dTime);
+			return base.Write(strText, Position, eJustification, fScale, myColor, mySpriteBatch, dTime);
 		}
 
 		#endregion //Methods

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FontBuddy
+namespace FontBuddyLib
 {
 	/// <summary>
 	/// So what this one does:  Takes two colors, draws the shadow in one and text in the other.
@@ -48,7 +48,7 @@ namespace FontBuddy
 		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">the current game time in seconds</param>
-		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
 		{
 			//this is some shit we are gonna use to positaion a shadow
 			Vector2 shadowPosition = Position;
@@ -60,7 +60,7 @@ namespace FontBuddy
 				//Add a tenth of a second for each letter in the string
 				dLetterTime -= (((double)i) * 0.025);
 				float pulsate = MathHelper.Clamp((float)(SwapSpeed * Math.Sin(dLetterTime * SwapSweep)), -1.0f, 1.0f);
-				StringBuilder strSubString = new StringBuilder(strText[i]);
+				string strSubString = "" + strText[i];
 
 				//Clamp (because we dont want pure black and white)
 				Color shadowColor = Color.Lerp(ShadowColor, myColor, pulsate);
@@ -84,7 +84,7 @@ namespace FontBuddy
 				//draw the title
 				dLetterTime -= (((double)i) * 0.025);
 				float pulsate = MathHelper.Clamp((float)(SwapSpeed * Math.Sin(dLetterTime * SwapSweep)), -1.0f, 1.0f);
-				StringBuilder strSubString = new StringBuilder(strText[i]);
+				string strSubString = "" + strText[i];
 
 				//get the opposite color of the shadow
 				Color shadowColor = Color.Lerp(myColor, ShadowColor, pulsate);

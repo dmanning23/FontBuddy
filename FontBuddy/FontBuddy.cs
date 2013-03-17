@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FontBuddy
+namespace FontBuddyLib
 {
 	//how to justify the font writing
 	public enum Justify
@@ -83,48 +83,12 @@ namespace FontBuddy
 		{
 			Debug.Assert(null != Font);
 
-			//Get the correct location
-			Vector2 textPosition = Position;
-			Vector2 textSize = Font.MeasureString(strText) * fScale;
-			
-			//set teh y location
-			textPosition.Y -= textSize.Y * 0.5f;
-			//textPosition.Y += m_Font.LineSpacing;
-			
-			switch (eJustification)
-			{
-				case Justify.Left:
-				{
-					//use teh x value (no cahnge)
-				}
-				break;
-
-				case Justify.Right:
-				{
-					//move teh x value
-					textPosition.X -= textSize.X;
-				}
-				break;
-
-				case Justify.Center:
-				{
-					//move teh x value
-					textPosition.X -= (textSize.X / 2.0f);
-				}
-				break;
-
-				default:
-				{
-					//wtf did you do?
-					Debug.Assert(false);
-				}
-				break;
-			}
+			Position = JustifiedPosition(strText, Position, eJustification, fScale);
 
 			//okay, draw the actual string
 			mySpriteBatch.DrawString(Font,
-				strText, 
-				textPosition, 
+				strText,
+				Position, 
 				myColor,
 				0.0f,
 				Vector2.Zero,
@@ -133,7 +97,38 @@ namespace FontBuddy
 				0);
 
 			//return the end of that string
-			return textPosition.X + textSize.X;
+			return Position.X + (Font.MeasureString(strText).X * fScale);
+		}
+
+		protected Vector2 JustifiedPosition(string strText, Vector2 Position, Justify eJustification, float fScale)
+		{
+			//Get the correct location
+			Vector2 textSize = Font.MeasureString(strText) * fScale;
+
+			//set teh y location
+			//textPosition.Y -= textSize.Y * 0.5f;
+			//textPosition.Y += m_Font.LineSpacing;
+
+			switch (eJustification)
+			{
+				//left = use teh x value (no cahnge)
+
+				case Justify.Right:
+					{
+						//move teh x value
+						Position.X -= textSize.X;
+					}
+					break;
+
+				case Justify.Center:
+					{
+						//move teh x value
+						Position.X -= (textSize.X / 2.0f);
+					}
+					break;
+			}
+
+			return Position;
 		}
 
 		#endregion //Methods

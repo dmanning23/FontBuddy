@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FontBuddy
+namespace FontBuddyLib
 {
 	public class ShakyTextBuddy : FontBuddy
 	{
@@ -75,7 +75,7 @@ namespace FontBuddy
 				for (int i = 0; i < strText.Length; i++)
 				{
 					//get teh size of the character
-					StringBuilder strSubString = new StringBuilder(strText[i]);
+					string strSubString = "" + strText[i];
 					textSize = Font.MeasureString(strSubString.ToString()) * fScale;
 					textPosition.X -= textSize.X;
 					
@@ -91,7 +91,7 @@ namespace FontBuddy
 				for (int i = 0; i < strText.Length; i++)
 				{
 					//get teh size of the character
-					StringBuilder strSubString = new StringBuilder(strText[i]);
+					string strSubString = "" + strText[i];
 					textSize = Font.MeasureString(strSubString.ToString()) * fScale;
 					textPosition.X -= (textSize.X / 2.0f);
 					
@@ -119,8 +119,8 @@ namespace FontBuddy
 				}
 				Vector2 PulsingPosition = textPosition;
 				PulsingPosition.Y += pulsate;
-				
-				StringBuilder strSubString = new StringBuilder(strText[i]);
+
+				string strSubString = "" + strText[i];
 				
 				//Clamp (because we dont want pure black and white)
 				mySpriteBatch.DrawString(

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FontBuddy
+namespace FontBuddyLib
 {
 	/// <summary>
 	/// This dude takes a list of colors and cycles the color of each letter
@@ -70,7 +70,7 @@ namespace FontBuddy
 		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">the current game time in seconds</param>
-		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
 		{
 			//First draw the shadow
 			ShadowWriter.Write(strText,
@@ -92,7 +92,7 @@ namespace FontBuddy
 				int iIndex = (int)dTime % Colors.Count;
 
 				//get the next color
-				int iNextIndex = iIndex++;
+				int iNextIndex = iIndex + 1;
 				if (iNextIndex >= Colors.Count)
 				{
 					iNextIndex = 0;
@@ -102,7 +102,7 @@ namespace FontBuddy
 				float fRemainder = (float)(dTime - (int)dTime);
 				Color letterColor = Color.Lerp(Colors[iIndex], Colors[iNextIndex], fRemainder);
 
-				StringBuilder strSubString = new StringBuilder(strText[i]);
+				string strSubString = "" + strText[i];
 				mySpriteBatch.DrawString(
 					Font,
 					strSubString,
