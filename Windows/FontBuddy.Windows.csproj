@@ -43,25 +43,25 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="..\..\Source\FontBuddy.cs">
+    <Compile Include="..\Source\FontBuddy.cs">
       <Link>FontBuddy.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\OppositeTextBuddy.cs">
+    <Compile Include="..\Source\OppositeTextBuddy.cs">
       <Link>OppositeTextBuddy.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\PulsateBuddy.cs">
+    <Compile Include="..\Source\PulsateBuddy.cs">
       <Link>PulsateBuddy.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\RainbowTextBuddy.cs">
+    <Compile Include="..\Source\RainbowTextBuddy.cs">
       <Link>RainbowTextBuddy.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\ShadowTextBuddy.cs">
+    <Compile Include="..\Source\ShadowTextBuddy.cs">
       <Link>ShadowTextBuddy.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\ShakyTextBuddy.cs">
+    <Compile Include="..\Source\ShakyTextBuddy.cs">
       <Link>ShakyTextBuddy.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\Properties\AssemblyInfo.cs">
+    <Compile Include="..\Source\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
