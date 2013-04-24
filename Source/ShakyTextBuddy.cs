@@ -52,7 +52,7 @@ namespace FontBuddyLib
 		/// <param name="dTime">The current time in seconds</param>
 		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
 		{
-			float fKerning = (Font.MeasureString(" ").X * 0.25f) * fScale;
+			float fKerning = Font.Spacing * fScale;
 
 			//Get the correct location
 			Vector2 textSize = Font.MeasureString(strText) * fScale;

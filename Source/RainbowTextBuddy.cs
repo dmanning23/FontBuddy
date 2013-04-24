@@ -74,7 +74,7 @@ namespace FontBuddyLib
 				mySpriteBatch,
 				dTime);
 
-			float fKerning = (Font.MeasureString(" ").X * 0.25f) * fScale;
+			float fKerning = Font.Spacing * fScale;
 
 			//Get the correct location
 			Vector2 textSize = Font.MeasureString(strText) * fScale;
