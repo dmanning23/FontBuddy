@@ -16,12 +16,12 @@ namespace FontBuddyLib
 		#region Fields
 		
 		/// <summary>
-		/// how fast to swap colors... defaults to 1.0f
+		/// how fast to swap colors... defaults to 2.0f
 		/// </summary>
 		public float SwapSpeed { get; set; }
 		
 		/// <summary>
-		/// How often to swap colors... defaults to 0.5f
+		/// How often to swap colors... defaults to 0.1f
 		/// </summary>
 		public float SwapSweep { get; set; }
 
