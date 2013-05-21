@@ -14,11 +14,6 @@ namespace FontBuddyLib
 		#region Members
 
 		/// <summary>
-		/// how big the pulsate the text
-		/// </summary>
-		public float PulsateSize { get; set; }
-
-		/// <summary>
 		/// How fast to change the color
 		/// </summary>
 		public float RainbowSpeed { get; set; }
