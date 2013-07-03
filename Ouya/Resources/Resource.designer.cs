@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("FontBuddy.Ouya.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("FontBuddyLib.Ouya.Resource", IsApplication=false)]
 
-namespace FontBuddy.Ouya
+namespace FontBuddyLib.Ouya
 {
 	
 	
