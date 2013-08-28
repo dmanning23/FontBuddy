@@ -43,11 +43,13 @@ namespace FontBuddyLib
 
 		/// <summary>
 		/// offset of our text to draw the shadow
+		/// defaults to 0.0f, 3.0f
 		/// </summary>
 		public Vector2 ShadowOffset { get; set; }
 
 		/// <summary>
 		/// How much bigger than our text to make the shadow... this is a multiplier of the font size, NOT A POINT SIZE!!!
+		/// defaults to 1.05f
 		/// </summary>
 		public float ShadowSize { get; set; }
 

@@ -13,7 +13,7 @@ namespace FontBuddyLib
 
 		/// <summary>
 		/// How much the text shakes, higher values = more shake
-		/// Defaults to 40
+		/// Defaults to 10
 		/// </summary>
 		/// <value>The shake amount.</value>
 		public float ShakeAmount { get; set; }
