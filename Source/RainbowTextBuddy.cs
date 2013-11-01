@@ -1,5 +1,3 @@
-using System;
-using System.Text;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -58,16 +56,17 @@ namespace FontBuddyLib
 		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">the current game time in seconds</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
+		                            SpriteBatch mySpriteBatch, double dTime)
 		{
 			//First draw the shadow
 			ShadowWriter.Write(strText,
-				Position + ShadowOffset,
-				eJustification,
-				fScale * ShadowSize,
-				ShadowColor,
-				mySpriteBatch,
-				dTime);
+			                   Position + ShadowOffset,
+			                   eJustification,
+			                   fScale * ShadowSize,
+			                   ShadowColor,
+			                   mySpriteBatch,
+			                   dTime);
 
 			float fKerning = Font.Spacing * fScale;
 
@@ -76,35 +75,35 @@ namespace FontBuddyLib
 			switch (eJustification)
 			{
 				case Justify.Right:
+				{
+					//move teh x value
+					for (int i = 0; i < strText.Length; i++)
 					{
-						//move teh x value
-						for (int i = 0; i < strText.Length; i++)
-						{
-							//get teh size of the character
-							string strSubString = "" + strText[i];
-							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
-							Position.X -= textSize.X;
+						//get teh size of the character
+						string strSubString = "" + strText[i];
+						textSize = Font.MeasureString(strSubString) * fScale;
+						Position.X -= textSize.X;
 
-							//get the kerning too
-							Position.X -= fKerning;
-						}
+						//get the kerning too
+						Position.X -= fKerning;
 					}
+				}
 					break;
 
 				case Justify.Center:
+				{
+					//move teh x value
+					for (int i = 0; i < strText.Length; i++)
 					{
-						//move teh x value
-						for (int i = 0; i < strText.Length; i++)
-						{
-							//get teh size of the character
-							string strSubString = "" + strText[i];
-							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
-							Position.X -= (textSize.X / 2.0f);
+						//get teh size of the character
+						string strSubString = "" + strText[i];
+						textSize = Font.MeasureString(strSubString) * fScale;
+						Position.X -= (textSize.X / 2.0f);
 
-							//get the kerning too
-							Position.X -= fKerning / 2.0f;
-						}
+						//get the kerning too
+						Position.X -= fKerning / 2.0f;
 					}
+				}
 					break;
 			}
 
@@ -126,7 +125,7 @@ namespace FontBuddyLib
 				}
 
 				//get the ACTUAL lerped color of this letter
-				float fRemainder = (float)(dTime - (int)dTime);
+				var fRemainder = (float)(dTime - (int)dTime);
 				Color letterColor = Color.Lerp(Colors[iIndex], Colors[iNextIndex], fRemainder);
 
 				string strSubString = "" + strText[i];

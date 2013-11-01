@@ -11,6 +11,8 @@ namespace FontBuddyLib
 	{
 		#region Members
 
+		private float m_fSelectionFade;
+
 		/// <summary>
 		/// how big the pulsate the text
 		/// </summary>
@@ -26,14 +28,12 @@ namespace FontBuddyLib
 		/// </summary>
 		public bool Selected { get; set; }
 
-		private float m_fSelectionFade;
-
 		#endregion //Members
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public PulsateBuddy() : base()
+		public PulsateBuddy()
 		{
 			PulsateSize = 1.0f;
 			PulsateSpeed = 4.0f;
@@ -51,16 +51,17 @@ namespace FontBuddyLib
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
+		                            SpriteBatch mySpriteBatch, double dTime = 0.0f)
 		{
 			//First draw the shadow
 			ShadowWriter.Write(strText,
-				Position,
-				eJustification,
-				fScale,
-				ShadowColor,
-				mySpriteBatch,
-				dTime);
+			                   Position,
+			                   eJustification,
+			                   fScale,
+			                   ShadowColor,
+			                   mySpriteBatch,
+			                   dTime);
 
 			//multiply the time by the speed
 			dTime *= PulsateSpeed;
@@ -92,4 +93,3 @@ namespace FontBuddyLib
 		}
 	}
 }
-

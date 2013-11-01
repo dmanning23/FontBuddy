@@ -1,8 +1,4 @@
-using System;
-using System.Text;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddyLib
@@ -18,7 +14,7 @@ namespace FontBuddyLib
 		/// <summary>
 		/// font buddy we are going to use to draw the shadow
 		/// </summary>
-		private FontBuddy _shadowWriter = new FontBuddy();
+		private readonly FontBuddy _shadowWriter = new FontBuddy();
 
 		/// <summary>
 		/// color to draw the shadow
@@ -30,10 +26,7 @@ namespace FontBuddyLib
 		/// </summary>
 		public override SpriteFont Font
 		{
-			get
-			{
-				return base.Font;
-			}
+			get { return base.Font; }
 			set
 			{
 				_shadowWriter.Font = value;
@@ -70,7 +63,6 @@ namespace FontBuddyLib
 		/// Constructor!
 		/// </summary>
 		public ShadowTextBuddy()
-			: base()
 		{
 			ShadowColor = Color.Black;
 			ShadowOffset = new Vector2(0.0f, 3.0f);
@@ -87,16 +79,17 @@ namespace FontBuddyLib
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
+		                            SpriteBatch mySpriteBatch, double dTime = 0.0f)
 		{
 			//darw the shadow
 			_shadowWriter.Write(strText,
-				Position + ShadowOffset, 
-				eJustification, 
-				fScale * ShadowSize, 
-				ShadowColor, 
-				mySpriteBatch, 
-				dTime);
+			                    Position + ShadowOffset,
+			                    eJustification,
+			                    fScale * ShadowSize,
+			                    ShadowColor,
+			                    mySpriteBatch,
+			                    dTime);
 
 			//draw my text
 			return base.Write(strText, Position, eJustification, fScale, myColor, mySpriteBatch, dTime);
@@ -105,4 +98,3 @@ namespace FontBuddyLib
 		#endregion //Methods
 	}
 }
-

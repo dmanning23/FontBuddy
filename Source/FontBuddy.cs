@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +9,9 @@ namespace FontBuddyLib
 	public enum Justify
 	{
 		Left,
+
 		Right,
+
 		Center
 	}
 
@@ -64,7 +64,8 @@ namespace FontBuddyLib
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
+		public virtual float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
+		                           SpriteBatch mySpriteBatch, double dTime = 0.0f)
 		{
 			return DrawText(strText, Position, eJustification, fScale, myColor, mySpriteBatch, dTime);
 		}
@@ -79,7 +80,8 @@ namespace FontBuddyLib
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		protected float DrawText(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
+		protected float DrawText(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
+		                         SpriteBatch mySpriteBatch, double dTime = 0.0f)
 		{
 			Debug.Assert(null != Font);
 
@@ -87,14 +89,14 @@ namespace FontBuddyLib
 
 			//okay, draw the actual string
 			mySpriteBatch.DrawString(Font,
-				strText,
-				Position, 
-				myColor,
-				0.0f,
-				Vector2.Zero,
-				fScale,
-				SpriteEffects.None,
-				0);
+			                         strText,
+			                         Position,
+			                         myColor,
+			                         0.0f,
+			                         Vector2.Zero,
+			                         fScale,
+			                         SpriteEffects.None,
+			                         0);
 
 			//return the end of that string
 			return Position.X + (Font.MeasureString(strText).X * fScale);
@@ -111,20 +113,20 @@ namespace FontBuddyLib
 
 			switch (eJustification)
 			{
-				//left = use teh x value (no cahnge)
+					//left = use teh x value (no cahnge)
 
 				case Justify.Right:
-					{
-						//move teh x value
-						Position.X -= textSize.X;
-					}
+				{
+					//move teh x value
+					Position.X -= textSize.X;
+				}
 					break;
 
 				case Justify.Center:
-					{
-						//move teh x value
-						Position.X -= (textSize.X / 2.0f);
-					}
+				{
+					//move teh x value
+					Position.X -= (textSize.X / 2.0f);
+				}
 					break;
 			}
 

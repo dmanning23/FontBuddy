@@ -1,8 +1,5 @@
 using System;
-using System.Text;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddyLib
@@ -14,12 +11,12 @@ namespace FontBuddyLib
 	public class OppositeTextBuddy : ShadowTextBuddy
 	{
 		#region Fields
-		
+
 		/// <summary>
 		/// how fast to swap colors... defaults to 2.0f
 		/// </summary>
 		public float SwapSpeed { get; set; }
-		
+
 		/// <summary>
 		/// How often to swap colors... defaults to 0.1f
 		/// </summary>
@@ -32,7 +29,7 @@ namespace FontBuddyLib
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public OppositeTextBuddy ()
+		public OppositeTextBuddy()
 		{
 			SwapSpeed = 2.0f;
 			SwapSweep = 0.1f;
@@ -48,7 +45,8 @@ namespace FontBuddyLib
 		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">the current game time in seconds</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
+		                            SpriteBatch mySpriteBatch, double dTime)
 		{
 			float fKerning = Font.Spacing * fScale;
 
@@ -57,35 +55,35 @@ namespace FontBuddyLib
 			switch (eJustification)
 			{
 				case Justify.Right:
+				{
+					//move teh x value
+					for (int i = 0; i < strText.Length; i++)
 					{
-						//move teh x value
-						for (int i = 0; i < strText.Length; i++)
-						{
-							//get teh size of the character
-							string strSubString = "" + strText[i];
-							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
-							Position.X -= textSize.X;
+						//get teh size of the character
+						string strSubString = "" + strText[i];
+						textSize = Font.MeasureString(strSubString) * fScale;
+						Position.X -= textSize.X;
 
-							//get the kerning too
-							Position.X -= fKerning;
-						}
+						//get the kerning too
+						Position.X -= fKerning;
 					}
+				}
 					break;
 
 				case Justify.Center:
+				{
+					//move teh x value
+					for (int i = 0; i < strText.Length; i++)
 					{
-						//move teh x value
-						for (int i = 0; i < strText.Length; i++)
-						{
-							//get teh size of the character
-							string strSubString = "" + strText[i];
-							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
-							Position.X -= (textSize.X / 2.0f);
+						//get teh size of the character
+						string strSubString = "" + strText[i];
+						textSize = Font.MeasureString(strSubString) * fScale;
+						Position.X -= (textSize.X / 2.0f);
 
-							//get the kerning too
-							Position.X -= fKerning / 2.0f;
-						}
+						//get the kerning too
+						Position.X -= fKerning / 2.0f;
 					}
+				}
 					break;
 			}
 

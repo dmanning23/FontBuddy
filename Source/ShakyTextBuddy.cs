@@ -1,8 +1,5 @@
 using System;
-using System.Text;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddyLib
@@ -50,7 +47,8 @@ namespace FontBuddyLib
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <returns>float: the x location of the end of the text.</returns>
 		/// <param name="dTime">The current time in seconds</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime)
+		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
+		                            SpriteBatch mySpriteBatch, double dTime)
 		{
 			float fKerning = Font.Spacing * fScale;
 
@@ -59,35 +57,35 @@ namespace FontBuddyLib
 			switch (eJustification)
 			{
 				case Justify.Right:
+				{
+					//move teh x value
+					for (int i = 0; i < strText.Length; i++)
 					{
-						//move teh x value
-						for (int i = 0; i < strText.Length; i++)
-						{
-							//get teh size of the character
-							string strSubString = "" + strText[i];
-							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
-							Position.X -= textSize.X;
+						//get teh size of the character
+						string strSubString = "" + strText[i];
+						textSize = Font.MeasureString(strSubString) * fScale;
+						Position.X -= textSize.X;
 
-							//get the kerning too
-							Position.X -= fKerning;
-						}
+						//get the kerning too
+						Position.X -= fKerning;
 					}
+				}
 					break;
 
 				case Justify.Center:
+				{
+					//move teh x value
+					for (int i = 0; i < strText.Length; i++)
 					{
-						//move teh x value
-						for (int i = 0; i < strText.Length; i++)
-						{
-							//get teh size of the character
-							string strSubString = "" + strText[i];
-							textSize = Font.MeasureString(strSubString.ToString()) * fScale;
-							Position.X -= (textSize.X / 2.0f);
+						//get teh size of the character
+						string strSubString = "" + strText[i];
+						textSize = Font.MeasureString(strSubString) * fScale;
+						Position.X -= (textSize.X / 2.0f);
 
-							//get the kerning too
-							Position.X -= fKerning / 2.0f;
-						}
+						//get the kerning too
+						Position.X -= fKerning / 2.0f;
 					}
+				}
 					break;
 			}
 
@@ -107,7 +105,7 @@ namespace FontBuddyLib
 				//Clamp (because we dont want pure black and white)
 				mySpriteBatch.DrawString(
 					Font,
-					strSubString.ToString(),
+					strSubString,
 					PulsingPosition,
 					myColor,
 					0,
@@ -116,7 +114,7 @@ namespace FontBuddyLib
 					SpriteEffects.None,
 					0);
 
-				Position.X += Font.MeasureString(strSubString.ToString()).X * fScale;
+				Position.X += Font.MeasureString(strSubString).X * fScale;
 				Position.X += fKerning;
 			}
 
