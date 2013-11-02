@@ -13,6 +13,7 @@ namespace FontBuddyLib
 
 		/// <summary>
 		/// How fast to change the color
+		/// Defaults to 2.0
 		/// </summary>
 		public float RainbowSpeed { get; set; }
 
