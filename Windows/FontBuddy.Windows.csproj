@@ -53,9 +53,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="..\Source\FontBuddy.cs">
@@ -63,6 +61,9 @@
     </Compile>
     <Compile Include="..\Source\OppositeTextBuddy.cs">
       <Link>OppositeTextBuddy.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\OutlineTextBuddy.cs">
+      <Link>OutlineTextBuddy.cs</Link>
     </Compile>
     <Compile Include="..\Source\PulsateBuddy.cs">
       <Link>PulsateBuddy.cs</Link>
