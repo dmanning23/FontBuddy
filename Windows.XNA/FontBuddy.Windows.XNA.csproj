@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WINDOWS, XNA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoStdLib>true</NoStdLib>
@@ -97,6 +97,9 @@
     </Compile>
     <Compile Include="..\Source\OppositeTextBuddy.cs">
       <Link>OppositeTextBuddy.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\OutlineTextBuddy.cs">
+      <Link>OutlineTextBuddy.cs</Link>
     </Compile>
     <Compile Include="..\Source\PulsateBuddy.cs">
       <Link>PulsateBuddy.cs</Link>

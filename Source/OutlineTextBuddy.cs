@@ -79,12 +79,22 @@ namespace FontBuddyLib
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
 		public override float Write(string strText, Vector2 position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, double dTime = 0.0f)
 		{
+			float alpha = ((float)(OutlineColor.A * myColor.A) / 65025.0f);
+#if !XNA
+			Color backColor = new Color(OutlineColor, alpha);
+#else
+			Color backColor = OutlineColor;
+			backColor.A = myColor.A;
+#endif
+
 			//draw the outline
 			for (int x = -OutlineSize; x <= OutlineSize; x += OutlineSize / 2)
 			{
 				for (int y = -OutlineSize; y <= OutlineSize; y += OutlineSize / 2)
 				{
-					if (x == 0 && y == 0)
+					bool xEdge = ((x == -OutlineSize) || (x == OutlineSize));
+					bool yEdge = ((y == -OutlineSize) || (y == OutlineSize));
+					if (!xEdge && !yEdge)
 					{ 
 						continue; 
 					}
@@ -94,7 +104,7 @@ namespace FontBuddyLib
 								outlinePos,
 								eJustification,
 								fScale,
-								OutlineColor,
+								backColor,
 								mySpriteBatch,
 								dTime);
 				}
