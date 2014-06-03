@@ -62,6 +62,9 @@
     <Compile Include="..\Source\ShakyTextBuddy.cs">
       <Link>ShakyTextBuddy.cs</Link>
     </Compile>
+    <Compile Include="..\Source\OutlineTextBuddy.cs">
+      <Link>OutlineTextBuddy.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
