@@ -58,7 +58,7 @@ namespace FontBuddyLib
 			ShadowWriter.Write(strText,
 			                   Position,
 			                   eJustification,
-			                   fScale,
+			                   ShadowSize * fScale,
 			                   ShadowColor,
 			                   mySpriteBatch,
 			                   dTime);

@@ -93,7 +93,7 @@ namespace FontBuddyLib
 			SpriteBatch mySpriteBatch, 
 			double dTime = 0.0f)
 		{
-			return DrawText(strText, new Vector2(Position.X, Position.Y), eJustification, fScale, myColor, mySpriteBatch, dTime);
+			return Write(strText, new Vector2(Position.X, Position.Y), eJustification, fScale, myColor, mySpriteBatch, dTime);
 		}
 
 		/// <summary>
