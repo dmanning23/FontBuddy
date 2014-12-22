@@ -57,8 +57,13 @@ namespace FontBuddyLib
 		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">the current game time in seconds</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
-		                            SpriteBatch mySpriteBatch, double dTime)
+		public override float Write(string strText, 
+			Vector2 Position, 
+			Justify eJustification, 
+			float fScale, 
+			Color myColor,
+			SpriteBatch mySpriteBatch, 
+			double dTime)
 		{
 			//First draw the shadow
 			ShadowWriter.Write(strText,
