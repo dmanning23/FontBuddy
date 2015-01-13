@@ -21,7 +21,7 @@ namespace FontBuddyLib
 		/// thing used to count up from 0 -> target number
 		/// call start on this dude when you want to display
 		/// </summary>
-		public GameClock Timer { get; private set; }
+		private CountdownTimer Timer { get; set; }
 
 		/// <summary>
 		/// After the thing is done counting up, how much to scale it.
@@ -59,7 +59,8 @@ namespace FontBuddyLib
 		{
 			get
 			{
-				return Timer.CurrentTime >= (CountUpTime + ScaleTime + KillTime);
+				//paused timer or at the end of all the time
+				return (!Timer.HasTimeRemaining());
 			}
 		}
 
@@ -73,13 +74,18 @@ namespace FontBuddyLib
 		public BouncyNumbers(int target)
 		{
 			TargetNumber = target;
-			Timer = new GameClock();
+			Timer = new CountdownTimer();
 			Timer.Stop();
 			CountUpTime = 1.0f;
 			ScaleTime = 0.5f;
-			ScaleAtEnd = 2.0f;
-			KillTime = 1.0f;
+			ScaleAtEnd = 2.5f;
+			KillTime = 0.75f;
 			Rescale = 1.2f;
+		}
+
+		public void Start(GameClock time)
+		{
+			Timer.Start((CountUpTime + ScaleTime + KillTime), time.CurrentTime);
 		}
 
 		/// <summary>
@@ -100,16 +106,18 @@ namespace FontBuddyLib
 			SpriteBatch mySpriteBatch,
 			double time)
 		{
-			if (!Timer.Paused)
+			if (!IsDead)
 			{
 				//update the timer we are using
 				Timer.Update((float)time);
 
+				float elasped = Timer.CurrentTime - Timer.StartTime;
+
 				//are we before or after the cutoff
-				if (Timer.CurrentTime <= CountUpTime)
+				if (elasped <= CountUpTime)
 				{
 					//lerp up to the desired number
-					int currentNumber = (int)((Timer.CurrentTime * CountUpTime) * (float)TargetNumber);
+					int currentNumber = (int)((elasped * CountUpTime) * (float)TargetNumber);
 
 					//write number
 					return base.Write(currentNumber.ToString(),
@@ -120,7 +128,7 @@ namespace FontBuddyLib
 						mySpriteBatch,
 						time);
 				}
-				else if (Timer.CurrentTime <= (CountUpTime + ScaleTime))
+				else if (elasped <= (CountUpTime + ScaleTime))
 				{
 					//this is the number we want to start the scale at
 					float endScale = ScaleAtEnd;
@@ -129,7 +137,7 @@ namespace FontBuddyLib
 					fScale *= Rescale;
 
 					//current time - countuptime starts us at 0.0, which is good for lerping purposes
-					float currentTime = Timer.CurrentTime - CountUpTime;
+					float currentTime = elasped - CountUpTime;
 
 					//convert the amount of time to a number between 0.0 and 1.0
 					float lerp = currentTime / ScaleTime;
