@@ -59,9 +59,20 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\GameTimer\Windows\GameTimer.Windows.csproj">
+      <Project>{6b6d4188-5c03-4e16-923b-96fdbc85b91a}</Project>
+      <Name>GameTimer.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="..\Source\BouncyNumbers.cs">
+      <Link>BouncyNumbers.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ErrorText.cs">
+      <Link>ErrorText.cs</Link>
+    </Compile>
     <Compile Include="..\Source\FontBuddy.cs">
       <Link>FontBuddy.cs</Link>
     </Compile>
