@@ -152,7 +152,7 @@ namespace FontBuddyLib
 
 					//adjust the position to draw based on how much we are scaling
 					Vector2 adjust = ((Font.MeasureString(strText) * finalScale) - (Font.MeasureString(strText) * fScale)) / 2.0f;
-					position.Y -= (adjust.Y / 2.0f);
+					position.Y -= adjust.Y;
 
 					str.Append(TargetNumber);
 					return base.Write(str.ToString(),

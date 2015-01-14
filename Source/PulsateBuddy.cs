@@ -86,7 +86,7 @@ namespace FontBuddyLib
 
 			//adjust the y position so it pulsates straight out
 			Vector2 adjust = ((Font.MeasureString(strText) * fScale * pulseScale) - (Font.MeasureString(strText) * fScale)) / 2.0f;
-			Position.Y -= (adjust.Y / 2.0f);
+			Position.Y -= adjust.Y;
 
 			//Draw the menu item, with the pulsing
 			return DrawText(strText, Position, eJustification, fScale * pulseScale, myColor, mySpriteBatch, dTime);
