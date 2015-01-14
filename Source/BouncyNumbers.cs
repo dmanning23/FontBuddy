@@ -1,3 +1,4 @@
+using System.Text;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -108,6 +109,9 @@ namespace FontBuddyLib
 		{
 			if (!IsDead)
 			{
+				StringBuilder str = new StringBuilder();
+				str.Append(strText);
+
 				//update the timer we are using
 				Timer.Update((float)time);
 
@@ -120,7 +124,8 @@ namespace FontBuddyLib
 					int currentNumber = (int)((elasped * CountUpTime) * (float)TargetNumber);
 
 					//write number
-					return base.Write(currentNumber.ToString(),
+					str.Append(currentNumber);
+					return base.Write(str.ToString(),
 						position,
 						eJustification,
 						fScale,
@@ -149,7 +154,8 @@ namespace FontBuddyLib
 					Vector2 adjust = ((Font.MeasureString(strText) * finalScale) - (Font.MeasureString(strText) * fScale)) / 2.0f;
 					position.Y -= (adjust.Y / 2.0f);
 
-					return base.Write(TargetNumber.ToString(),
+					str.Append(TargetNumber);
+					return base.Write(str.ToString(),
 						position,
 						eJustification,
 						finalScale,
@@ -159,9 +165,12 @@ namespace FontBuddyLib
 				}
 				else
 				{
+					//make the text a little bigger
 					fScale *= Rescale;
 
-					return base.Write(TargetNumber.ToString(),
+					//write the final number
+					str.Append(TargetNumber);
+					return base.Write(str.ToString(),
 						position,
 						eJustification,
 						fScale,
