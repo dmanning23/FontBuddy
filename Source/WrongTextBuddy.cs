@@ -7,7 +7,7 @@ namespace FontBuddyLib
 	/// <summary>
 	/// This dude writes the text in big pulsating letters, with the outline below it.
 	/// </summary>
-	public class PulsateBuddy : ShadowTextBuddy
+	public class WrongTextBuddy : ShadowTextBuddy
 	{
 		#region Members
 
@@ -33,10 +33,10 @@ namespace FontBuddyLib
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public PulsateBuddy()
+		public WrongTextBuddy()
 		{
-			PulsateSize = 1.0f;
-			PulsateSpeed = 4.0f;
+			PulsateSize = 0.25f;
+			PulsateSpeed = 25.0f;
 			Selected = true;
 			m_fSelectionFade = 0.0f;
 		}
@@ -59,15 +59,6 @@ namespace FontBuddyLib
 			SpriteBatch mySpriteBatch, 
 			double dTime = 0.0f)
 		{
-			//First draw the shadow
-			ShadowWriter.Write(strText,
-							   position,
-			                   eJustification,
-			                   ShadowSize * fScale,
-			                   ShadowColor,
-			                   mySpriteBatch,
-			                   dTime);
-
 			//multiply the time by the speed
 			dTime *= PulsateSpeed;
 
@@ -86,15 +77,24 @@ namespace FontBuddyLib
 			}
 
 			//Pulsate the size of the text
-			float pulsate = PulsateSize * (float)(Math.Sin(dTime) + 1.0);
+			float pulsate = PulsateSize * (float)(Math.Sin(dTime));
 			float pulseScale = 1 + pulsate * 0.15f * m_fSelectionFade;
 
 			//adjust the y position so it pulsates straight out
 			Vector2 adjust = ((Font.MeasureString(strText) * fScale * pulseScale) - (Font.MeasureString(strText) * fScale)) / 2.0f;
-			position.Y -= adjust.Y;
+			position.X -= adjust.X;
+
+			//First draw the shadow
+			ShadowWriter.Write(strText,
+							   position,
+							   eJustification,
+							   ShadowSize * fScale,
+							   ShadowColor,
+							   mySpriteBatch,
+							   dTime);
 
 			//Draw the menu item, with the pulsing
-			return DrawText(strText, position, eJustification, fScale * pulseScale, myColor, mySpriteBatch, dTime);
+			return DrawText(strText, position, eJustification, fScale, myColor, mySpriteBatch, dTime);
 		}
 	}
 }

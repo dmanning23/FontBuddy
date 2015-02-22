@@ -94,6 +94,9 @@
     <Compile Include="..\Source\ShakyTextBuddy.cs">
       <Link>ShakyTextBuddy.cs</Link>
     </Compile>
+    <Compile Include="..\Source\WrongTextBuddy.cs">
+      <Link>WrongTextBuddy.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
