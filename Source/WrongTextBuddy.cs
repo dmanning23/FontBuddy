@@ -35,7 +35,7 @@ namespace FontBuddyLib
 		/// </summary>
 		public WrongTextBuddy()
 		{
-			PulsateSize = 0.25f;
+			PulsateSize = 1.0f;
 			PulsateSpeed = 25.0f;
 			Selected = true;
 			m_fSelectionFade = 0.0f;

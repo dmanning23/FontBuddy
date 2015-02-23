@@ -106,8 +106,13 @@ namespace FontBuddyLib
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		protected float DrawText(string strText, Vector2 position, Justify eJustification, float fScale, Color myColor,
-		                         SpriteBatch mySpriteBatch, double dTime = 0.0f)
+		protected float DrawText(string strText, 
+			Vector2 position, 
+			Justify eJustification, 
+			float fScale, 
+			Color myColor,
+			SpriteBatch mySpriteBatch, 
+			double dTime = 0.0f)
 		{
 			Debug.Assert(null != Font);
 

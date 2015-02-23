@@ -27,7 +27,7 @@ namespace FontBuddyLib
 		#region Methods
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="FontBuddy.ShakyTextBuddy"/> class.
+		/// Initializes a new instance of the <see cref="ShakyTextBuddy"/> class.
 		/// Draw some text that shakes up and down!
 		/// </summary>
 		public ShakyTextBuddy()
@@ -40,15 +40,20 @@ namespace FontBuddyLib
 		/// write something on the screen
 		/// </summary>
 		/// <param name="strText">the text to write on the screen</param>
-		/// <param name="Position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
+		/// <param name="position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
 		/// <param name="eJustification">how to justify the text</param>
 		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <returns>float: the x location of the end of the text.</returns>
 		/// <param name="dTime">The current time in seconds</param>
-		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
-		                            SpriteBatch mySpriteBatch, double dTime)
+		public override float Write(string strText, 
+			Vector2 position, 
+			Justify eJustification, 
+			float fScale, 
+			Color myColor,
+			SpriteBatch mySpriteBatch, 
+			double dTime = 0.0f)
 		{
 			float fKerning = Font.Spacing * fScale;
 
@@ -64,10 +69,10 @@ namespace FontBuddyLib
 						//get teh size of the character
 						string strSubString = "" + strText[i];
 						textSize = Font.MeasureString(strSubString) * fScale;
-						Position.X -= textSize.X;
+						position.X -= textSize.X;
 
 						//get the kerning too
-						Position.X -= fKerning;
+						position.X -= fKerning;
 					}
 				}
 					break;
@@ -80,10 +85,10 @@ namespace FontBuddyLib
 						//get teh size of the character
 						string strSubString = "" + strText[i];
 						textSize = Font.MeasureString(strSubString) * fScale;
-						Position.X -= (textSize.X / 2.0f);
+						position.X -= (textSize.X / 2.0f);
 
 						//get the kerning too
-						Position.X -= fKerning / 2.0f;
+						position.X -= fKerning / 2.0f;
 					}
 				}
 					break;
@@ -97,7 +102,7 @@ namespace FontBuddyLib
 				{
 					pulsate *= -1.0f;
 				}
-				Vector2 PulsingPosition = Position;
+				Vector2 PulsingPosition = position;
 				PulsingPosition.Y += pulsate;
 
 				string strSubString = "" + strText[i];
@@ -114,12 +119,12 @@ namespace FontBuddyLib
 					SpriteEffects.None,
 					0);
 
-				Position.X += Font.MeasureString(strSubString).X * fScale;
-				Position.X += fKerning;
+				position.X += Font.MeasureString(strSubString).X * fScale;
+				position.X += fKerning;
 			}
 
 			//return the end of that string
-			return Position.X + textSize.X;
+			return position.X + textSize.X;
 		}
 
 		#endregion //Methods
