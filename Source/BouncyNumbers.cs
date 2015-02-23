@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using GameTimer;
 using Microsoft.Xna.Framework;
@@ -86,6 +87,8 @@ namespace FontBuddyLib
 
 		public void Start(GameClock time)
 		{
+			//adjust the target number as necessary
+			CountUpTime = Math.Min(2.0f, Math.Max(0.2f, TargetNumber / 1000f));
 			Timer.Start((CountUpTime + ScaleTime + KillTime), time.CurrentTime);
 		}
 
