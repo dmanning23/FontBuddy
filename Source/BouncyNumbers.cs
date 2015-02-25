@@ -108,13 +108,13 @@ namespace FontBuddyLib
 			float fScale,
 			Color myColor,
 			SpriteBatch mySpriteBatch,
-			double time)
+			double time = 0.0f)
 		{
+			StringBuilder str = new StringBuilder();
+			str.Append(strText);
+
 			if (!IsDead)
 			{
-				StringBuilder str = new StringBuilder();
-				str.Append(strText);
-
 				//update the timer we are using
 				Timer.Update((float)time);
 
@@ -138,8 +138,8 @@ namespace FontBuddyLib
 				}
 				else if (elasped <= (CountUpTime + ScaleTime))
 				{
-					//this is the number we want to start the scale at
-					float endScale = ScaleAtEnd;
+					//add the target number
+					str.Append(TargetNumber);
 
 					//this is the amount we want to end the scale at
 					fScale *= Rescale;
@@ -151,13 +151,13 @@ namespace FontBuddyLib
 					float lerp = currentTime / ScaleTime;
 
 					//lerp from the start scale to the end scale
-					float finalScale = MathHelper.Lerp(endScale, fScale, lerp);
+					float finalScale = MathHelper.Lerp(ScaleAtEnd, fScale, lerp);
 
 					//adjust the position to draw based on how much we are scaling
-					Vector2 adjust = ((Font.MeasureString(strText) * finalScale) - (Font.MeasureString(strText) * fScale)) / 2.0f;
+					var textSize = Font.MeasureString(str.ToString());
+					Vector2 adjust = ((textSize * finalScale) - (textSize * fScale));
 					position.Y -= adjust.Y;
 
-					str.Append(TargetNumber);
 					return base.Write(str.ToString(),
 						position,
 						eJustification,
