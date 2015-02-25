@@ -88,7 +88,7 @@ namespace FontBuddyLib
 		public void Start(GameClock time)
 		{
 			//adjust the target number as necessary
-			CountUpTime = Math.Min(2.0f, Math.Max(0.2f, TargetNumber / 1000f));
+			CountUpTime = Math.Min(3.0f, Math.Max(0.8f, TargetNumber / 1000f));
 			Timer.Start((CountUpTime + ScaleTime + KillTime), time.CurrentTime);
 		}
 
@@ -124,7 +124,8 @@ namespace FontBuddyLib
 				if (elasped <= CountUpTime)
 				{
 					//lerp up to the desired number
-					int currentNumber = (int)((elasped * CountUpTime) * (float)TargetNumber);
+					int currentNumber = (int)(((TargetNumber - 1) * elasped) / CountUpTime);
+					currentNumber++; //add 1 so it doest start at 0
 
 					//write number
 					str.Append(currentNumber);
