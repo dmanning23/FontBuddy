@@ -9,9 +9,7 @@ namespace FontBuddyLib
 	public enum Justify
 	{
 		Left,
-
 		Right,
-
 		Center
 	}
 
@@ -19,7 +17,7 @@ namespace FontBuddyLib
 	/// This is just a simple class for drawing text on the screen.
 	/// Because that is just way harder in XNA than it needs to be!
 	/// </summary>
-	public class FontBuddy
+	public class FontBuddy : IFontBuddy
 	{
 		#region Properties
 
@@ -37,7 +35,6 @@ namespace FontBuddyLib
 		/// </summary>
 		public FontBuddy()
 		{
-			Font = null;
 		}
 
 		/// <summary>
@@ -58,42 +55,42 @@ namespace FontBuddyLib
 		/// write something on the screen
 		/// </summary>
 		/// <param name="strText">the text to write on the screen</param>
-		/// <param name="Position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
+		/// <param name="position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
 		/// <param name="eJustification">how to justify the text</param>
 		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public virtual float Write(string strText, 
-			Vector2 Position, 
+		public virtual float Write(string strText,
+			Vector2 position, 
 			Justify eJustification, 
 			float fScale, 
 			Color myColor,
 			SpriteBatch mySpriteBatch, 
 			double dTime = 0.0f)
 		{
-			return DrawText(strText, Position, eJustification, fScale, myColor, mySpriteBatch, dTime);
+			return DrawText(strText, position, eJustification, fScale, myColor, mySpriteBatch, dTime);
 		}
 
 		/// <summary>
 		/// write something on the screen
 		/// </summary>
 		/// <param name="strText">the text to write on the screen</param>
-		/// <param name="Position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
+		/// <param name="position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
 		/// <param name="eJustification">how to justify the text</param>
 		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
 		/// <param name="myColor">the color to draw the text</param>
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public virtual float Write(string strText, 
-			Point Position, 
+		public virtual float Write(string strText,
+			Point position, 
 			Justify eJustification, 
 			float fScale, 
 			Color myColor,
 			SpriteBatch mySpriteBatch, 
 			double dTime = 0.0f)
 		{
-			return Write(strText, new Vector2(Position.X, Position.Y), eJustification, fScale, myColor, mySpriteBatch, dTime);
+			return Write(strText, new Vector2(position.X, position.Y), eJustification, fScale, myColor, mySpriteBatch, dTime);
 		}
 
 		/// <summary>

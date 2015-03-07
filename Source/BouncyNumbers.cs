@@ -15,9 +15,19 @@ namespace FontBuddyLib
 		#region Properties
 
 		/// <summary>
+		/// The number we are starting to count at
+		/// </summary>
+		private int StartNumber { get; set; }
+
+		/// <summary>
 		/// The number we are counting up to
 		/// </summary>
-		int TargetNumber { get; set; }
+		private int TargetNumber { get; set; }
+
+		/// <summary>
+		/// the range between start and target
+		/// </summary>
+		private int Delta { get; set; }
 
 		/// <summary>
 		/// thing used to count up from 0 -> target number
@@ -73,9 +83,10 @@ namespace FontBuddyLib
 		/// <summary>
 		/// Cosntructor!
 		/// </summary>
-		public BouncyNumbers(int target)
+		public BouncyNumbers(int startNumber, int targetNumber)
 		{
-			TargetNumber = target;
+			StartNumber = startNumber;
+			TargetNumber = targetNumber;
 			Timer = new CountdownTimer();
 			Timer.Stop();
 			CountUpTime = 1.0f;
@@ -83,12 +94,17 @@ namespace FontBuddyLib
 			ScaleAtEnd = 2.5f;
 			KillTime = 0.75f;
 			Rescale = 1.2f;
+
+			Delta = TargetNumber - StartNumber;
 		}
 
 		public void Start(GameClock time)
 		{
+			//get the num delta
+			int delta = Math.Abs(Delta);
+
 			//adjust the target number as necessary
-			CountUpTime = Math.Min(3.0f, Math.Max(0.8f, TargetNumber / 1000f));
+			CountUpTime = Math.Min(3.0f, Math.Max(0.8f, delta / 1000f));
 			Timer.Start((CountUpTime + ScaleTime + KillTime), time.CurrentTime);
 		}
 
@@ -124,8 +140,11 @@ namespace FontBuddyLib
 				if (elasped <= CountUpTime)
 				{
 					//lerp up to the desired number
-					int currentNumber = (int)(((TargetNumber - 1) * elasped) / CountUpTime);
-					currentNumber++; //add 1 so it doest start at 0
+					int currentNumber = (int)(((Delta) * elasped) / CountUpTime);
+					currentNumber += StartNumber;
+
+					//add 1 so it doest start at 0
+					currentNumber += ((Delta >= 0) ? 1 : -1);
 
 					//write number
 					str.Append(currentNumber);

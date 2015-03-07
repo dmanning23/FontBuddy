@@ -76,6 +76,12 @@
     <Compile Include="..\Source\FontBuddy.cs">
       <Link>FontBuddy.cs</Link>
     </Compile>
+    <Compile Include="..\Source\IFontBuddy.cs">
+      <Link>IFontBuddy.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\NumberBuddy.cs">
+      <Link>NumberBuddy.cs</Link>
+    </Compile>
     <Compile Include="..\Source\OppositeTextBuddy.cs">
       <Link>OppositeTextBuddy.cs</Link>
     </Compile>
