@@ -27,6 +27,21 @@ namespace FontBuddyLib
 		private int TargetNumber { get; set; }
 
 		/// <summary>
+		/// Set the number to draw for this dude.
+		/// </summary>
+		public int Number 
+		{
+			set 
+			{
+				//If this isn't the same number, add the difference
+				if (value != TargetNumber)
+				{
+					Add(value - TargetNumber);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Thing for drawing normal text
 		/// </summary>
 		private OutlineTextBuddy NormalFont { get; set; }
