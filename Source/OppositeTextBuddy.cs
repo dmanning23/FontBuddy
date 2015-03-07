@@ -1,4 +1,5 @@
 using System;
+using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -46,7 +47,7 @@ namespace FontBuddyLib
 		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
 		/// <param name="dTime">the current game time in seconds</param>
 		public override float Write(string strText, Vector2 Position, Justify eJustification, float fScale, Color myColor,
-		                            SpriteBatch mySpriteBatch, double dTime)
+									SpriteBatch mySpriteBatch, GameClock dTime)
 		{
 			float fKerning = Font.Spacing * fScale;
 
@@ -91,7 +92,7 @@ namespace FontBuddyLib
 			Vector2 shadowPosition = Position;
 
 			//draw the individual letter of the shadow first
-			double dLetterTime = dTime;
+			double dLetterTime = dTime.CurrentTime;
 			for (int i = 0; i < strText.Length; i++)
 			{
 				//Add a tenth of a second for each letter in the string
@@ -117,7 +118,7 @@ namespace FontBuddyLib
 				shadowPosition.X += fKerning;
 			}
 
-			dLetterTime = dTime; //reset the time
+			dLetterTime = dTime.CurrentTime; //reset the time
 			for (int i = 0; i < strText.Length; i++)
 			{
 				//draw the title

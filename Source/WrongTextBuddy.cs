@@ -1,4 +1,5 @@
 using System;
+using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -57,15 +58,16 @@ namespace FontBuddyLib
 			float fScale, 
 			Color myColor,
 			SpriteBatch mySpriteBatch, 
-			double dTime = 0.0f)
+			GameClock dTime)
 		{
 			//multiply the time by the speed
-			dTime *= PulsateSpeed;
+			float currentTime = dTime.CurrentTime;
+			currentTime *= PulsateSpeed;
 
 			// When the menu selection changes, entries gradually fade between
 			// their selected and deselected appearance, rather than instantly
 			// popping to the new state.
-			double fadeSpeed = dTime * 4.0f;
+			double fadeSpeed = currentTime * 4.0f;
 
 			if (Selected)
 			{
@@ -77,7 +79,7 @@ namespace FontBuddyLib
 			}
 
 			//Pulsate the size of the text
-			float pulsate = PulsateSize * (float)(Math.Sin(dTime));
+			float pulsate = PulsateSize * (float)(Math.Sin(currentTime));
 			float pulseScale = 1 + pulsate * 0.15f * m_fSelectionFade;
 
 			//adjust the y position so it pulsates straight out

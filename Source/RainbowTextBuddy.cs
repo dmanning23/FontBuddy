@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -63,7 +64,7 @@ namespace FontBuddyLib
 			float fScale, 
 			Color myColor,
 			SpriteBatch mySpriteBatch, 
-			double dTime)
+			GameClock dTime)
 		{
 			//First draw the shadow
 			ShadowWriter.Write(strText,
@@ -113,15 +114,16 @@ namespace FontBuddyLib
 					break;
 			}
 
-			dTime *= RainbowSpeed;
-			dTime += strText.Length;
+			float currentTime = dTime.CurrentTime;
+			currentTime *= RainbowSpeed;
+			currentTime += strText.Length;
 			for (int i = 0; i < strText.Length; i++)
 			{
 				//draw the title
 
 				//Get the current color
-				dTime -= 0.6;
-				int iIndex = (int)dTime % Colors.Count;
+				currentTime -= 0.6f;
+				int iIndex = (int)currentTime % Colors.Count;
 
 				//get the next color
 				int iNextIndex = iIndex + 1;
@@ -131,7 +133,7 @@ namespace FontBuddyLib
 				}
 
 				//get the ACTUAL lerped color of this letter
-				var fRemainder = (float)(dTime - (int)dTime);
+				var fRemainder = (float)(currentTime - (int)currentTime);
 				Color letterColor = Color.Lerp(Colors[iIndex], Colors[iNextIndex], fRemainder);
 
 				string strSubString = "" + strText[i];

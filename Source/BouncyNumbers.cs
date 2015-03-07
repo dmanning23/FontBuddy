@@ -1,8 +1,8 @@
-using System;
-using System.Text;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Text;
 
 namespace FontBuddyLib
 {
@@ -83,29 +83,28 @@ namespace FontBuddyLib
 		/// <summary>
 		/// Cosntructor!
 		/// </summary>
-		public BouncyNumbers(int startNumber, int targetNumber)
+		public BouncyNumbers()
+		{
+			Timer = new CountdownTimer();
+			Timer.Stop();
+			ScaleTime = 2f;
+			ScaleAtEnd = 2.5f;
+			KillTime = 3f;
+			Rescale = 1.2f;
+		}
+
+		public void Start(int startNumber, int targetNumber)
 		{
 			StartNumber = startNumber;
 			TargetNumber = targetNumber;
-			Timer = new CountdownTimer();
-			Timer.Stop();
-			CountUpTime = 1.0f;
-			ScaleTime = 0.5f;
-			ScaleAtEnd = 2.5f;
-			KillTime = 0.75f;
-			Rescale = 1.2f;
-
 			Delta = TargetNumber - StartNumber;
-		}
 
-		public void Start(GameClock time)
-		{
 			//get the num delta
 			int delta = Math.Abs(Delta);
 
 			//adjust the target number as necessary
-			CountUpTime = Math.Min(3.0f, Math.Max(0.8f, delta / 1000f));
-			Timer.Start((CountUpTime + ScaleTime + KillTime), time.CurrentTime);
+			CountUpTime = Math.Min(5.0f, Math.Max(1f, delta / 300f));
+			Timer.Start(CountUpTime + ScaleTime + KillTime);
 		}
 
 		/// <summary>
@@ -124,24 +123,22 @@ namespace FontBuddyLib
 			float fScale,
 			Color myColor,
 			SpriteBatch mySpriteBatch,
-			double time = 0.0f)
+			GameClock time)
 		{
 			StringBuilder str = new StringBuilder();
 			str.Append(strText);
 
+			//update the timer we are using
+			Timer.Update(time);
+
 			if (!IsDead)
 			{
-				//update the timer we are using
-				Timer.Update((float)time);
-
-				float elasped = Timer.CurrentTime - Timer.StartTime;
-
 				//are we before or after the cutoff
-				if (elasped <= CountUpTime)
+				if (Timer.CurrentTime <= CountUpTime)
 				{
 					//lerp up to the desired number
-					int currentNumber = (int)(((Delta) * elasped) / CountUpTime);
-					currentNumber += StartNumber;
+					int currentNumber = StartNumber;
+					currentNumber += (int)((Delta * Timer.CurrentTime) / CountUpTime);
 
 					//add 1 so it doest start at 0
 					currentNumber += ((Delta >= 0) ? 1 : -1);
@@ -154,9 +151,9 @@ namespace FontBuddyLib
 						fScale,
 						myColor,
 						mySpriteBatch,
-						time);
+						Timer);
 				}
-				else if (elasped <= (CountUpTime + ScaleTime))
+				else if (Timer.CurrentTime <= (CountUpTime + ScaleTime))
 				{
 					//add the target number
 					str.Append(TargetNumber);
@@ -165,7 +162,7 @@ namespace FontBuddyLib
 					fScale *= Rescale;
 
 					//current time - countuptime starts us at 0.0, which is good for lerping purposes
-					float currentTime = elasped - CountUpTime;
+					float currentTime = Timer.CurrentTime - CountUpTime;
 
 					//convert the amount of time to a number between 0.0 and 1.0
 					float lerp = currentTime / ScaleTime;
@@ -184,7 +181,7 @@ namespace FontBuddyLib
 						finalScale,
 						myColor,
 						mySpriteBatch,
-						time);
+						Timer);
 				}
 				else
 				{
@@ -199,7 +196,7 @@ namespace FontBuddyLib
 						fScale,
 						myColor,
 						mySpriteBatch,
-						time);
+						Timer);
 				}
 			}
 

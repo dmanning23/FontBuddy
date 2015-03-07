@@ -1,4 +1,5 @@
 using System;
+using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -53,7 +54,7 @@ namespace FontBuddyLib
 			float fScale, 
 			Color myColor,
 			SpriteBatch mySpriteBatch, 
-			double dTime = 0.0f)
+			GameClock dTime)
 		{
 			float fKerning = Font.Spacing * fScale;
 
@@ -97,13 +98,13 @@ namespace FontBuddyLib
 			//ok, draw each individual letter
 			for (int i = 0; i < strText.Length; i++)
 			{
-				float pulsate = MathHelper.Clamp((ShakeAmount * (float)(Math.Sin(dTime * ShakeSpeed))), -ShakeAmount, ShakeAmount);
+				float pulsate = MathHelper.Clamp((ShakeAmount * (float)(Math.Sin(dTime.CurrentTime * ShakeSpeed))), -ShakeAmount, ShakeAmount);
 				if ((i % 2) == 0)
 				{
 					pulsate *= -1.0f;
 				}
-				Vector2 PulsingPosition = position;
-				PulsingPosition.Y += pulsate;
+				Vector2 pulsingPosition = position;
+				pulsingPosition.Y += pulsate;
 
 				string strSubString = "" + strText[i];
 
@@ -111,7 +112,7 @@ namespace FontBuddyLib
 				mySpriteBatch.DrawString(
 					Font,
 					strSubString,
-					PulsingPosition,
+					pulsingPosition,
 					myColor,
 					0,
 					Vector2.Zero,
