@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace FontBuddyLib
 {
@@ -48,76 +48,66 @@ namespace FontBuddyLib
 			Colors.Add(Color.Red);
 		}
 
-		/// <summary>
-		/// write something on the screen
-		/// </summary>
-		/// <param name="strText">the text to write on the screen</param>
-		/// <param name="Position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
-		/// <param name="eJustification">how to justify the text</param>
-		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
-		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
-		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
-		/// <param name="dTime">the current game time in seconds</param>
-		public override float Write(string strText, 
-			Vector2 Position, 
-			Justify eJustification, 
-			float fScale, 
-			Color myColor,
-			SpriteBatch mySpriteBatch, 
-			GameClock dTime)
+		public override float Write(string text,
+			Vector2 position,
+			Justify justification,
+			float scale,
+			Color color,
+			SpriteBatch spriteBatch,
+			GameClock time)
 		{
 			//First draw the shadow
-			ShadowWriter.Write(strText,
-			                   Position + ShadowOffset,
-			                   eJustification,
-			                   fScale * ShadowSize,
-			                   ShadowColor,
-			                   mySpriteBatch,
-			                   dTime);
+			ShadowWriter.Write(text,
+							   position + ShadowOffset,
+							   justification,
+							   scale * ShadowSize,
+							   ShadowColor,
+							   spriteBatch,
+							   time);
 
-			float fKerning = Font.Spacing * fScale;
+			float fKerning = Font.Spacing * scale;
 
 			//Get the correct location
-			Vector2 textSize = Font.MeasureString(strText) * fScale;
-			switch (eJustification)
+			Vector2 textSize = Font.MeasureString(text) * scale;
+			switch (justification)
 			{
 				case Justify.Right:
 				{
 					//move teh x value
-					for (int i = 0; i < strText.Length; i++)
+					for (int i = 0; i < text.Length; i++)
 					{
 						//get teh size of the character
-						string strSubString = "" + strText[i];
-						textSize = Font.MeasureString(strSubString) * fScale;
-						Position.X -= textSize.X;
+						string strSubString = "" + text[i];
+						textSize = Font.MeasureString(strSubString) * scale;
+						position.X -= textSize.X;
 
 						//get the kerning too
-						Position.X -= fKerning;
+						position.X -= fKerning;
 					}
 				}
-					break;
+				break;
 
 				case Justify.Center:
 				{
 					//move teh x value
-					for (int i = 0; i < strText.Length; i++)
+					for (int i = 0; i < text.Length; i++)
 					{
 						//get teh size of the character
-						string strSubString = "" + strText[i];
-						textSize = Font.MeasureString(strSubString) * fScale;
-						Position.X -= (textSize.X / 2.0f);
+						string strSubString = "" + text[i];
+						textSize = Font.MeasureString(strSubString) * scale;
+						position.X -= (textSize.X / 2.0f);
 
 						//get the kerning too
-						Position.X -= fKerning / 2.0f;
+						position.X -= fKerning / 2.0f;
 					}
 				}
-					break;
+				break;
 			}
 
-			float currentTime = dTime.CurrentTime;
+			float currentTime = time.CurrentTime;
 			currentTime *= RainbowSpeed;
-			currentTime += strText.Length;
-			for (int i = 0; i < strText.Length; i++)
+			currentTime += text.Length;
+			for (int i = 0; i < text.Length; i++)
 			{
 				//draw the title
 
@@ -136,24 +126,24 @@ namespace FontBuddyLib
 				var fRemainder = (float)(currentTime - (int)currentTime);
 				Color letterColor = Color.Lerp(Colors[iIndex], Colors[iNextIndex], fRemainder);
 
-				string strSubString = "" + strText[i];
-				mySpriteBatch.DrawString(
+				string strSubString = "" + text[i];
+				spriteBatch.DrawString(
 					Font,
 					strSubString,
-					Position,
+					position,
 					letterColor,
 					0,
 					Vector2.Zero,
-					fScale,
+					scale,
 					SpriteEffects.None,
 					0);
 
-				Position.X += (Font.MeasureString(strSubString) * fScale).X;
-				Position.X += fKerning;
+				position.X += (Font.MeasureString(strSubString) * scale).X;
+				position.X += fKerning;
 			}
 
 			//return the end of that string
-			return Position.X;
+			return position.X;
 		}
 
 		#endregion //Methods

@@ -107,26 +107,16 @@ namespace FontBuddyLib
 			Timer.Start(CountUpTime + ScaleTime + KillTime);
 		}
 
-		/// <summary>
-		/// write something on the screen
-		/// </summary>
-		/// <param name="strText">the text to write on the screen</param>
-		/// <param name="position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
-		/// <param name="eJustification">how to justify the text</param>
-		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
-		/// <param name="myColor">color to draw the text... this will swap with the shadow color after a specified amount of time</param>
-		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
-		/// <param name="time">the current game time in seconds</param>
-		public override float Write(string strText,
+		public override float Write(string text,
 			Vector2 position,
-			Justify eJustification,
-			float fScale,
-			Color myColor,
-			SpriteBatch mySpriteBatch,
+			Justify justification,
+			float scale,
+			Color color,
+			SpriteBatch spriteBatch,
 			GameClock time)
 		{
 			StringBuilder str = new StringBuilder();
-			str.Append(strText);
+			str.Append(text);
 
 			//update the timer we are using
 			Timer.Update(time);
@@ -147,10 +137,10 @@ namespace FontBuddyLib
 					str.Append(currentNumber);
 					return base.Write(str.ToString(),
 						position,
-						eJustification,
-						fScale,
-						myColor,
-						mySpriteBatch,
+						justification,
+						scale,
+						color,
+						spriteBatch,
 						Timer);
 				}
 				else if (Timer.CurrentTime <= (CountUpTime + ScaleTime))
@@ -159,7 +149,7 @@ namespace FontBuddyLib
 					str.Append(TargetNumber);
 
 					//this is the amount we want to end the scale at
-					fScale *= Rescale;
+					scale *= Rescale;
 
 					//current time - countuptime starts us at 0.0, which is good for lerping purposes
 					float currentTime = Timer.CurrentTime - CountUpTime;
@@ -168,34 +158,34 @@ namespace FontBuddyLib
 					float lerp = currentTime / ScaleTime;
 
 					//lerp from the start scale to the end scale
-					float finalScale = MathHelper.Lerp(ScaleAtEnd, fScale, lerp);
+					float finalScale = MathHelper.Lerp(ScaleAtEnd, scale, lerp);
 
 					//adjust the position to draw based on how much we are scaling
 					var textSize = Font.MeasureString(str.ToString());
-					Vector2 adjust = ((textSize * finalScale) - (textSize * fScale));
+					Vector2 adjust = ((textSize * finalScale) - (textSize * scale));
 					position.Y -= adjust.Y;
 
 					return base.Write(str.ToString(),
 						position,
-						eJustification,
+						justification,
 						finalScale,
-						myColor,
-						mySpriteBatch,
+						color,
+						spriteBatch,
 						Timer);
 				}
 				else
 				{
 					//make the text a little bigger
-					fScale *= Rescale;
+					scale *= Rescale;
 
 					//write the final number
 					str.Append(TargetNumber);
 					return base.Write(str.ToString(),
 						position,
-						eJustification,
-						fScale,
-						myColor,
-						mySpriteBatch,
+						justification,
+						scale,
+						color,
+						spriteBatch,
 						Timer);
 				}
 			}

@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using GameTimer;
+﻿using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace FontBuddyLib
 {
@@ -117,12 +117,12 @@ namespace FontBuddyLib
 			return position.X + (Font.MeasureString(text).X * scale);
 		}
 
-		protected Vector2 JustifiedPosition(string strText, Vector2 position, Justify eJustification, float fScale)
+		protected Vector2 JustifiedPosition(string text, Vector2 position, Justify justification, float scale)
 		{
 			//Get the correct location
-			Vector2 textSize = (!string.IsNullOrEmpty(strText) ? (Font.MeasureString(strText) * fScale) : Vector2.Zero);
+			Vector2 textSize = (!string.IsNullOrEmpty(text) ? (Font.MeasureString(text) * scale) : Vector2.Zero);
 
-			switch (eJustification)
+			switch (justification)
 			{
 				//left = use teh x value (no cahnge)
 

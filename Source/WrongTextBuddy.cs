@@ -1,7 +1,7 @@
-using System;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace FontBuddyLib
 {
@@ -42,26 +42,16 @@ namespace FontBuddyLib
 			m_fSelectionFade = 0.0f;
 		}
 
-		/// <summary>
-		/// write something on the screen
-		/// </summary>
-		/// <param name="strText">the text to write on the screen</param>
-		/// <param name="position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
-		/// <param name="eJustification">how to justify the text</param>
-		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
-		/// <param name="myColor">the color to draw the text</param>
-		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
-		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public override float Write(string strText, 
-			Vector2 position, 
-			Justify eJustification, 
-			float fScale, 
-			Color myColor,
-			SpriteBatch mySpriteBatch, 
-			GameClock dTime)
+		public override float Write(string text,
+			Vector2 position,
+			Justify justification,
+			float scale,
+			Color color,
+			SpriteBatch spriteBatch,
+			GameClock time)
 		{
 			//multiply the time by the speed
-			float currentTime = dTime.CurrentTime;
+			float currentTime = time.CurrentTime;
 			currentTime *= PulsateSpeed;
 
 			// When the menu selection changes, entries gradually fade between
@@ -83,20 +73,20 @@ namespace FontBuddyLib
 			float pulseScale = 1 + pulsate * 0.15f * m_fSelectionFade;
 
 			//adjust the y position so it pulsates straight out
-			Vector2 adjust = ((Font.MeasureString(strText) * fScale * pulseScale) - (Font.MeasureString(strText) * fScale)) / 2.0f;
+			Vector2 adjust = ((Font.MeasureString(text) * scale * pulseScale) - (Font.MeasureString(text) * scale)) / 2.0f;
 			position.X -= adjust.X;
 
 			//First draw the shadow
-			ShadowWriter.Write(strText,
+			ShadowWriter.Write(text,
 							   position,
-							   eJustification,
-							   ShadowSize * fScale,
+							   justification,
+							   ShadowSize * scale,
 							   ShadowColor,
-							   mySpriteBatch,
-							   dTime);
+							   spriteBatch,
+							   time);
 
 			//Draw the menu item, with the pulsing
-			return DrawText(strText, position, eJustification, fScale, myColor, mySpriteBatch, dTime);
+			return DrawText(text, position, justification, scale, color, spriteBatch, time);
 		}
 	}
 }

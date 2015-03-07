@@ -68,24 +68,20 @@ namespace FontBuddyLib
 			OutlineSize = 5;
 		}
 
-		/// <summary>
-		/// write something on the screen
-		/// </summary>
-		/// <param name="strText">the text to write on the screen</param>
-		/// <param name="position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
-		/// <param name="eJustification">how to justify the text</param>
-		/// <param name="fScale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
-		/// <param name="myColor">the color to draw the text</param>
-		/// <param name="mySpriteBatch">spritebatch to use to render the text</param>
-		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-		public override float Write(string strText, Vector2 position, Justify eJustification, float fScale, Color myColor, SpriteBatch mySpriteBatch, GameClock dTime)
+		public override float Write(string text,
+			Vector2 position,
+			Justify justification,
+			float scale,
+			Color color,
+			SpriteBatch spriteBatch,
+			GameClock time)
 		{
-			float alpha = ((float)(OutlineColor.A * myColor.A) / 65025.0f);
+			float alpha = ((float)(OutlineColor.A * color.A) / 65025.0f);
 #if !XNA
 			Color backColor = new Color(OutlineColor, alpha);
 #else
 			Color backColor = OutlineColor;
-			backColor.A = myColor.A;
+			backColor.A = color.A;
 #endif
 
 			//draw the outline
@@ -96,23 +92,23 @@ namespace FontBuddyLib
 					bool xEdge = ((x == -OutlineSize) || (x == OutlineSize));
 					bool yEdge = ((y == -OutlineSize) || (y == OutlineSize));
 					if (!xEdge && !yEdge)
-					{ 
-						continue; 
+					{
+						continue;
 					}
 
 					Vector2 outlinePos = new Vector2(position.X + x, position.Y + y);
-					OutlineWriter.Write(strText,
+					OutlineWriter.Write(text,
 								outlinePos,
-								eJustification,
-								fScale,
+								justification,
+								scale,
 								backColor,
-								mySpriteBatch,
-								dTime);
+								spriteBatch,
+								time);
 				}
 			}
 
 			//draw my text
-			return base.Write(strText, position, eJustification, fScale, myColor, mySpriteBatch, dTime);
+			return base.Write(text, position, justification, scale, color, spriteBatch, time);
 		}
 
 		#endregion //Methods
