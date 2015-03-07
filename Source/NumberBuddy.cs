@@ -1,70 +1,140 @@
-﻿//using System.Diagnostics;
-//using Microsoft.Xna.Framework;
-//using Microsoft.Xna.Framework.Content;
-//using Microsoft.Xna.Framework.Graphics;
+﻿using System.Diagnostics;
+using System.Text;
+using GameTimer;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
-//namespace FontBuddyLib
-//{
-//	/// <summary>
-//	/// This is an object for writing numbers.
-//	/// When the number is changed, it will count up and countdown to the new value.
-//	/// </summary>
-//	public class NumberBuddy : IFontBuddy
-//	{
-//		#region Properties
+namespace FontBuddyLib
+{
+	/// <summary>
+	/// This is an object for writing numbers.
+	/// When the number is changed, it will count up and countdown to the new value.
+	/// </summary>
+	public class NumberBuddy : IFontBuddy
+	{
+		#region Properties
 
-//		#endregion //Properties
+		/// <summary>
+		/// The current number being displayed
+		/// </summary>
+		private int StartNumber { get; set; }
 
-//		#region Methods
+		/// <summary>
+		/// The current number being displayed
+		/// </summary>
+		private int TargetNumber { get; set; }
 
-//		#endregion //Methods
+		/// <summary>
+		/// Thing for drawing normal text
+		/// </summary>
+		private OutlineTextBuddy NormalFont { get; set; }
 
-//		/// <summary>
-//		/// The font this dude is "helping" with
-//		/// </summary>
-//		SpriteFont Font { set; }
+		/// <summary>
+		/// thing for drawing the text when it changes
+		/// </summary>
+		private BouncyNumbers BouncyFont { get; set; }
 
-//		/// <summary>
-//		/// given a content manager and a resource name, load the resource as a bitmap font
-//		/// </summary>
-//		/// <param name="rContent"></param>
-//		/// <param name="strResource"></param>
-//		void LoadContent(ContentManager rContent, string strResource);
+		private SpriteFont _font;
 
-//		/// <summary>
-//		/// write something on the screen
-//		/// </summary>
-//		/// <param name="text">the text to write on the screen</param>
-//		/// <param name="position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
-//		/// <param name="justification">how to justify the text</param>
-//		/// <param name="scale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
-//		/// <param name="color">the color to draw the text</param>
-//		/// <param name="spriteBatch">spritebatch to use to render the text</param>
-//		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-//		float Write(string text,
-//			Vector2 position,
-//			Justify justification,
-//			float scale,
-//			Color color,
-//			SpriteBatch spriteBatch,
-//			double dTime = 0.0f);
+		public SpriteFont Font
+		{
+			get
+			{
+				return _font;
+			}
+			set
+			{
+				_font = value;
+				NormalFont.Font = value;
+				BouncyFont.Font = value;
+			}
+		}
 
-//		/// <summary>
-//		/// write something on the screen
-//		/// </summary>
-//		/// <param name="text">the text to write on the screen</param>
-//		/// <param name="Position">where to write at... either upper left, upper center, or upper right, depending on justication</param>
-//		/// <param name="justification">how to justify the text</param>
-//		/// <param name="scale">how big to write.  This is not a point size to draw at, it is a multiple of the default font size!</param>
-//		/// <param name="color">the color to draw the text</param>
-//		/// <param name="spriteBatch">spritebatch to use to render the text</param>
-//		/// <param name="dTime">Most of the other font buddy classes use time somehow, but can jsut send in 0.0f for this dude or ignoer it</param>
-//		float Write(string text,
-//			Point Position,
-//			Justify justification,
-//			float scale,
-//			Color color,
-//			SpriteBatch spriteBatch,
-//			double dTime = 0.0f);
-//	}
-//}
+		#endregion //Properties
+
+		#region Methods
+
+		public NumberBuddy()
+		{
+			NormalFont = new OutlineTextBuddy();
+			BouncyFont = new BouncyNumbers()
+			{
+				Rescale = 1f
+			};
+		}
+
+		/// <summary>
+		/// Change the number this dude displays
+		/// </summary>
+		/// <param name="startNumber"></param>
+		/// <param name="targetNumber"></param>
+		public void Start(int startNumber, int targetNumber)
+		{
+			StartNumber = startNumber;
+			TargetNumber = targetNumber;
+			BouncyFont.Start(StartNumber, TargetNumber);
+		}
+
+		public void Add(int num)
+		{
+			//set the start to the old target
+			StartNumber = TargetNumber;
+
+			//set the target to the new number
+			TargetNumber = StartNumber + num;
+
+			//start the bouncy text
+			Start(StartNumber, TargetNumber);
+		}
+
+		/// <summary>
+		/// given a content manager and a resource name, load the resource as a bitmap font
+		/// </summary>
+		/// <param name="rContent"></param>
+		/// <param name="strResource"></param>
+		public void LoadContent(ContentManager rContent, string strResource)
+		{
+			//load font
+			if (null == Font)
+			{
+				Font = rContent.Load<SpriteFont>(strResource);
+			}
+		}
+
+		public float Write(string text,
+			Vector2 position,
+			Justify justification,
+			float scale,
+			Color color,
+			SpriteBatch spriteBatch,
+			GameClock time)
+		{
+			if (!BouncyFont.IsDead)
+			{
+				return BouncyFont.Write(text, position, justification, scale, color, spriteBatch, time);
+			}
+			else
+			{
+				StringBuilder str = new StringBuilder();
+				str.Append(text);
+				str.Append(TargetNumber);
+				return NormalFont.Write(str.ToString(), position, justification, scale, color, spriteBatch, time);
+			}
+		}
+
+		public float Write(string text,
+			Point position,
+			Justify justification,
+			float scale,
+			Color color,
+			SpriteBatch spriteBatch,
+			GameClock time)
+		{
+			return Write(text, new Vector2(position.X, position.Y), justification, scale, color, spriteBatch, time);
+		}
+
+		#endregion //Methods
+	}
+}

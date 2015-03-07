@@ -13,7 +13,7 @@ namespace FontBuddyLib
 		/// <summary>
 		/// The font this dude is "helping" with
 		/// </summary>
-		SpriteFont Font { set; }
+		SpriteFont Font { get; set; }
 
 		/// <summary>
 		/// given a content manager and a resource name, load the resource as a bitmap font
