@@ -87,7 +87,7 @@ namespace FontBuddyLib
 		{
 			Timer = new CountdownTimer();
 			Timer.Stop();
-			ScaleTime = 2f;
+			ScaleTime = 1f;
 			ScaleAtEnd = 2.5f;
 			KillTime = 3f;
 			Rescale = 1.2f;
