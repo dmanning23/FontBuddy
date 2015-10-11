@@ -127,6 +127,7 @@ namespace FontBuddyLib
 				Color letterColor = Color.Lerp(Colors[iIndex], Colors[iNextIndex], fRemainder);
 
 				string strSubString = "" + text[i];
+
 				spriteBatch.DrawString(
 					Font,
 					strSubString,

@@ -78,10 +78,28 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
-			//darw the shadow
+			//Get the position of the shadow
+			var shadowPos = position;
+			switch (justification)
+			{
+				case Justify.Left:
+					{
+						Vector2 textSize = (!string.IsNullOrEmpty(text) ? (Font.MeasureString(text) * scale) : Vector2.Zero);
+						shadowPos.X += (textSize.X / 2.0f);
+					}
+					break;
+				case Justify.Right:
+					{
+						Vector2 textSize = (!string.IsNullOrEmpty(text) ? (Font.MeasureString(text) * scale) : Vector2.Zero);
+						shadowPos.X -= (textSize.X / 2.0f);
+					}
+					break;
+			}
+
+			//draw the shadow
 			_shadowWriter.Write(text,
-								position + ShadowOffset,
-								justification,
+								shadowPos + ShadowOffset,
+								Justify.Center,
 								scale * ShadowSize,
 								ShadowColor,
 								spriteBatch,
