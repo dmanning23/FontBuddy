@@ -80,6 +80,11 @@ namespace FontBuddyLib
 			};
 		}
 
+		public Vector2 MeasureString(string text)
+		{
+			return Font.MeasureString(text);
+        }
+
 		/// <summary>
 		/// Change the number this dude displays
 		/// </summary>

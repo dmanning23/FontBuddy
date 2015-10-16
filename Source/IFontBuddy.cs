@@ -23,6 +23,13 @@ namespace FontBuddyLib
 		void LoadContent(ContentManager rContent, string strResource);
 
 		/// <summary>
+		/// Get the size of a specific peice of text.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <returns></returns>
+		Vector2 MeasureString(string text);
+
+		/// <summary>
 		/// write something on the screen
 		/// </summary>
 		/// <param name="text">the text to write on the screen</param>

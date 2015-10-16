@@ -39,6 +39,16 @@ namespace FontBuddyLib
 		}
 
 		/// <summary>
+		/// Get the size of a specific peice of text.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <returns></returns>
+		public Vector2 MeasureString(string text)
+		{
+			return Font.MeasureString(text);
+        }
+
+		/// <summary>
 		/// given a content manager and a resource name, load the resource as a bitmap font
 		/// </summary>
 		/// <param name="rContent"></param>
