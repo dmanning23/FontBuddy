@@ -76,14 +76,7 @@ namespace FontBuddyLib
 			Vector2 adjust = ((Font.MeasureString(text) * scale * pulseScale) - (Font.MeasureString(text) * scale)) / 2.0f;
 			position.X -= adjust.X;
 
-			//First draw the shadow
-			ShadowWriter.Write(text,
-							   position,
-							   justification,
-							   ShadowSize * scale,
-							   ShadowColor,
-							   spriteBatch,
-							   time);
+			WriteShadow(text, position, justification, scale, spriteBatch, time);
 
 			//Draw the menu item, with the pulsing
 			return DrawText(text, position, justification, scale, color, spriteBatch, time);

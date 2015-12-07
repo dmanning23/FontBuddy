@@ -94,7 +94,7 @@ namespace FontBuddyLib
 				dLetterTime -= SwapSweep;
 				float pulsate = MathHelper.Clamp((float)(Math.Sin(dLetterTime * SwapSpeed)), -0.5f, 0.5f);
 				pulsate += 0.5f;
-				string strSubString = "" + text[i];
+				string strSubString = text[i].ToString();
 
 				//Clamp (because we dont want pure black and white)
 				Color shadowColor = Color.Lerp(ShadowColor, color, pulsate);
@@ -120,7 +120,7 @@ namespace FontBuddyLib
 				dLetterTime -= SwapSweep;
 				float pulsate = MathHelper.Clamp((float)(Math.Sin(dLetterTime * SwapSpeed)), -0.5f, 0.5f);
 				pulsate += 0.5f;
-				string strSubString = "" + text[i];
+				string strSubString =  text[i].ToString();
 
 				//get the opposite color of the shadow
 				Color shadowColor = Color.Lerp(color, ShadowColor, pulsate);

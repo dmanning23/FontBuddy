@@ -78,6 +78,19 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
+			WriteShadow(text, position, justification, scale, spriteBatch, time);
+
+			//draw my text
+			return base.Write(text, position, justification, scale, color, spriteBatch, time);
+		}
+
+		protected virtual void WriteShadow(string text,
+			Vector2 position,
+			Justify justification,
+			float scale,
+			SpriteBatch spriteBatch,
+			GameClock time)
+		{
 			//Get the position of the shadow
 			var shadowPos = position;
 			switch (justification)
@@ -104,11 +117,8 @@ namespace FontBuddyLib
 								ShadowColor,
 								spriteBatch,
 								time);
-
-			//draw my text
-			return base.Write(text, position, justification, scale, color, spriteBatch, time);
 		}
-
-		#endregion //Methods
 	}
+
+	#endregion //Methods
 }
