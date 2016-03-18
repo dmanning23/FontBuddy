@@ -38,6 +38,7 @@ x64/
 .builds
 *.userprefs
 *.cachefile
+*.nupkg
 
 # Visual C++ cache files
 ipch/
