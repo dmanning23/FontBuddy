@@ -10,3 +10,6 @@ Some of these have some different parameters that you might want to tweak, like 
 Some of the different font effects are shadow text, pulsating text, shaky text, opposite text, and rainbow text.  These are all pretty simple, there's no shader magic or nothing going on.
 
 Cheers!
+
+An example project showing how to use many of the FontBuddies is at
+https://github.com/dmanning23/FontBuddySample
