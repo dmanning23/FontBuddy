@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>FontBuddy.WindowsUniversal</id>
+        <version>1.0.8</version>
+        <title>FontBuddy.WindowsUniversal</title>
+        <authors>dmanning23</authors>
+		<owners>dmanning23</owners>
+		<projectUrl>https://github.com/dmanning23/FontBuddy</projectUrl>
+		<licenseUrl>https://github.com/dmanning23/FontBuddy/blob/master/LICENSE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Put some text on the screen easier with MonoGame</description>
+        <releaseNotes />
+        <copyright>Copyright 2016</copyright>
+        <tags>MonoGame WindowsUniversal</tags>
+        <dependencies>
+            <dependency id="MonoGame.Framework.WindowsUniversal" version="(3.5,)"/>
+			<dependency id="GameTimer.WindowsUniversal" version="(1.0,)"/>
+		</dependencies>
+    </metadata>
+    <files>
+        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.pdb" target="lib\netcore\FontBuddy.WindowsUniversal.pdb" />
+        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.dll" target="lib\netcore\FontBuddy.WindowsUniversal.dll" />
+    </files>
+</package>

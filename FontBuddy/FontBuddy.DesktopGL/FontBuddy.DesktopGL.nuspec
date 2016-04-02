@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>FontBuddy.WindowsGL</id>
+        <id>FontBuddy.DesktopGL</id>
         <version>1.0.8</version>
-        <title>FontBuddy.WindowsGL</title>
+        <title>FontBuddy.DesktopGL</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
 		<projectUrl>https://github.com/dmanning23/FontBuddy</projectUrl>
@@ -12,14 +12,14 @@
 		<description>Put some text on the screen easier with MonoGame</description>
         <releaseNotes />
         <copyright>Copyright 2016</copyright>
-        <tags>MonoGame WindowsGL</tags>
+        <tags>MonoGame DesktopGL</tags>
         <dependencies>
-            <dependency id="MonoGame.Framework.WindowsGL" version="(3.5,)"/>
-			<dependency id="GameTimer.WindowsGL" version="(1.0,)"/>
+            <dependency id="MonoGame.Framework.DesktopGL" version="(3.5,)"/>
+			<dependency id="GameTimer.DesktopGL" version="(1.0,)"/>
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsGL\bin\Release\FontBuddy.WindowsGL.pdb" target="lib\FontBuddy.WindowsGL.pdb" />
-        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsGL\bin\Release\FontBuddy.WindowsGL.dll" target="lib\FontBuddy.WindowsGL.dll" />
+        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.pdb" target="lib\FontBuddy.DesktopGL.pdb" />
+        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.dll" target="lib\FontBuddy.DesktopGL.dll" />
     </files>
 </package>
