@@ -19,7 +19,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.pdb" target="lib\netcore\FontBuddy.WindowsUniversal.pdb" />
-        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.dll" target="lib\netcore\FontBuddy.WindowsUniversal.dll" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.pdb" target="lib\netcore\FontBuddy.WindowsUniversal.pdb" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.dll" target="lib\netcore\FontBuddy.WindowsUniversal.dll" />
     </files>
 </package>

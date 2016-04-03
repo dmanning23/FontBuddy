@@ -19,7 +19,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.pdb" target="lib\FontBuddy.DesktopGL.pdb" />
-        <file src="Y:\Documents\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.dll" target="lib\FontBuddy.DesktopGL.dll" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.pdb" target="lib\FontBuddy.DesktopGL.pdb" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.dll" target="lib\FontBuddy.DesktopGL.dll" />
     </files>
 </package>
