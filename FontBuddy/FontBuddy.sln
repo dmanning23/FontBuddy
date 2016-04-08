@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddy.Android", "FontBuddy.Android\FontBuddy.Android.csproj", "{D7F6FCB7-905C-497E-83D4-6A51FBF4DF15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddyLib.Android", "FontBuddy.Android\FontBuddyLib.Android.csproj", "{D7F6FCB7-905C-497E-83D4-6A51FBF4DF15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddy.WindowsUniversal", "FontBuddy.WindowsUniversal\FontBuddy.WindowsUniversal.csproj", "{44FD6844-65B6-4237-B1A3-ED42FED12FAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddyLib.WindowsUniversal", "FontBuddy.WindowsUniversal\FontBuddyLib.WindowsUniversal.csproj", "{44FD6844-65B6-4237-B1A3-ED42FED12FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddy.DesktopGL", "FontBuddy.DesktopGL\FontBuddy.DesktopGL.csproj", "{F350E803-A46E-4BC7-9E23-54379EACAC34}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddyLib.DesktopGL", "FontBuddy.DesktopGL\FontBuddyLib.DesktopGL.csproj", "{F350E803-A46E-4BC7-9E23-54379EACAC34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddy.iOS", "FontBuddy.iOS\FontBuddy.iOS.csproj", "{BEE9E03E-BDB8-4CB3-A5FD-90170BB2C225}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddyLib.iOS", "FontBuddy.iOS\FontBuddyLib.iOS.csproj", "{BEE9E03E-BDB8-4CB3-A5FD-90170BB2C225}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

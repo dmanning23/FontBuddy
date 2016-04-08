@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FontBuddy.WindowsUniversal</id>
-        <version>1.0.9</version>
+        <version>1.0.11</version>
         <title>FontBuddy.WindowsUniversal</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -19,7 +19,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.pdb" target="lib\netcore\FontBuddy.WindowsUniversal.pdb" />
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddy.WindowsUniversal.dll" target="lib\netcore\FontBuddy.WindowsUniversal.dll" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddyLib.WindowsUniversal.pdb" target="lib\netcore\FontBuddyLib.WindowsUniversal.pdb" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddyLib.WindowsUniversal.dll" target="lib\netcore\FontBuddyLib.WindowsUniversal.dll" />
     </files>
 </package>

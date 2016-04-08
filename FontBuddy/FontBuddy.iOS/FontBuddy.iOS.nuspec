@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FontBuddy.iOS</id>
-        <version>1.0.10</version>
+        <version>1.0.11</version>
         <title>FontBuddy.iOS</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -19,7 +19,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.iOS\bin\Release\FontBuddy.iOS.pdb" target="lib\FontBuddy.iOS.pdb" />
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.iOS\bin\Release\FontBuddy.iOS.dll" target="lib\FontBuddy.iOS.dll" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.iOS\bin\Release\FontBuddyLib.iOS.pdb" target="lib\FontBuddyLib.iOS.pdb" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.iOS\bin\Release\FontBuddyLib.iOS.dll" target="lib\FontBuddyLib.iOS.dll" />
     </files>
 </package>

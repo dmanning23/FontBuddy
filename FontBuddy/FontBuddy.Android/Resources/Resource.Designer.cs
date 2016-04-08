@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("FontBuddy.Android.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("FontBuddyLib.Android.Resource", IsApplication=false)]
 
-namespace FontBuddy.Android
+namespace FontBuddyLib.Android
 {
 	
 	

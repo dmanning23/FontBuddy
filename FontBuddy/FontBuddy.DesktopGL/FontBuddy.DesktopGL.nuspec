@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FontBuddy.DesktopGL</id>
-        <version>1.0.9</version>
+        <version>1.0.11</version>
         <title>FontBuddy.DesktopGL</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -19,7 +19,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.pdb" target="lib\FontBuddy.DesktopGL.pdb" />
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddy.DesktopGL.dll" target="lib\FontBuddy.DesktopGL.dll" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddyLib.DesktopGL.pdb" target="lib\FontBuddyLib.DesktopGL.pdb" />
+        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.DesktopGL\bin\Release\FontBuddyLib.DesktopGL.dll" target="lib\FontBuddyLib.DesktopGL.dll" />
     </files>
 </package>
