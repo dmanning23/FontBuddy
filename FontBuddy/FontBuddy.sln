@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddyLib.DesktopGL", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddyLib.iOS", "FontBuddy.iOS\FontBuddyLib.iOS.csproj", "{BEE9E03E-BDB8-4CB3-A5FD-90170BB2C225}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D25BB379-846F-4EAA-A87A-53F35BF7E40F}"
+	ProjectSection(SolutionItems) = preProject
+		buildNugetPackages.ps1 = buildNugetPackages.ps1
+		FontBuddy.nuspec = FontBuddy.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU

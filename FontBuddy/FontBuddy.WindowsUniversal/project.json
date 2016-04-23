@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "GameTimer.WindowsUniversal": "1.0.9",
+    "GameTimer": "1.0.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "MonoGame.Framework.WindowsUniversal": "3.5.1.1679",
     "SharpDX": "3.0.0",

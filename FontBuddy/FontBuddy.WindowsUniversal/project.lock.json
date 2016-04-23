@@ -3,17 +3,20 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
-      "GameTimer.WindowsUniversal/1.0.9": {
+      "GameTimer/1.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "(5.0.0, )",
-          "MonoGame.Framework.WindowsUniversal": "(3.5.0, )"
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "MonoGame.Framework.WindowsUniversal": "3.5.0",
+          "SharpDX": "[3.0.0]",
+          "SharpDX.Direct2D1": "[3.0.0]",
+          "SharpDX.Direct3D11": "[3.0.0]"
         },
         "compile": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         },
         "runtime": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -1949,17 +1952,20 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "GameTimer.WindowsUniversal/1.0.9": {
+      "GameTimer/1.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "(5.0.0, )",
-          "MonoGame.Framework.WindowsUniversal": "(3.5.0, )"
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "MonoGame.Framework.WindowsUniversal": "3.5.0",
+          "SharpDX": "[3.0.0]",
+          "SharpDX.Direct2D1": "[3.0.0]",
+          "SharpDX.Direct3D11": "[3.0.0]"
         },
         "compile": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         },
         "runtime": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -3761,17 +3767,20 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "GameTimer.WindowsUniversal/1.0.9": {
+      "GameTimer/1.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "(5.0.0, )",
-          "MonoGame.Framework.WindowsUniversal": "(3.5.0, )"
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "MonoGame.Framework.WindowsUniversal": "3.5.0",
+          "SharpDX": "[3.0.0]",
+          "SharpDX.Direct2D1": "[3.0.0]",
+          "SharpDX.Direct3D11": "[3.0.0]"
         },
         "compile": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         },
         "runtime": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -5530,17 +5539,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "GameTimer.WindowsUniversal/1.0.9": {
+      "GameTimer/1.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "(5.0.0, )",
-          "MonoGame.Framework.WindowsUniversal": "(3.5.0, )"
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "MonoGame.Framework.WindowsUniversal": "3.5.0",
+          "SharpDX": "[3.0.0]",
+          "SharpDX.Direct2D1": "[3.0.0]",
+          "SharpDX.Direct3D11": "[3.0.0]"
         },
         "compile": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         },
         "runtime": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -7351,17 +7363,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "GameTimer.WindowsUniversal/1.0.9": {
+      "GameTimer/1.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "(5.0.0, )",
-          "MonoGame.Framework.WindowsUniversal": "(3.5.0, )"
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "MonoGame.Framework.WindowsUniversal": "3.5.0",
+          "SharpDX": "[3.0.0]",
+          "SharpDX.Direct2D1": "[3.0.0]",
+          "SharpDX.Direct3D11": "[3.0.0]"
         },
         "compile": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         },
         "runtime": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -9120,17 +9135,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "GameTimer.WindowsUniversal/1.0.9": {
+      "GameTimer/1.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "(5.0.0, )",
-          "MonoGame.Framework.WindowsUniversal": "(3.5.0, )"
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "MonoGame.Framework.WindowsUniversal": "3.5.0",
+          "SharpDX": "[3.0.0]",
+          "SharpDX.Direct2D1": "[3.0.0]",
+          "SharpDX.Direct3D11": "[3.0.0]"
         },
         "compile": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         },
         "runtime": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -10941,17 +10959,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "GameTimer.WindowsUniversal/1.0.9": {
+      "GameTimer/1.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.UniversalWindowsPlatform": "(5.0.0, )",
-          "MonoGame.Framework.WindowsUniversal": "(3.5.0, )"
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+          "MonoGame.Framework.WindowsUniversal": "3.5.0",
+          "SharpDX": "[3.0.0]",
+          "SharpDX.Direct2D1": "[3.0.0]",
+          "SharpDX.Direct3D11": "[3.0.0]"
         },
         "compile": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         },
         "runtime": {
-          "lib/netcore/GameTimer.WindowsUniversal.dll": {}
+          "lib/uap10.0/GameTimer.WindowsUniversal.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -12711,14 +12732,20 @@
     }
   },
   "libraries": {
-    "GameTimer.WindowsUniversal/1.0.9": {
-      "sha512": "5aPE8oSERwX6B8Xciq5F5D3TbqZQCUIls7qGWoDPtFKRbysCrCEJx7Ha1LUeoWGCZhp2zESVPAtWho6mxylMSw==",
+    "GameTimer/1.0.1": {
+      "sha512": "6IhhpOqoe+JGY79fw0O8igx1RwAj3fZgCtpcwfaPMZdTkekUhPFkVZH3PKSyJuNGS5wNzqqr9ZrB/n52NfspQw==",
       "type": "package",
       "files": [
-        "GameTimer.WindowsUniversal.1.0.9.nupkg.sha512",
-        "GameTimer.WindowsUniversal.nuspec",
-        "lib/netcore/GameTimer.WindowsUniversal.dll",
-        "lib/netcore/GameTimer.WindowsUniversal.pdb"
+        "GameTimer.1.0.1.nupkg.sha512",
+        "GameTimer.nuspec",
+        "lib/MonoAndroid10/GameTimer.Android.dll",
+        "lib/MonoAndroid10/GameTimer.Android.pdb",
+        "lib/Xamarin.iOS10/GameTimer.iOS.dll",
+        "lib/Xamarin.iOS10/GameTimer.iOS.pdb",
+        "lib/net452/GameTimer.DesktopGL.dll",
+        "lib/net452/GameTimer.DesktopGL.pdb",
+        "lib/uap10.0/GameTimer.WindowsUniversal.dll",
+        "lib/uap10.0/GameTimer.WindowsUniversal.pdb"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -16058,7 +16085,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "GameTimer.WindowsUniversal >= 1.0.9",
+      "GameTimer >= 1.0.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "MonoGame.Framework.WindowsUniversal >= 3.5.1.1679",
       "SharpDX >= 3.0.0",
