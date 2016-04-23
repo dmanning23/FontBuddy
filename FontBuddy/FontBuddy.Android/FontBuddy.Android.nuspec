@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>FontBuddy.Android</id>
-        <version>1.0.11</version>
-        <title>FontBuddy.Android</title>
-        <authors>dmanning23</authors>
+	<metadata>
+		<id>FontBuddy.Android</id>
+		<version>1.0.12</version>
+		<title>FontBuddy.Android</title>
+		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
 		<projectUrl>https://github.com/dmanning23/FontBuddy</projectUrl>
 		<licenseUrl>https://github.com/dmanning23/FontBuddy/blob/master/LICENSE.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Put some text on the screen easier with MonoGame</description>
-        <releaseNotes />
-        <copyright>Copyright 2016</copyright>
-        <tags>MonoGame WindowsGL</tags>
-        <dependencies>
-            <dependency id="MonoGame.Framework.Android" version="(3.5,)"/>
-			<dependency id="GameTimer.Android" version="(1.0,)"/>
+		<releaseNotes />
+		<copyright>Copyright 2016</copyright>
+		<tags>MonoGame Android</tags>
+		<dependencies>
+			<dependency id="MonoGame.Framework.Android" version="3.5"/>
+			<dependency id="GameTimer.Android" version="1.0"/>
 		</dependencies>
-    </metadata>
-    <files>
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.Android\bin\Release\FontBuddyLib.Android.pdb" target="lib\FontBuddyLib.Android.pdb" />
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.Android\bin\Release\FontBuddyLib.Android.dll" target="lib\FontBuddyLib.Android.dll" />
-    </files>
+	</metadata>
+	<files>
+		<file src="bin\Release\FontBuddyLib.Android.pdb" target="lib\FontBuddyLib.Android.pdb" />
+		<file src="bin\Release\FontBuddyLib.Android.dll" target="lib\FontBuddyLib.Android.dll" />
+	</files>
 </package>

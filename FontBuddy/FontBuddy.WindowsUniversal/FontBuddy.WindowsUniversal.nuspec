@@ -1,25 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>FontBuddy.WindowsUniversal</id>
-        <version>1.0.11</version>
-        <title>FontBuddy.WindowsUniversal</title>
-        <authors>dmanning23</authors>
+	<metadata>
+		<id>FontBuddy.WindowsUniversal</id>
+		<version>1.0.12</version>
+		<title>FontBuddy.WindowsUniversal</title>
+		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
 		<projectUrl>https://github.com/dmanning23/FontBuddy</projectUrl>
 		<licenseUrl>https://github.com/dmanning23/FontBuddy/blob/master/LICENSE.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Put some text on the screen easier with MonoGame</description>
-        <releaseNotes />
-        <copyright>Copyright 2016</copyright>
-        <tags>MonoGame WindowsUniversal</tags>
-        <dependencies>
-            <dependency id="MonoGame.Framework.WindowsUniversal" version="(3.5,)"/>
-			<dependency id="GameTimer.WindowsUniversal" version="(1.0,)"/>
+		<releaseNotes />
+		<copyright>Copyright 2016</copyright>
+		<tags>MonoGame WindowsUniversal</tags>
+		<dependencies>
+			<dependency id="MonoGame.Framework.WindowsUniversal" version="3.5"/>
+			<dependency id="GameTimer.WindowsUniversal" version="1.0"/>
+			<dependency id="SharpDX" version="[3.0.0]"/>
+			<dependency id="SharpDX.Direct2D1" version="[3.0.0]"/>
+			<dependency id="SharpDX.Direct3D11" version="[3.0.0]"/>
 		</dependencies>
-    </metadata>
-    <files>
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddyLib.WindowsUniversal.pdb" target="lib\netcore\FontBuddyLib.WindowsUniversal.pdb" />
-        <file src="C:\Projects\FontBuddy\FontBuddy\FontBuddy.WindowsUniversal\bin\Release\FontBuddyLib.WindowsUniversal.dll" target="lib\netcore\FontBuddyLib.WindowsUniversal.dll" />
-    </files>
+	</metadata>
+	<files>
+		<file src="bin\Release\FontBuddyLib.WindowsUniversal.pdb" target="lib\FontBuddyLib.WindowsUniversal.pdb" />
+		<file src="bin\Release\FontBuddyLib.WindowsUniversal.dll" target="lib\FontBuddyLib.WindowsUniversal.dll" />
+	</files>
 </package>
