@@ -72,7 +72,7 @@ namespace FontBuddyLib
 			get
 			{
 				//paused timer or at the end of all the time
-				return (!Timer.HasTimeRemaining());
+				return (KillTime > 0f && !Timer.HasTimeRemaining());
 			}
 		}
 
