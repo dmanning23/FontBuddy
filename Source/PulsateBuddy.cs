@@ -13,12 +13,12 @@ namespace FontBuddyLib
 		#region Members
 
 		/// <summary>
-		/// how big the pulsate the text
+		/// how big the pulsate the text. Default value is 1f
 		/// </summary>
 		public float PulsateSize { get; set; }
 
 		/// <summary>
-		/// How fast to pulsate the speed
+		/// How fast to pulsate the speed. Default value is 4f
 		/// </summary>
 		public float PulsateSpeed { get; set; }
 
