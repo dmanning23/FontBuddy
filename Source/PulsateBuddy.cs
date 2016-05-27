@@ -22,6 +22,11 @@ namespace FontBuddyLib
 		/// </summary>
 		public float PulsateSpeed { get; set; }
 
+		/// <summary>
+		/// How much to scale the size of the pulsate. Default is 1f
+		/// </summary>
+		public float PulsateScale { get; set; }
+
 		#endregion //Members
 
 		/// <summary>
@@ -31,6 +36,7 @@ namespace FontBuddyLib
 		{
 			PulsateSize = 1.0f;
 			PulsateSpeed = 4.0f;
+			PulsateScale = 1f;
 		}
 
 		public override float Write(string text,
@@ -56,7 +62,7 @@ namespace FontBuddyLib
 
 			//Pulsate the size of the text
 			float pulsate = PulsateSize * (float)(Math.Sin(currentTime) + 1.0f);
-			float pulseScale = 1 + pulsate * 0.15f;
+			float pulseScale = PulsateScale + pulsate * 0.15f;
 
 			//adjust the y position so it pulsates straight out
 			Vector2 adjust = ((Font.MeasureString(text) * scale * pulseScale) - (Font.MeasureString(text) * scale)) / 2.0f;
