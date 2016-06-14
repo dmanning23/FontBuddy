@@ -10,6 +10,14 @@ namespace FontBuddyLib
 	/// </summary>
 	public class WrongTextBuddy : ShadowTextBuddy
 	{
+		#region Fields
+
+		private float _pulsateSpeed;
+
+		private GameClock _timer;
+
+		#endregion //Fields
+
 		#region Members
 
 		private float m_fSelectionFade;
@@ -20,9 +28,23 @@ namespace FontBuddyLib
 		public float PulsateSize { get; set; }
 
 		/// <summary>
-		/// How fast to pulsate the speed
+		/// How fast to pulsate the speed. Default value is 25f
 		/// </summary>
-		public float PulsateSpeed { get; set; }
+		public float PulsateSpeed
+		{
+			get
+			{
+				return _pulsateSpeed;
+			}
+			set
+			{
+				_pulsateSpeed = value;
+				if (null != _timer)
+				{
+					_timer.TimerSpeed = _pulsateSpeed;
+				}
+			}
+		}
 
 		/// <summary>
 		/// If the pulsate is turned on/off, it will ease into the pulsating
@@ -40,6 +62,10 @@ namespace FontBuddyLib
 			PulsateSpeed = 25.0f;
 			Selected = true;
 			m_fSelectionFade = 0.0f;
+			_timer = new GameClock()
+			{
+				TimerSpeed = PulsateSpeed
+			};
 		}
 
 		public override float Write(string text,
@@ -50,9 +76,8 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
-			//multiply the time by the speed
-			float currentTime = time.CurrentTime;
-			currentTime *= PulsateSpeed;
+			_timer.Update(time);
+			float currentTime = _timer.CurrentTime;
 
 			// When the menu selection changes, entries gradually fade between
 			// their selected and deselected appearance, rather than instantly

@@ -10,6 +10,14 @@ namespace FontBuddyLib
 	/// </summary>
 	public class PulsateBuddy : ShadowTextBuddy
 	{
+		#region Fields
+
+		private float _pulsateSpeed;
+
+		private GameClock _timer;
+
+		#endregion //Fields
+
 		#region Members
 
 		/// <summary>
@@ -20,7 +28,21 @@ namespace FontBuddyLib
 		/// <summary>
 		/// How fast to pulsate the speed. Default value is 4f
 		/// </summary>
-		public float PulsateSpeed { get; set; }
+		public float PulsateSpeed
+		{
+			get
+			{
+				return _pulsateSpeed;
+			}
+			set
+			{
+				_pulsateSpeed = value;
+				if (null != _timer)
+				{
+					_timer.TimerSpeed = _pulsateSpeed;
+				}
+			}
+		}
 
 		/// <summary>
 		/// How much to scale the size of the pulsate. Default is 1f
@@ -37,6 +59,10 @@ namespace FontBuddyLib
 			PulsateSize = 1.0f;
 			PulsateSpeed = 4.0f;
 			PulsateScale = 1f;
+			_timer = new GameClock()
+			{
+				TimerSpeed = PulsateSpeed
+			};
 		}
 
 		public override float Write(string text,
@@ -56,9 +82,8 @@ namespace FontBuddyLib
 							   spriteBatch,
 							   time);
 
-			//multiply the time by the speed
-			float currentTime = time.CurrentTime;
-			currentTime *= PulsateSpeed;
+			_timer.Update(time);
+			float currentTime = _timer.CurrentTime;
 
 			//Pulsate the size of the text
 			float pulsate = PulsateSize * (float)(Math.Sin(currentTime) + 1.0f);
