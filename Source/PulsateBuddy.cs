@@ -86,7 +86,7 @@ namespace FontBuddyLib
 			float currentTime = _timer.CurrentTime;
 
 			//Pulsate the size of the text
-			float pulsate = PulsateSize * (float)(Math.Sin(currentTime) + 1.0f);
+			float pulsate = PulsateSize * (float)(Math.Sin(currentTime - (Math.PI * 0.5)) + 1.0f);
 			float pulseScale = PulsateScale + pulsate * 0.15f;
 
 			//adjust the y position so it pulsates straight out
