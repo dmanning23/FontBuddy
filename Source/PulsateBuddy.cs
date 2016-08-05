@@ -44,11 +44,6 @@ namespace FontBuddyLib
 			}
 		}
 
-		/// <summary>
-		/// How much to scale the size of the pulsate. Default is 1f
-		/// </summary>
-		public float PulsateScale { get; set; }
-
 		#endregion //Members
 
 		/// <summary>
@@ -58,7 +53,6 @@ namespace FontBuddyLib
 		{
 			PulsateSize = 1.0f;
 			PulsateSpeed = 4.0f;
-			PulsateScale = 1f;
 			_timer = new GameClock()
 			{
 				TimerSpeed = PulsateSpeed
@@ -87,14 +81,15 @@ namespace FontBuddyLib
 
 			//Pulsate the size of the text
 			float pulsate = PulsateSize * (float)(Math.Sin(currentTime - (Math.PI * 0.5)) + 1.0f);
-			float pulseScale = PulsateScale + pulsate * 0.15f;
+			pulsate *= 0.15f; //make it waaay smaller
+			pulsate += 1; //bump it up so it starts at 1
 
 			//adjust the y position so it pulsates straight out
-			Vector2 adjust = ((Font.MeasureString(text) * scale * pulseScale) - (Font.MeasureString(text) * scale)) / 2.0f;
+			Vector2 adjust = ((Font.MeasureString(text) * scale * pulsate) - (Font.MeasureString(text) * scale)) / 2.0f;
 			position.Y -= adjust.Y;
 
 			//Draw the menu item, with the pulsing
-			return DrawText(text, position, justification, scale * pulseScale, color, spriteBatch, time);
+			return DrawText(text, position, justification, scale * pulsate, color, spriteBatch, time);
 		}
 	}
 }
