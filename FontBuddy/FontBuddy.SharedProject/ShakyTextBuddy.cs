@@ -45,10 +45,16 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
+			if (string.IsNullOrEmpty(text))
+			{
+				return position.X;
+			}
+
 			float fKerning = Font.Spacing * scale;
 
 			//Get the correct location
-			Vector2 textSize = Font.MeasureString(text) * scale;
+			Vector2 textSize = textSize = Font.MeasureString(text) * scale;
+
 			switch (justification)
 			{
 				case Justify.Right:

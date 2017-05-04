@@ -67,6 +67,11 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
+			if (string.IsNullOrEmpty(text))
+			{
+				return position.X;
+			}
+
 			//First draw the shadow
 			ShadowWriter.Write(text,
 							   position,

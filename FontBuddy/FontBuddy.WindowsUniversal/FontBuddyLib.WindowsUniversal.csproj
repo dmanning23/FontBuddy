@@ -11,8 +11,8 @@
     <AssemblyName>FontBuddyLib.WindowsUniversal</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -107,45 +107,10 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Source\BouncyNumbers.cs">
-      <Link>BouncyNumbers.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ErrorText.cs">
-      <Link>ErrorText.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\FontBuddy.cs">
-      <Link>FontBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\IFontBuddy.cs">
-      <Link>IFontBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\NumberBuddy.cs">
-      <Link>NumberBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\OppositeTextBuddy.cs">
-      <Link>OppositeTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\OutlineTextBuddy.cs">
-      <Link>OutlineTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\PulsateBuddy.cs">
-      <Link>PulsateBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\RainbowTextBuddy.cs">
-      <Link>RainbowTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ShadowTextBuddy.cs">
-      <Link>ShadowTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ShakyTextBuddy.cs">
-      <Link>ShakyTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\WrongTextBuddy.cs">
-      <Link>WrongTextBuddy.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\FontBuddy.WindowsUniversal.rd.xml" />
   </ItemGroup>
+  <Import Project="..\FontBuddy.SharedProject\FontBuddy.SharedProject.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -77,6 +77,12 @@ namespace FontBuddyLib
 			GameClock time)
 		{
 			_timer.Update(time);
+
+			if (string.IsNullOrEmpty(text))
+			{
+				return position.X;
+			}
+
 			float currentTime = _timer.CurrentTime;
 
 			// When the menu selection changes, entries gradually fade between

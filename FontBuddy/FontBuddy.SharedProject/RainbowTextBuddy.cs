@@ -61,6 +61,11 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
+			if (string.IsNullOrEmpty(text))
+			{
+				return position.X;
+			}
+
 			Kerning = Font.Spacing * scale;
 
 			//Get the correct location

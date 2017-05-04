@@ -50,47 +50,12 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Source\BouncyNumbers.cs">
-      <Link>BouncyNumbers.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ErrorText.cs">
-      <Link>ErrorText.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\FontBuddy.cs">
-      <Link>FontBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\IFontBuddy.cs">
-      <Link>IFontBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\NumberBuddy.cs">
-      <Link>NumberBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\OppositeTextBuddy.cs">
-      <Link>OppositeTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\OutlineTextBuddy.cs">
-      <Link>OutlineTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\PulsateBuddy.cs">
-      <Link>PulsateBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\RainbowTextBuddy.cs">
-      <Link>RainbowTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ShadowTextBuddy.cs">
-      <Link>ShadowTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ShakyTextBuddy.cs">
-      <Link>ShakyTextBuddy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\WrongTextBuddy.cs">
-      <Link>WrongTextBuddy.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\FontBuddy.SharedProject\FontBuddy.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

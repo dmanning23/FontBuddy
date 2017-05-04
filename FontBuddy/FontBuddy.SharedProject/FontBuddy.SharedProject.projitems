@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ea0d8eea-c495-44da-b260-162c5b5c44c1</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>FontBuddy.SharedProject</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BouncyNumbers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorText.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IFontBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NumberBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OppositeTextBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OutlineTextBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PulsateBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RainbowTextBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShadowTextBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShakyTextBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WrongTextBuddy.cs" />
+  </ItemGroup>
+</Project>
