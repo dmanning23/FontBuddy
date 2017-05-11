@@ -7,7 +7,7 @@ namespace FontBuddyLib
 {
 	public class ShakyTextBuddy : FontBuddy
 	{
-		#region Fields
+		#region Properties
 
 		/// <summary>
 		/// How much the text shakes, higher values = more shake
@@ -23,7 +23,9 @@ namespace FontBuddyLib
 		/// <value>The shake speed.</value>
 		public float ShakeSpeed { get; set; }
 
-		#endregion //Fields
+		private FontStringCache Text { get; set; }
+
+		#endregion //Properties
 
 		#region Methods
 
@@ -35,6 +37,7 @@ namespace FontBuddyLib
 		{
 			ShakeAmount = 10.0f;
 			ShakeSpeed = 10.0f;
+			Text = new FontStringCache();
 		}
 
 		public override float Write(string text,
@@ -50,63 +53,64 @@ namespace FontBuddyLib
 				return position.X;
 			}
 
-			float fKerning = Font.Spacing * scale;
+			var fKerning = Font.Spacing * scale;
+
+			//update the string cache
+			Text.UpdateText(text);
 
 			//Get the correct location
-			Vector2 textSize = textSize = Font.MeasureString(text) * scale;
+			var textSize = Font.MeasureString(text) * scale;
 
 			switch (justification)
 			{
 				case Justify.Right:
-				{
-					//move teh x value
-					for (int i = 0; i < text.Length; i++)
 					{
-						//get teh size of the character
-						string strSubString = "" + text[i];
-						textSize = Font.MeasureString(strSubString) * scale;
-						position.X -= textSize.X;
+						//move teh x value
+						for (var i = 0; i < Text.StringCache.Count; i++)
+						{
+							//get teh size of the character
+							textSize = Font.MeasureString(Text.StringCache[i]) * scale;
+							position.X -= textSize.X;
 
-						//get the kerning too
-						position.X -= fKerning;
+							//get the kerning too
+							position.X -= fKerning;
+						}
 					}
-				}
-				break;
+					break;
 
 				case Justify.Center:
-				{
-					//move teh x value
-					for (int i = 0; i < text.Length; i++)
 					{
-						//get teh size of the character
-						string strSubString = "" + text[i];
-						textSize = Font.MeasureString(strSubString) * scale;
-						position.X -= (textSize.X / 2.0f);
+						//move teh x value
+						for (var i = 0; i < Text.StringCache.Count; i++)
+						{
+							//get teh size of the character
+							textSize = Font.MeasureString(Text.StringCache[i]) * scale;
+							position.X -= (textSize.X / 2.0f);
 
-						//get the kerning too
-						position.X -= fKerning / 2.0f;
+							//get the kerning too
+							position.X -= fKerning / 2.0f;
+						}
 					}
-				}
-				break;
+					break;
 			}
 
 			//ok, draw each individual letter
-			for (int i = 0; i < text.Length; i++)
+			for (int i = 0; i < Text.StringCache.Count; i++)
 			{
-				float pulsate = MathHelper.Clamp((ShakeAmount * (float)(Math.Sin(time.CurrentTime * ShakeSpeed))), -ShakeAmount, ShakeAmount);
+				var pulsate = MathHelper.Clamp((ShakeAmount * (float)(Math.Sin(time.CurrentTime * ShakeSpeed))), -ShakeAmount, ShakeAmount);
 				if ((i % 2) == 0)
 				{
 					pulsate *= -1.0f;
 				}
-				Vector2 pulsingPosition = position;
+				var pulsingPosition = position;
 				pulsingPosition.Y += pulsate;
 
-				string strSubString = "" + text[i];
+				var subString = Text.StringCache[i];
 
 				//Clamp (because we dont want pure black and white)
 				spriteBatch.DrawString(
 					Font,
-					strSubString,
+					subString,
 					pulsingPosition,
 					color,
 					0,
@@ -115,7 +119,7 @@ namespace FontBuddyLib
 					SpriteEffects.None,
 					0);
 
-				position.X += Font.MeasureString(strSubString).X * scale;
+				position.X += Font.MeasureString(subString).X * scale;
 				position.X += fKerning;
 			}
 

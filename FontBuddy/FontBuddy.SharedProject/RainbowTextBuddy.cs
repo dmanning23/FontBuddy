@@ -18,6 +18,8 @@ namespace FontBuddyLib
 		/// </summary>
 		public float RainbowSpeed { get; set; }
 
+		private FontStringCache Text { get; set; }
+
 		#endregion //Members
 
 		#region Properties
@@ -51,6 +53,8 @@ namespace FontBuddyLib
 			Colors.Add(Color.Yellow);
 			Colors.Add(Color.Orange);
 			Colors.Add(Color.Red);
+
+			Text = new FontStringCache();
 		}
 
 		public override float Write(string text,
@@ -68,6 +72,9 @@ namespace FontBuddyLib
 
 			Kerning = Font.Spacing * scale;
 
+			//update the string cache
+			Text.UpdateText(text);
+
 			//Get the correct location
 			Vector2 textSize = Font.MeasureString(text) * scale;
 			switch (justification)
@@ -75,11 +82,10 @@ namespace FontBuddyLib
 				case Justify.Right:
 				{
 					//move teh x value
-					for (int i = 0; i < text.Length; i++)
+					for (var i = 0; i < Text.StringCache.Count; i++)
 					{
 						//get teh size of the character
-						string subString = text[i].ToString();
-						textSize = Font.MeasureString(subString) * scale;
+						textSize = Font.MeasureString(Text.StringCache[i]) * scale;
 						position.X -= textSize.X;
 
 						//get the kerning too
@@ -91,11 +97,10 @@ namespace FontBuddyLib
 				case Justify.Center:
 				{
 					//move teh x value
-					for (int i = 0; i < text.Length; i++)
+					for (var i = 0; i < Text.StringCache.Count; i++)
 					{
 						//get teh size of the character
-						string subString = text[i].ToString();
-						textSize = Font.MeasureString(subString) * scale;
+						textSize = Font.MeasureString(Text.StringCache[i]) * scale;
 						position.X -= (textSize.X / 2.0f);
 
 						//get the kerning too
@@ -107,19 +112,19 @@ namespace FontBuddyLib
 
 			WriteShadow(text, position, justification, scale, spriteBatch, time);
 
-			float currentTime = time.CurrentTime;
+			var currentTime = time.CurrentTime;
 			currentTime *= RainbowSpeed;
 			currentTime += text.Length;
-			for (int i = 0; i < text.Length; i++)
+			for (var i = 0; i < Text.StringCache.Count; i++)
 			{
 				//draw the title
 
 				//Get the current color
 				currentTime -= 0.6f;
-				int index = (int)currentTime % Colors.Count;
+				var index = (int)currentTime % Colors.Count;
 
 				//get the next color
-				int nextIndex = index + 1;
+				var nextIndex = index + 1;
 				if (nextIndex >= Colors.Count)
 				{
 					nextIndex = 0;
@@ -127,9 +132,9 @@ namespace FontBuddyLib
 
 				//get the ACTUAL lerped color of this letter
 				var remainder = (float)(currentTime - (int)currentTime);
-				Color letterColor = Color.Lerp(Colors[index], Colors[nextIndex], remainder);
+				var letterColor = Color.Lerp(Colors[index], Colors[nextIndex], remainder);
 
-				string subString = text[i].ToString();
+				var subString = Text.StringCache[i];
 
 				spriteBatch.DrawString(
 					Font,
@@ -157,10 +162,10 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch, 
 			GameClock time)
 		{
-			for (int i = 0; i < text.Length; i++)
+			for (int i = 0; i < Text.StringCache.Count; i++)
 			{
 				//draw the title
-				string subString = text[i].ToString();
+				var subString = Text.StringCache[i];
 
 				spriteBatch.DrawString(
 					Font,

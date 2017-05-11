@@ -11,7 +11,7 @@ namespace FontBuddyLib
 	/// </summary>
 	public class OppositeTextBuddy : ShadowTextBuddy
 	{
-		#region Fields
+		#region Properties
 
 		/// <summary>
 		/// how fast to swap colors... defaults to 2.0f
@@ -23,7 +23,9 @@ namespace FontBuddyLib
 		/// </summary>
 		public float SwapSweep { get; set; }
 
-		#endregion //Fields
+		private FontStringCache Text { get; set; }
+
+		#endregion //Properties
 
 		#region Methods
 
@@ -34,6 +36,7 @@ namespace FontBuddyLib
 		{
 			SwapSpeed = 2.0f;
 			SwapSweep = 0.1f;
+			Text = new FontStringCache();
 		}
 
 		public override float Write(string text,
@@ -49,6 +52,8 @@ namespace FontBuddyLib
 				return position.X;
 			}
 
+			Text.UpdateText(text);
+
 			float fKerning = Font.Spacing * scale;
 
 			//Get the correct location
@@ -58,11 +63,10 @@ namespace FontBuddyLib
 				case Justify.Right:
 				{
 					//move teh x value
-					for (int i = 0; i < text.Length; i++)
+					for (var i = 0; i < Text.StringCache.Count; i++)
 					{
 						//get teh size of the character
-						string strSubString = "" + text[i];
-						textSize = Font.MeasureString(strSubString) * scale;
+						textSize = Font.MeasureString(Text.StringCache[i]) * scale;
 						position.X -= textSize.X;
 
 						//get the kerning too
@@ -74,11 +78,10 @@ namespace FontBuddyLib
 				case Justify.Center:
 				{
 					//move teh x value
-					for (int i = 0; i < text.Length; i++)
+					for (var i = 0; i < Text.StringCache.Count; i++)
 					{
 						//get teh size of the character
-						string strSubString = "" + text[i];
-						textSize = Font.MeasureString(strSubString) * scale;
+						textSize = Font.MeasureString(Text.StringCache[i]) * scale;
 						position.X -= (textSize.X / 2.0f);
 
 						//get the kerning too
@@ -89,23 +92,23 @@ namespace FontBuddyLib
 			}
 
 			//this is some shit we are gonna use to positaion a shadow
-			Vector2 shadowPosition = position;
+			var shadowPosition = position;
 
 			//draw the individual letter of the shadow first
-			double dLetterTime = time.CurrentTime;
-			for (int i = 0; i < text.Length; i++)
+			var letterTime = time.CurrentTime;
+			for (var i = 0; i < Text.StringCache.Count; i++)
 			{
 				//Add a tenth of a second for each letter in the string
-				dLetterTime -= SwapSweep;
-				float pulsate = MathHelper.Clamp((float)(Math.Sin(dLetterTime * SwapSpeed)), -0.5f, 0.5f);
+				letterTime -= SwapSweep;
+				var pulsate = MathHelper.Clamp((float)(Math.Sin(letterTime * SwapSpeed)), -0.5f, 0.5f);
 				pulsate += 0.5f;
-				string strSubString = text[i].ToString();
+				var subString = Text.StringCache[i];
 
 				//Clamp (because we dont want pure black and white)
-				Color shadowColor = Color.Lerp(ShadowColor, color, pulsate);
+				var shadowColor = Color.Lerp(ShadowColor, color, pulsate);
 				spriteBatch.DrawString(
 					Font,
-					strSubString,
+					subString,
 					shadowPosition + ShadowOffset,
 					shadowColor,
 					0,
@@ -114,24 +117,24 @@ namespace FontBuddyLib
 					SpriteEffects.None,
 					0);
 
-				shadowPosition.X += (Font.MeasureString(strSubString) * scale).X;
+				shadowPosition.X += (Font.MeasureString(subString) * scale).X;
 				shadowPosition.X += fKerning;
 			}
 
-			dLetterTime = time.CurrentTime; //reset the time
-			for (int i = 0; i < text.Length; i++)
+			letterTime = time.CurrentTime; //reset the time
+			for (var i = 0; i < Text.StringCache.Count; i++)
 			{
 				//draw the title
-				dLetterTime -= SwapSweep;
-				float pulsate = MathHelper.Clamp((float)(Math.Sin(dLetterTime * SwapSpeed)), -0.5f, 0.5f);
+				letterTime -= SwapSweep;
+				var pulsate = MathHelper.Clamp((float)(Math.Sin(letterTime * SwapSpeed)), -0.5f, 0.5f);
 				pulsate += 0.5f;
-				string strSubString =  text[i].ToString();
+				var subString = Text.StringCache[i];
 
 				//get the opposite color of the shadow
-				Color shadowColor = Color.Lerp(color, ShadowColor, pulsate);
+				var shadowColor = Color.Lerp(color, ShadowColor, pulsate);
 				spriteBatch.DrawString(
 					Font,
-					strSubString,
+					subString,
 					position,
 					shadowColor,
 					0,
@@ -140,7 +143,7 @@ namespace FontBuddyLib
 					SpriteEffects.None,
 					0);
 
-				position.X += (Font.MeasureString(strSubString) * scale).X;
+				position.X += (Font.MeasureString(subString) * scale).X;
 				position.X += fKerning;
 			}
 
