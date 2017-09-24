@@ -44,6 +44,11 @@ namespace FontBuddyLib
 			}
 		}
 
+		public bool StraightPulsate
+		{
+			get; set;
+		}
+
 		#endregion //Members
 
 		/// <summary>
@@ -51,6 +56,7 @@ namespace FontBuddyLib
 		/// </summary>
 		public PulsateBuddy()
 		{
+			StraightPulsate = true;
 			PulsateSize = 1.0f;
 			PulsateSpeed = 4.0f;
 			_timer = new GameClock()
@@ -91,6 +97,22 @@ namespace FontBuddyLib
 
 			//adjust the y position so it pulsates straight out
 			Vector2 adjust = ((Font.MeasureString(text) * scale * pulsate) - (Font.MeasureString(text) * scale)) / 2.0f;
+			if (StraightPulsate)
+			{
+				switch (justification)
+				{
+					case Justify.Left:
+						{
+							position.X -= adjust.X;
+						}
+						break;
+					case Justify.Right:
+						{
+							position.X += adjust.X;
+						}
+						break;
+				};
+			}
 			position.Y -= adjust.Y;
 
 			//Draw the menu item, with the pulsing
