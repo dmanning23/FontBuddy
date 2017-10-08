@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using System.Text;
-using GameTimer;
+﻿using GameTimer;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Text;
 
 namespace FontBuddyLib
 {
@@ -153,6 +152,16 @@ namespace FontBuddyLib
 			GameClock time)
 		{
 			return Write(text, new Vector2(position.X, position.Y), justification, scale, color, spriteBatch, time);
+		}
+
+		public List<string> BreakTextIntoList(string text, int rowWidth)
+		{
+			return LineFormatter.BreakTextIntoList(text, rowWidth, Font);
+		}
+
+		public float ScaleToFit(string text, int rowWidth)
+		{
+			return LineFormatter.ScaleToFit(text, rowWidth, Font);
 		}
 
 		#endregion //Methods

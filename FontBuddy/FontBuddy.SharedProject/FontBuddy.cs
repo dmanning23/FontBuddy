@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace FontBuddyLib
@@ -152,6 +153,16 @@ namespace FontBuddyLib
 			}
 
 			return position;
+		}
+
+		public List<string> BreakTextIntoList(string text, int rowWidth)
+		{
+			return LineFormatter.BreakTextIntoList(text, rowWidth, Font);
+		}
+
+		public float ScaleToFit(string text, int rowWidth)
+		{
+			return LineFormatter.ScaleToFit(text, rowWidth, Font);
 		}
 
 		#endregion //Methods

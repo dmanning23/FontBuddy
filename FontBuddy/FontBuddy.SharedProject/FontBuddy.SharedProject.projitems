@@ -10,10 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BouncyNumbers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ErrorText.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FontBuddy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FontStringCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFontBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LineFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NumberBuddy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OppositeTextBuddy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OutlineTextBuddy.cs" />

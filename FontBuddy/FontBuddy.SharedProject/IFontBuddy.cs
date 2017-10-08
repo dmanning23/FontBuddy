@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace FontBuddyLib
 {
@@ -64,5 +65,9 @@ namespace FontBuddyLib
 			Color color,
 			SpriteBatch spriteBatch,
 			GameClock time);
+
+		List<string> BreakTextIntoList(string text, int rowWidth);
+
+		float ScaleToFit(string text, int rowWidth);
 	}
 }
