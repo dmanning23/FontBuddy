@@ -69,5 +69,7 @@ namespace FontBuddyLib
 		List<string> BreakTextIntoList(string text, int rowWidth);
 
 		float ScaleToFit(string text, int rowWidth);
+
+		float ShrinkToFit(string text, int rowWidth);
 	}
 }

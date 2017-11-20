@@ -66,5 +66,14 @@ namespace FontBuddyLib
 			//get the ratio to scale the width to fit
 			return rowWidth / textSize.X;
 		}
+
+		public static float ShrinkToFit(string text, int rowWidth, SpriteFont font)
+		{
+			//measure the text
+			var textSize = font.MeasureString(text);
+
+			//get the ratio to scale the width to fit
+			return textSize.X > rowWidth ? rowWidth / textSize.X : 1f;
+		}
 	}
 }
