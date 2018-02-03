@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>FontBuddy</id>
-		<version>1.0.21</version>
+		<version>1.0.22</version>
 		<title>FontBuddy</title>
 		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -38,7 +38,7 @@
 			</group>
 
 			<group targetFramework="net451">
-				<dependency id="MonoGame.Framework.DesktopGL" version="3.5"/>
+				<dependency id="MonoGame.Framework.WindowsDX" version="3.5"/>
 				<dependency id="GameTimer" version="1.0"/>
 			</group>
 
@@ -58,9 +58,9 @@
 		<file src="FontBuddy.WindowsUniversal\bin\Release\FontBuddyLib.WindowsUniversal.pdb" target="lib\uap10.0\FontBuddyLib.WindowsUniversal.pdb" />
 		<file src="FontBuddy.WindowsUniversal\bin\Release\FontBuddyLib.WindowsUniversal.dll" target="lib\uap10.0\FontBuddyLib.WindowsUniversal.dll" />
 
-		<!--DesktopGL-->
-		<file src="FontBuddy.DesktopGL\bin\Release\FontBuddyLib.DesktopGL.pdb" target="lib\net451\FontBuddyLib.DesktopGL.pdb" />
-		<file src="FontBuddy.DesktopGL\bin\Release\FontBuddyLib.DesktopGL.dll" target="lib\net451\FontBuddyLib.DesktopGL.dll" />
+		<!--WindowsDX-->
+		<file src="FontBuddy.WindowsDX\bin\Release\FontBuddyLib.WindowsDX.pdb" target="lib\net451\FontBuddyLib.WindowsDX.pdb" />
+		<file src="FontBuddy.WindowsDX\bin\Release\FontBuddyLib.WindowsDX.dll" target="lib\net451\FontBuddyLib.WindowsDX.dll" />
 
 	</files>
 </package>
