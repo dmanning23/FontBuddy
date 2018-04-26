@@ -88,15 +88,16 @@ namespace FontBuddyLib
 							   time);
 
 			_timer.Update(time);
-			float currentTime = _timer.CurrentTime;
+			var currentTime = _timer.CurrentTime;
 
 			//Pulsate the size of the text
-			float pulsate = PulsateSize * (float)(Math.Sin(currentTime - (Math.PI * 0.5)) + 1.0f);
+			var pulsate = PulsateSize * (float)(Math.Sin(currentTime - (Math.PI * 0.5)) + 1.0f);
 			pulsate *= 0.15f; //make it waaay smaller
 			pulsate += 1; //bump it up so it starts at 1
 
 			//adjust the y position so it pulsates straight out
-			Vector2 adjust = ((Font.MeasureString(text) * scale * pulsate) - (Font.MeasureString(text) * scale)) / 2.0f;
+			var textSize = Font.MeasureString(text.ToString());
+			var adjust = ((textSize * scale * pulsate) - (textSize * scale)) / 2f;
 			if (StraightPulsate)
 			{
 				switch (justification)

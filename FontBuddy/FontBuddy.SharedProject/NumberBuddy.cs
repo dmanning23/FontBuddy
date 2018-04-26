@@ -28,9 +28,9 @@ namespace FontBuddyLib
 		/// <summary>
 		/// Set the number to draw for this dude.
 		/// </summary>
-		public int Number 
+		public int Number
 		{
-			set 
+			set
 			{
 				//If this isn't the same number, add the difference
 				if (value != TargetNumber)
@@ -66,6 +66,18 @@ namespace FontBuddyLib
 			}
 		}
 
+		public bool StraightPulsate
+		{
+			get
+			{
+				return BouncyFont.StraightPulsate;
+			}
+			set
+			{
+				BouncyFont.StraightPulsate = value;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -79,10 +91,16 @@ namespace FontBuddyLib
 			};
 		}
 
+		public NumberBuddy(int startNum) : this()
+		{
+			StartNumber = startNum;
+			TargetNumber = startNum;
+		}
+
 		public Vector2 MeasureString(string text)
 		{
 			return Font.MeasureString(text);
-        }
+		}
 
 		/// <summary>
 		/// Change the number this dude displays
@@ -136,7 +154,7 @@ namespace FontBuddyLib
 			}
 			else
 			{
-				StringBuilder str = new StringBuilder();
+				var str = new StringBuilder();
 				str.Append(text);
 				str.Append(TargetNumber);
 				return NormalFont.Write(str.ToString(), position, justification, scale, color, spriteBatch, time);

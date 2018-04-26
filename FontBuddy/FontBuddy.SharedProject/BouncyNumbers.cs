@@ -76,6 +76,11 @@ namespace FontBuddyLib
 			}
 		}
 
+		public bool StraightPulsate
+		{
+			get; set;
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -85,6 +90,7 @@ namespace FontBuddyLib
 		/// </summary>
 		public BouncyNumbers()
 		{
+			StraightPulsate = true;
 			Timer = new CountdownTimer();
 			Timer.Stop();
 			ScaleTime = 1f;
@@ -115,7 +121,7 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
-			StringBuilder str = new StringBuilder();
+			var str = new StringBuilder();
 			str.Append(text);
 
 			//update the timer we are using
@@ -127,7 +133,7 @@ namespace FontBuddyLib
 				if (Timer.CurrentTime <= CountUpTime)
 				{
 					//lerp up to the desired number
-					int currentNumber = StartNumber;
+					var currentNumber = StartNumber;
 					currentNumber += (int)((Delta * Timer.CurrentTime) / CountUpTime);
 
 					//add 1 so it doest start at 0
@@ -152,17 +158,33 @@ namespace FontBuddyLib
 					scale *= Rescale;
 
 					//current time - countuptime starts us at 0.0, which is good for lerping purposes
-					float currentTime = Timer.CurrentTime - CountUpTime;
+					var currentTime = Timer.CurrentTime - CountUpTime;
 
 					//convert the amount of time to a number between 0.0 and 1.0
-					float lerp = currentTime / ScaleTime;
+					var lerp = currentTime / ScaleTime;
 
 					//lerp from the start scale to the end scale
-					float finalScale = MathHelper.Lerp(ScaleAtEnd, scale, lerp);
+					var finalScale = MathHelper.Lerp(ScaleAtEnd, scale, lerp);
 
 					//adjust the position to draw based on how much we are scaling
 					var textSize = Font.MeasureString(str.ToString());
-					Vector2 adjust = ((textSize * finalScale) - (textSize * scale));
+					var adjust = ((textSize * finalScale) - (textSize * scale)) / 2f;
+					if (StraightPulsate)
+					{
+						switch (justification)
+						{
+							case Justify.Left:
+								{
+									position.X -= adjust.X;
+								}
+								break;
+							case Justify.Right:
+								{
+									position.X += adjust.X;
+								}
+								break;
+						};
+					}
 					position.Y -= adjust.Y;
 
 					return base.Write(str.ToString(),
