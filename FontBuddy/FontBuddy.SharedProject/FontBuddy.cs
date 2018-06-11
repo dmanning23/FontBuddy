@@ -170,6 +170,11 @@ namespace FontBuddyLib
 			return LineFormatter.ShrinkToFit(text, rowWidth, Font);
 		}
 
+		public bool NeedsToShrink(string text, float scale, int rowWidth)
+		{
+			return LineFormatter.NeedsToShrink(text, scale, rowWidth, Font);
+		}
+
 		#endregion //Methods
 	}
 }

@@ -71,5 +71,7 @@ namespace FontBuddyLib
 		float ScaleToFit(string text, int rowWidth);
 
 		float ShrinkToFit(string text, int rowWidth);
+
+		bool NeedsToShrink(string text, float scale, int rowWidth);
 	}
 }
