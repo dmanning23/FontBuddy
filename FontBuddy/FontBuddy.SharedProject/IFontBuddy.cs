@@ -16,6 +16,8 @@ namespace FontBuddyLib
 		/// </summary>
 		SpriteFont Font { get; set; }
 
+		SpriteEffects SpriteEffects { get; set; }
+
 		/// <summary>
 		/// given a content manager and a resource name, load the resource as a bitmap font
 		/// </summary>

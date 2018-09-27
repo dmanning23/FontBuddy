@@ -28,6 +28,8 @@ namespace FontBuddyLib
 		/// </summary>
 		public virtual SpriteFont Font { get; set; }
 
+		public SpriteEffects SpriteEffects { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -37,6 +39,7 @@ namespace FontBuddyLib
 		/// </summary>
 		public FontBuddy()
 		{
+			SpriteEffects = SpriteEffects.None;
 		}
 
 		/// <summary>
@@ -121,7 +124,7 @@ namespace FontBuddyLib
 									 0.0f,
 									 Vector2.Zero,
 									 scale,
-									 SpriteEffects.None,
+									 SpriteEffects,
 									 0);
 
 			//return the end of that string

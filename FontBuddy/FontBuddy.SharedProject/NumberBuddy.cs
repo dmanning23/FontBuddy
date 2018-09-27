@@ -78,6 +78,21 @@ namespace FontBuddyLib
 			}
 		}
 
+		private SpriteEffects _spriteEffects;
+		public SpriteEffects SpriteEffects
+		{
+			get
+			{
+				return _spriteEffects;
+			}
+			set
+			{
+				_spriteEffects = value;
+				NormalFont.SpriteEffects = SpriteEffects;
+				BouncyFont.SpriteEffects = SpriteEffects;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
