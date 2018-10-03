@@ -30,6 +30,8 @@ namespace FontBuddyLib
 
 		public SpriteEffects SpriteEffects { get; set; }
 
+		public float Rotation { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -121,7 +123,7 @@ namespace FontBuddyLib
 									 text,
 									 position,
 									 color,
-									 0.0f,
+									 Rotation,
 									 Vector2.Zero,
 									 scale,
 									 SpriteEffects,

@@ -114,7 +114,7 @@ namespace FontBuddyLib
 					0,
 					Vector2.Zero,
 					scale * ShadowSize,
-					SpriteEffects.None,
+					SpriteEffects,
 					0);
 
 				shadowPosition.X += (Font.MeasureString(subString) * scale).X;
@@ -140,7 +140,7 @@ namespace FontBuddyLib
 					0,
 					Vector2.Zero,
 					scale,
-					SpriteEffects.None,
+					SpriteEffects,
 					0);
 
 				position.X += (Font.MeasureString(subString) * scale).X;

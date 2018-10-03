@@ -18,6 +18,8 @@ namespace FontBuddyLib
 
 		SpriteEffects SpriteEffects { get; set; }
 
+		float Rotation { get; set; }
+
 		/// <summary>
 		/// given a content manager and a resource name, load the resource as a bitmap font
 		/// </summary>

@@ -93,6 +93,21 @@ namespace FontBuddyLib
 			}
 		}
 
+		private float _rotation;
+		public float Rotation
+		{
+			get
+			{
+				return _rotation;
+			}
+			set
+			{
+				_rotation = value;
+				NormalFont.Rotation = _rotation;
+				BouncyFont.Rotation = _rotation;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
