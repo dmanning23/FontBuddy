@@ -45,6 +45,32 @@ namespace FontBuddyLib
 		/// </summary>
 		public int OutlineSize { get; set; }
 
+		public override SpriteEffects SpriteEffects
+		{
+			get
+			{
+				return base.SpriteEffects;
+			}
+			set
+			{
+				base.SpriteEffects = value;
+				_outlineWriter.SpriteEffects = value;
+			}
+		}
+
+		public override float Rotation
+		{
+			get
+			{
+				return base.Rotation;
+			}
+			set
+			{
+				base.Rotation = value;
+				_outlineWriter.Rotation = value;
+			}
+		}
+
 		#endregion //Members
 
 		#region Properties

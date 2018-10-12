@@ -10,7 +10,7 @@ namespace FontBuddyLib
 	/// </summary>
 	public class ShadowTextBuddy : FontBuddy
 	{
-		#region Members
+		#region Properties
 
 		/// <summary>
 		/// font buddy we are going to use to draw the shadow
@@ -47,13 +47,35 @@ namespace FontBuddyLib
 		/// </summary>
 		public float ShadowSize { get; set; }
 
-		#endregion //Members
-
-		#region Properties
-
 		protected FontBuddy ShadowWriter
 		{
 			get { return _shadowWriter; }
+		}
+
+		public override SpriteEffects SpriteEffects
+		{
+			get
+			{
+				return base.SpriteEffects;
+			}
+			set
+			{
+				base.SpriteEffects = value;
+				_shadowWriter.SpriteEffects = value;
+			}
+		}
+
+		public override float Rotation
+		{
+			get
+			{
+				return base.Rotation;
+			}
+			set
+			{
+				base.Rotation = value;
+				_shadowWriter.Rotation = value;
+			}
 		}
 
 		#endregion //Properties

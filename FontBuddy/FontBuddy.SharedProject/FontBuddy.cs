@@ -28,9 +28,9 @@ namespace FontBuddyLib
 		/// </summary>
 		public virtual SpriteFont Font { get; set; }
 
-		public SpriteEffects SpriteEffects { get; set; }
+		public virtual SpriteEffects SpriteEffects { get; set; }
 
-		public float Rotation { get; set; }
+		public virtual float Rotation { get; set; }
 
 		#endregion //Properties
 
