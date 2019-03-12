@@ -204,22 +204,22 @@ namespace FontBuddyLib
 
 		public List<string> BreakTextIntoList(string text, int rowWidth)
 		{
-			return LineFormatter.BreakTextIntoList(text, rowWidth, Font);
+			return LineFormatter.BreakTextIntoList(text, rowWidth, this);
 		}
 
 		public float ScaleToFit(string text, int rowWidth)
 		{
-			return LineFormatter.ScaleToFit(text, rowWidth, Font);
+			return LineFormatter.ScaleToFit(text, rowWidth, this);
 		}
 
 		public float ShrinkToFit(string text, int rowWidth)
 		{
-			return LineFormatter.ShrinkToFit(text, rowWidth, Font);
+			return LineFormatter.ShrinkToFit(text, rowWidth, this);
 		}
 
 		public bool NeedsToShrink(string text, float scale, int rowWidth)
 		{
-			return LineFormatter.NeedsToShrink(text, scale, rowWidth, Font);
+			return LineFormatter.NeedsToShrink(text, scale, rowWidth, this);
 		}
 
 		#endregion //Methods

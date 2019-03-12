@@ -108,15 +108,13 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
-			Debug.Assert(null != Font);
-
 			//if this thing is empty, dont do anything
 			if (string.IsNullOrEmpty(text))
 			{
 				return position.X;
 			}
 
-			position = JustifiedPosition(text, position, justification, scale);
+			position = LineFormatter.JustifiedPosition(text, position, justification, scale, this);
 
 			//okay, draw the actual string
 			spriteBatch.DrawString(Font,
@@ -130,54 +128,27 @@ namespace FontBuddyLib
 									 0);
 
 			//return the end of that string
-			return position.X + (Font.MeasureString(text).X * scale);
-		}
-
-		protected Vector2 JustifiedPosition(string text, Vector2 position, Justify justification, float scale)
-		{
-			//Get the correct location
-			Vector2 textSize = (!string.IsNullOrEmpty(text) ? (Font.MeasureString(text) * scale) : Vector2.Zero);
-
-			switch (justification)
-			{
-				//left = use teh x value (no cahnge)
-
-				case Justify.Right:
-				{
-					//move teh x value
-					position.X -= textSize.X;
-				}
-				break;
-
-				case Justify.Center:
-				{
-					//move teh x value
-					position.X -= (textSize.X / 2.0f);
-				}
-				break;
-			}
-
-			return position;
+			return position.X + (MeasureString(text).X * scale);
 		}
 
 		public List<string> BreakTextIntoList(string text, int rowWidth)
 		{
-			return LineFormatter.BreakTextIntoList(text, rowWidth, Font);
+			return LineFormatter.BreakTextIntoList(text, rowWidth, this);
 		}
 
 		public float ScaleToFit(string text, int rowWidth)
 		{
-			return LineFormatter.ScaleToFit(text, rowWidth, Font);
+			return LineFormatter.ScaleToFit(text, rowWidth, this);
 		}
 
 		public float ShrinkToFit(string text, int rowWidth)
 		{
-			return LineFormatter.ShrinkToFit(text, rowWidth, Font);
+			return LineFormatter.ShrinkToFit(text, rowWidth, this);
 		}
 
 		public bool NeedsToShrink(string text, float scale, int rowWidth)
 		{
-			return LineFormatter.NeedsToShrink(text, scale, rowWidth, Font);
+			return LineFormatter.NeedsToShrink(text, scale, rowWidth, this);
 		}
 
 		#endregion //Methods

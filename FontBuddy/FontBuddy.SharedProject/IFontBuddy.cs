@@ -23,9 +23,9 @@ namespace FontBuddyLib
 		/// <summary>
 		/// given a content manager and a resource name, load the resource as a bitmap font
 		/// </summary>
-		/// <param name="rContent"></param>
-		/// <param name="strResource"></param>
-		void LoadContent(ContentManager rContent, string strResource);
+		/// <param name="content"></param>
+		/// <param name="resourceName"></param>
+		void LoadContent(ContentManager content, string resourceName);
 
 		/// <summary>
 		/// Get the size of a specific peice of text.
