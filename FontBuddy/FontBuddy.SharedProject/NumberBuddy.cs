@@ -108,6 +108,22 @@ namespace FontBuddyLib
 			}
 		}
 
+		/// <summary>
+		/// color to draw the outline
+		/// </summary>
+		public Color OutlineColor
+		{
+			get
+			{
+				return NormalFont.OutlineColor;
+			}
+			set
+			{
+				NormalFont.OutlineColor = value;
+				BouncyFont.OutlineColor = value;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
