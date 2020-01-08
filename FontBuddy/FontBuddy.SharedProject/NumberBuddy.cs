@@ -50,22 +50,6 @@ namespace FontBuddyLib
 		/// </summary>
 		private BouncyNumbers BouncyFont { get; set; }
 
-		private SpriteFont _font;
-
-		public SpriteFont Font
-		{
-			get
-			{
-				return _font;
-			}
-			set
-			{
-				_font = value;
-				NormalFont.Font = value;
-				BouncyFont.Font = value;
-			}
-		}
-
 		public bool StraightPulsate
 		{
 			get
@@ -124,11 +108,13 @@ namespace FontBuddyLib
 			}
 		}
 
-		#endregion //Properties
+		public float Spacing => !BouncyFont.IsDead ? BouncyFont.Spacing : NormalFont.Spacing;
 
-		#region Methods
+#endregion //Properties
 
-		public NumberBuddy()
+#region Methods
+
+public NumberBuddy()
 		{
 			NormalFont = new OutlineTextBuddy();
 			BouncyFont = new BouncyNumbers()
@@ -145,7 +131,7 @@ namespace FontBuddyLib
 
 		public Vector2 MeasureString(string text)
 		{
-			return Font.MeasureString(text);
+			return NormalFont.MeasureString(text);
 		}
 
 		/// <summary>
@@ -175,15 +161,12 @@ namespace FontBuddyLib
 		/// <summary>
 		/// given a content manager and a resource name, load the resource as a bitmap font
 		/// </summary>
-		/// <param name="rContent"></param>
-		/// <param name="strResource"></param>
-		public void LoadContent(ContentManager rContent, string strResource)
+		/// <param name="content"></param>
+		/// <param name="resource"></param>
+		public void LoadContent(ContentManager content, string resource, bool useFontBuddyPlus = false, int fontSize = 24)
 		{
-			//load font
-			if (null == Font)
-			{
-				Font = rContent.Load<SpriteFont>(strResource);
-			}
+			NormalFont.LoadContent(content, resource, useFontBuddyPlus, fontSize);
+			BouncyFont.LoadContent(content, resource, useFontBuddyPlus, fontSize);
 		}
 
 		public float Write(string text,
@@ -207,15 +190,16 @@ namespace FontBuddyLib
 			}
 		}
 
-		public float Write(string text,
-			Point position,
-			Justify justification,
-			float scale,
-			Color color,
-			SpriteBatch spriteBatch,
-			GameClock time)
+		public void DrawString(string text, Vector2 position, float scale, Color color, SpriteBatch spriteBatch)
 		{
-			return Write(text, new Vector2(position.X, position.Y), justification, scale, color, spriteBatch, time);
+			if (!BouncyFont.IsDead)
+			{
+				BouncyFont.DrawString(text, position, scale, color, spriteBatch);
+			}
+			else
+			{
+				NormalFont.DrawString(text, position, scale, color, spriteBatch);
+			}
 		}
 
 		public List<string> BreakTextIntoList(string text, int rowWidth)

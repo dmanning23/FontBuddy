@@ -9,9 +9,15 @@ namespace FontBuddyLib
 	/// So what this one does:  Takes two colors, draws the shadow in one and text in the other.
 	/// After a specified amount of time has passed, the colors wipe across and switch
 	/// </summary>
-	public class OppositeTextBuddy : ShadowTextBuddy
+	public class OppositeTextBuddy : BaseFontBuddy, IShadowTextBuddy
 	{
 		#region Properties
+
+		public Color ShadowColor { get; set; }
+
+		public Vector2 ShadowOffset { get; set; }
+
+		public float ShadowSize { get; set; }
 
 		/// <summary>
 		/// how fast to swap colors... defaults to 2.0f
@@ -34,6 +40,10 @@ namespace FontBuddyLib
 		/// </summary>
 		public OppositeTextBuddy()
 		{
+			ShadowColor = Color.Black;
+			ShadowOffset = new Vector2(0.0f, 3.0f);
+			ShadowSize = 1.05f;
+
 			SwapSpeed = 2.0f;
 			SwapSweep = 0.1f;
 			Text = new FontStringCache();
@@ -105,17 +115,7 @@ namespace FontBuddyLib
 				var subString = Text.StringCache[i];
 
 				//Clamp (because we dont want pure black and white)
-				var shadowColor = Color.Lerp(ShadowColor, color, pulsate);
-				spriteBatch.DrawString(
-					Font,
-					subString,
-					shadowPosition + ShadowOffset,
-					shadowColor,
-					Rotation,
-					Vector2.Zero,
-					scale * ShadowSize,
-					SpriteEffects,
-					0);
+				Font.DrawString(subString, shadowPosition + ShadowOffset, scale * ShadowSize, Color.Lerp(ShadowColor, color, pulsate), spriteBatch);
 
 				shadowPosition.X += (Font.MeasureString(subString) * scale).X;
 				shadowPosition.X += fKerning;
@@ -131,17 +131,7 @@ namespace FontBuddyLib
 				var subString = Text.StringCache[i];
 
 				//get the opposite color of the shadow
-				var shadowColor = Color.Lerp(color, ShadowColor, pulsate);
-				spriteBatch.DrawString(
-					Font,
-					subString,
-					position,
-					shadowColor,
-					Rotation,
-					Vector2.Zero,
-					scale,
-					SpriteEffects,
-					0);
+				Font.DrawString(subString, position, scale, Color.Lerp(color, ShadowColor, pulsate), spriteBatch);
 
 				position.X += (Font.MeasureString(subString) * scale).X;
 				position.X += fKerning;

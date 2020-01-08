@@ -5,7 +5,7 @@ using System;
 
 namespace FontBuddyLib
 {
-	public class ShakyTextBuddy : FontBuddy
+	public class ShakyTextBuddy : BaseFontBuddy
 	{
 		#region Properties
 
@@ -108,16 +108,7 @@ namespace FontBuddyLib
 				var subString = Text.StringCache[i];
 
 				//Clamp (because we dont want pure black and white)
-				spriteBatch.DrawString(
-					Font,
-					subString,
-					pulsingPosition,
-					color,
-					0,
-					Vector2.Zero,
-					scale,
-					SpriteEffects.None,
-					0);
+				Font.DrawString(subString, pulsingPosition, scale, color, spriteBatch);
 
 				position.X += Font.MeasureString(subString).X * scale;
 				position.X += fKerning;

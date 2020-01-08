@@ -1,5 +1,6 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -8,9 +9,15 @@ namespace FontBuddyLib
 	/// <summary>
 	/// This dude takes a list of colors and cycles the color of each letter
 	/// </summary>
-	public class RainbowTextBuddy : ShadowTextBuddy
+	public class RainbowTextBuddy : BaseFontBuddy, IShadowTextBuddy
 	{
-		#region Members
+		#region Properties
+
+		public Color ShadowColor { get; set; }
+
+		public Vector2 ShadowOffset { get; set; }
+
+		public float ShadowSize { get; set; }
 
 		/// <summary>
 		/// How fast to change the color
@@ -19,10 +26,6 @@ namespace FontBuddyLib
 		public float RainbowSpeed { get; set; }
 
 		private FontStringCache Text { get; set; }
-
-		#endregion //Members
-
-		#region Properties
 
 		/// <summary>
 		/// The list of colors to cycles through
@@ -43,6 +46,10 @@ namespace FontBuddyLib
 		/// </summary>
 		public RainbowTextBuddy()
 		{
+			ShadowColor = Color.Black;
+			ShadowOffset = new Vector2(0.0f, 3.0f);
+			ShadowSize = 1.05f;
+
 			RainbowSpeed = 2.0f;
 			Colors = new List<Color>();
 
@@ -76,7 +83,7 @@ namespace FontBuddyLib
 			Text.UpdateText(text);
 
 			//Get the correct location
-			Vector2 textSize = Font.MeasureString(text) * scale;
+			Vector2 textSize = MeasureString(text) * scale;
 			switch (justification)
 			{
 				case Justify.Right:
@@ -136,16 +143,7 @@ namespace FontBuddyLib
 
 				var subString = Text.StringCache[i];
 
-				spriteBatch.DrawString(
-					Font,
-					subString,
-					position,
-					letterColor,
-					Rotation,
-					Vector2.Zero,
-					scale,
-					SpriteEffects,
-					0);
+				Font.DrawString(subString, position, scale, letterColor, spriteBatch);
 
 				position.X += (Font.MeasureString(subString) * scale).X;
 				position.X += Kerning;
@@ -155,7 +153,7 @@ namespace FontBuddyLib
 			return position.X;
 		}
 
-		protected override void WriteShadow(string text, 
+		protected void WriteShadow(string text, 
 			Vector2 position, 
 			Justify justification, 
 			float scale, 
@@ -167,16 +165,7 @@ namespace FontBuddyLib
 				//draw the title
 				var subString = Text.StringCache[i];
 
-				spriteBatch.DrawString(
-					Font,
-					subString,
-					position + ShadowOffset,
-					ShadowColor,
-					Rotation,
-					Vector2.Zero,
-					scale * ShadowSize,
-					SpriteEffects,
-					0);
+				Font.DrawString(subString, position + ShadowOffset, scale * ShadowSize, ShadowColor, spriteBatch);
 
 				position.X += (Font.MeasureString(subString) * scale).X;
 				position.X += Kerning;

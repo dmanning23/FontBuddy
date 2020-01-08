@@ -8,32 +8,14 @@ namespace FontBuddyLib
 	/// This dude draw some text with a shadow.  You can change some stuff like shadow distance, color
 	/// It not that fancy like at all, it just draw the text twice... there's no gpu magic or nothing :P
 	/// </summary>
-	public class ShadowTextBuddy : FontBuddy
+	public class ShadowTextBuddy : BaseFontBuddy, IShadowTextBuddy
 	{
 		#region Properties
-
-		/// <summary>
-		/// font buddy we are going to use to draw the shadow
-		/// </summary>
-		private readonly FontBuddy _shadowWriter = new FontBuddy();
 
 		/// <summary>
 		/// color to draw the shadow
 		/// </summary>
 		public Color ShadowColor { get; set; }
-
-		/// <summary>
-		/// The font this dude is "helping" with... overridden here so the shadow text uses the same font
-		/// </summary>
-		public override SpriteFont Font
-		{
-			get { return base.Font; }
-			set
-			{
-				_shadowWriter.Font = value;
-				base.Font = value;
-			}
-		}
 
 		/// <summary>
 		/// offset of our text to draw the shadow
@@ -46,37 +28,6 @@ namespace FontBuddyLib
 		/// defaults to 1.05f
 		/// </summary>
 		public float ShadowSize { get; set; }
-
-		protected FontBuddy ShadowWriter
-		{
-			get { return _shadowWriter; }
-		}
-
-		public override SpriteEffects SpriteEffects
-		{
-			get
-			{
-				return base.SpriteEffects;
-			}
-			set
-			{
-				base.SpriteEffects = value;
-				_shadowWriter.SpriteEffects = value;
-			}
-		}
-
-		public override float Rotation
-		{
-			get
-			{
-				return base.Rotation;
-			}
-			set
-			{
-				base.Rotation = value;
-				_shadowWriter.Rotation = value;
-			}
-		}
 
 		#endregion //Properties
 
@@ -103,7 +54,7 @@ namespace FontBuddyLib
 			WriteShadow(text, position, justification, scale, spriteBatch, time);
 
 			//draw my text
-			return base.Write(text, position, justification, scale, color, spriteBatch, time);
+			return Font.Write(text, position, justification, scale, color, spriteBatch, time);
 		}
 
 		protected virtual void WriteShadow(string text,
@@ -132,13 +83,13 @@ namespace FontBuddyLib
 			}
 
 			//draw the shadow
-			_shadowWriter.Write(text,
-								shadowPos + ShadowOffset,
-								Justify.Center,
-								scale * ShadowSize,
-								ShadowColor,
-								spriteBatch,
-								time);
+			Font.Write(text,
+						shadowPos + ShadowOffset,
+						Justify.Center,
+						scale * ShadowSize,
+						ShadowColor,
+						spriteBatch,
+						time);
 		}
 	}
 

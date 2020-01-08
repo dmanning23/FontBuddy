@@ -9,10 +9,13 @@
     <Import_RootNamespace>FontBuddy.SharedProject</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseFontBuddy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BouncyNumbers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FontBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontBuddyPlus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FontStringCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFontBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IShadowTextBuddy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LineFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NumberBuddy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OppositeTextBuddy.cs" />

@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using GameTimer;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddyLib
@@ -7,32 +9,14 @@ namespace FontBuddyLib
 	/// <summary>
 	/// This dude draw some text with an outline.
 	/// </summary>
-	public class OutlineTextBuddy : FontBuddy
+	public class OutlineTextBuddy : BaseFontBuddy
 	{
-		#region Members
-
-		/// <summary>
-		/// font buddy we are going to use to draw the outline
-		/// </summary>
-		private readonly FontBuddy _outlineWriter = new FontBuddy();
+		#region Properties
 
 		/// <summary>
 		/// color to draw the outline
 		/// </summary>
 		public Color OutlineColor { get; set; }
-
-		/// <summary>
-		/// The font this dude is "helping" with... overridden here so the shadow text uses the same font
-		/// </summary>
-		public override SpriteFont Font
-		{
-			get { return base.Font; }
-			set
-			{
-				_outlineWriter.Font = value;
-				base.Font = value;
-			}
-		}
 
 		/// <summary>
 		/// offset of our text to draw the shadow
@@ -44,41 +28,6 @@ namespace FontBuddyLib
 		/// How much bigger than our text to make the outline... this is a point size, NOT A MUTLIPLIER
 		/// </summary>
 		public int OutlineSize { get; set; }
-
-		public override SpriteEffects SpriteEffects
-		{
-			get
-			{
-				return base.SpriteEffects;
-			}
-			set
-			{
-				base.SpriteEffects = value;
-				_outlineWriter.SpriteEffects = value;
-			}
-		}
-
-		public override float Rotation
-		{
-			get
-			{
-				return base.Rotation;
-			}
-			set
-			{
-				base.Rotation = value;
-				_outlineWriter.Rotation = value;
-			}
-		}
-
-		#endregion //Members
-
-		#region Properties
-
-		protected FontBuddy OutlineWriter
-		{
-			get { return _outlineWriter; }
-		}
 
 		#endregion //Properties
 
@@ -123,7 +72,7 @@ namespace FontBuddyLib
 					}
 
 					Vector2 outlinePos = new Vector2(position.X + x, position.Y + y);
-					OutlineWriter.Write(text,
+					Font.Write(text,
 								outlinePos,
 								justification,
 								scale,
@@ -134,7 +83,7 @@ namespace FontBuddyLib
 			}
 
 			//draw my text
-			return base.Write(text, position, justification, scale, color, spriteBatch, time);
+			return Font.Write(text, position, justification, scale, color, spriteBatch, time);
 		}
 
 		#endregion //Methods

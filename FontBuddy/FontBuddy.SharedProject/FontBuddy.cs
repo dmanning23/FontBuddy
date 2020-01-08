@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace FontBuddyLib
 {
@@ -26,11 +26,13 @@ namespace FontBuddyLib
 		/// <summary>
 		/// The font this dude is "helping" with
 		/// </summary>
-		public virtual SpriteFont Font { get; set; }
+		protected virtual SpriteFont Font { get; set; }
 
 		public virtual SpriteEffects SpriteEffects { get; set; }
 
 		public virtual float Rotation { get; set; }
+
+		public float Spacing => Font.Spacing;
 
 		#endregion //Properties
 
@@ -57,14 +59,19 @@ namespace FontBuddyLib
 		/// <summary>
 		/// given a content manager and a resource name, load the resource as a bitmap font
 		/// </summary>
-		/// <param name="rContent"></param>
-		/// <param name="strResource"></param>
-		public void LoadContent(ContentManager rContent, string strResource)
+		/// <param name="content"></param>
+		/// <param name="resource"></param>
+		public void LoadContent(ContentManager content, string resource, bool useFontBuddyPlus = false, int fontSize = 0)
 		{
+			if (useFontBuddyPlus)
+			{
+				throw new Exception("FontBuddy.LoadContent was passed useFontBuddyPlus = true");
+			}
+
 			//load font
 			if (null == Font)
 			{
-				Font = rContent.Load<SpriteFont>(strResource);
+				Font = content.Load<SpriteFont>(resource);
 			}
 		}
 
@@ -77,17 +84,6 @@ namespace FontBuddyLib
 			GameClock time)
 		{
 			return DrawText(text, position, justification, scale, color, spriteBatch, time);
-		}
-
-		public virtual float Write(string text,
-			Point position,
-			Justify justification,
-			float scale,
-			Color color,
-			SpriteBatch spriteBatch,
-			GameClock time)
-		{
-			return Write(text, new Vector2(position.X, position.Y), justification, scale, color, spriteBatch, time);
 		}
 
 		/// <summary>
@@ -117,18 +113,23 @@ namespace FontBuddyLib
 			position = LineFormatter.JustifiedPosition(text, position, justification, scale, this);
 
 			//okay, draw the actual string
-			spriteBatch.DrawString(Font,
-									 text,
-									 position,
-									 color,
-									 Rotation,
-									 Vector2.Zero,
-									 scale,
-									 SpriteEffects,
-									 0);
+			DrawString(text, position, scale, color, spriteBatch);
 
 			//return the end of that string
 			return position.X + (MeasureString(text).X * scale);
+		}
+
+		public void DrawString(string text, Vector2 position, float scale, Color color, SpriteBatch spriteBatch)
+		{
+			spriteBatch.DrawString(Font,
+									text,
+									position,
+									color,
+									Rotation,
+									Vector2.Zero,
+									scale,
+									SpriteEffects,
+									0);
 		}
 
 		public List<string> BreakTextIntoList(string text, int rowWidth)

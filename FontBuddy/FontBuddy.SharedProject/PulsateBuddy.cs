@@ -54,7 +54,7 @@ namespace FontBuddyLib
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public PulsateBuddy()
+		public PulsateBuddy() : base()
 		{
 			StraightPulsate = true;
 			PulsateSize = 1.0f;
@@ -79,7 +79,7 @@ namespace FontBuddyLib
 			}
 
 			//First draw the shadow
-			ShadowWriter.Write(text,
+			Font.Write(text,
 							   position,
 							   justification,
 							   ShadowSize * scale,
@@ -117,7 +117,7 @@ namespace FontBuddyLib
 			position.Y -= adjust.Y;
 
 			//Draw the menu item, with the pulsing
-			return DrawText(text, position, justification, scale * pulsate, color, spriteBatch, time);
+			return Font.Write(text, position, justification, scale * pulsate, color, spriteBatch, time);
 		}
 	}
 }

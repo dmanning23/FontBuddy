@@ -20,7 +20,7 @@ namespace FontBuddyLib
 
 		#region Members
 
-		private float m_fSelectionFade;
+		private float SelectionFade { get; set; }
 
 		/// <summary>
 		/// how big the pulsate the text
@@ -61,7 +61,7 @@ namespace FontBuddyLib
 			PulsateSize = 1.0f;
 			PulsateSpeed = 25.0f;
 			Selected = true;
-			m_fSelectionFade = 0.0f;
+			SelectionFade = 0.0f;
 			_timer = new GameClock()
 			{
 				TimerSpeed = PulsateSpeed
@@ -92,25 +92,25 @@ namespace FontBuddyLib
 
 			if (Selected)
 			{
-				m_fSelectionFade = (float)Math.Min(m_fSelectionFade + fadeSpeed, 1);
+				SelectionFade = (float)Math.Min(SelectionFade + fadeSpeed, 1);
 			}
 			else
 			{
-				m_fSelectionFade = (float)Math.Max(m_fSelectionFade - fadeSpeed, 0);
+				SelectionFade = (float)Math.Max(SelectionFade - fadeSpeed, 0);
 			}
 
 			//Pulsate the size of the text
-			float pulsate = PulsateSize * (float)(Math.Sin(currentTime));
-			float pulseScale = 1 + pulsate * 0.15f * m_fSelectionFade;
+			var pulsate = PulsateSize * (float)(Math.Sin(currentTime));
+			var pulseScale = 1 + pulsate * 0.15f * SelectionFade;
 
 			//adjust the y position so it pulsates straight out
-			Vector2 adjust = ((Font.MeasureString(text) * scale * pulseScale) - (Font.MeasureString(text) * scale)) / 2.0f;
+			var adjust = ((Font.MeasureString(text) * scale * pulseScale) - (Font.MeasureString(text) * scale)) / 2.0f;
 			position.X -= adjust.X;
 
 			WriteShadow(text, position, justification, scale, spriteBatch, time);
 
 			//Draw the menu item, with the pulsing
-			return DrawText(text, position, justification, scale, color, spriteBatch, time);
+			return Font.Write(text, position, justification, scale, color, spriteBatch, time);
 		}
 	}
 }
