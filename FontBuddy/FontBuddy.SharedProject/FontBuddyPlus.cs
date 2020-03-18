@@ -15,8 +15,30 @@ namespace FontBuddyLib
 		private DynamicSpriteFont DynamicSpriteFont { get; set; }
 
 		public SpriteFont Font { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public SpriteEffects SpriteEffects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public float Rotation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+		public SpriteEffects SpriteEffects
+		{
+			get => SpriteEffects.None;
+			set
+			{
+				if (value != SpriteEffects.None)
+				{
+					throw new NotImplementedException();
+				}
+			}
+		}
+
+		public float Rotation
+		{
+			get => 0.0f;
+			set
+			{
+				if (value != 0f)
+				{
+					throw new NotImplementedException();
+				}
+			}
+		}
 
 		public float Spacing => DynamicSpriteFont.Spacing;
 
