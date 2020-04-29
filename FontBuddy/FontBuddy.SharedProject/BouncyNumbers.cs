@@ -45,7 +45,13 @@ namespace FontBuddyLib
 		/// how long to count up from 0
 		/// defaults to 1.0
 		/// </summary>
-		public float CountUpTime { get; set; }
+		private float CountUpTime { get; set; }
+
+		/// <summary>
+		/// How long to pause before scaling th number at the end
+		/// Defaults to 1.0f
+		/// </summary>
+		public float ScalePause { get; set; }
 
 		/// <summary>
 		/// how long should scale from countup time to normal size
@@ -97,6 +103,7 @@ namespace FontBuddyLib
 			ScaleAtEnd = 2.5f;
 			KillTime = 3f;
 			Rescale = 1.2f;
+			ScalePause = 1f;
 		}
 
 		public void Start(int startNumber, int targetNumber)
@@ -109,7 +116,7 @@ namespace FontBuddyLib
 			int delta = Math.Abs(Delta);
 
 			//adjust the target number as necessary
-			CountUpTime = Math.Min(5.0f, Math.Max(1f, delta / 300f));
+			CountUpTime = Math.Min(5.0f, Math.Max(ScalePause, delta / 300f));
 			Timer.Start(CountUpTime + ScaleTime + KillTime);
 		}
 

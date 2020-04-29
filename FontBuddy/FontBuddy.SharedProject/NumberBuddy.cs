@@ -43,12 +43,12 @@ namespace FontBuddyLib
 		/// <summary>
 		/// Thing for drawing normal text
 		/// </summary>
-		private OutlineTextBuddy NormalFont { get; set; }
+		private OutlineTextBuddy NormalFont { get; set; } = new OutlineTextBuddy();
 
 		/// <summary>
 		/// thing for drawing the text when it changes
 		/// </summary>
-		private BouncyNumbers BouncyFont { get; set; }
+		public BouncyNumbers BouncyFont { get; private set; } = new BouncyNumbers() { Rescale = 1f };
 
 		public bool StraightPulsate
 		{
@@ -110,20 +110,15 @@ namespace FontBuddyLib
 
 		public float Spacing => !BouncyFont.IsDead ? BouncyFont.Spacing : NormalFont.Spacing;
 
-#endregion //Properties
+		#endregion //Properties
 
-#region Methods
+		#region Methods
 
-public NumberBuddy()
+		public NumberBuddy()
 		{
-			NormalFont = new OutlineTextBuddy();
-			BouncyFont = new BouncyNumbers()
-			{
-				Rescale = 1f
-			};
 		}
 
-		public NumberBuddy(int startNum) : this()
+		public NumberBuddy(int startNum)
 		{
 			StartNumber = startNum;
 			TargetNumber = startNum;
