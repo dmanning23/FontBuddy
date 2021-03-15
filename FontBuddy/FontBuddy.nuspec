@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>FontBuddy</id>
-		<version>2.0.18</version>
+		<version>2.0.19</version>
 		<title>FontBuddy</title>
 		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -19,20 +19,20 @@
 			<group targetFramework="MonoAndroid10">
 				<dependency id="MonoGame.Framework.Android" version="3.7"/>
 				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="SpriteFontPlus.MonoGame" version="0.2"/>
+				<dependency id="FontStashSharp.MonoGame" version="0.9"/>
 			</group>
 
 			<!--Xamarin.iOS Unified-->
 			<group targetFramework="Xamarin.iOS10">
 				<dependency id="MonoGame.Framework.iOS" version="3.7"/>
 				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="SpriteFontPlus.MonoGame" version="0.2"/>
+				<dependency id="FontStashSharp.MonoGame" version="0.9"/>
 			</group>
 
 			<group targetFramework="net451">
 				<dependency id="MonoGame.Framework.WindowsDX" version="3.7"/>
 				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="SpriteFontPlus.MonoGame" version="0.2"/>
+				<dependency id="FontStashSharp.MonoGame" version="0.9"/>
 			</group>
 
 		</dependencies>

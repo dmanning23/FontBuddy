@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BaseFontBuddy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BouncyNumbers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FontBuddy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FontBuddyPlusStroked.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FontBuddyPlus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FontStringCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFontBuddy.cs" />

@@ -1,18 +1,19 @@
-﻿using GameTimer;
+﻿using FontStashSharp;
+using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using SpriteFontPlus;
 using System;
 using System.Collections.Generic;
 
 namespace FontBuddyLib
 {
-	public class FontBuddyPlus : IFontBuddy
+	public class FontBuddyPlus : IFontBuddy, IDisposable
 	{
 		#region Properties
 
-		private DynamicSpriteFont DynamicSpriteFont { get; set; }
+		public FontSystem FontSystem { get; set; }
+		public SpriteFontBase SpriteFont { get; set; }// = _fontSystem.GetFont(18);
 
 		public SpriteFont Font { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -40,7 +41,7 @@ namespace FontBuddyLib
 			}
 		}
 
-		public float Spacing => DynamicSpriteFont.Spacing;
+		public float Spacing => FontSystem.CharacterSpacing;
 
 		#endregion //Properties
 
@@ -50,6 +51,12 @@ namespace FontBuddyLib
 		{
 		}
 
+		public void Dispose()
+		{
+			FontSystem?.Dispose();
+			FontSystem = null;
+		}
+
 		public void LoadContent(ContentManager content, string resourceName, bool useFontBuddyPlus = true, int fontSize = 24)
 		{
 			if (!useFontBuddyPlus)
@@ -57,13 +64,26 @@ namespace FontBuddyLib
 				throw new Exception("FontBuddyPlus.LoadContent was passed useFontBuddyPlus = false");
 			}
 
-			if (null == DynamicSpriteFont)
+			if (null == FontSystem)
 			{
+				var graphicDevice = content.ServiceProvider.GetService(typeof(IGraphicsDeviceService)) as IGraphicsDeviceService;
+				if (null == graphicDevice)
+				{
+					throw new ArgumentNullException(nameof(IGraphicsDeviceService));
+				}
+
 				var resource = content.Load<byte[]>(resourceName);
-				DynamicSpriteFont = DynamicSpriteFont.FromTtf(resource, fontSize, 512, 512);
-				DynamicSpriteFont.Size = fontSize;
-				DynamicSpriteFont.CurrentAtlasFull += DynamicSpriteFont_CurrentAtlasFull;
+				FontSystem = CreateFontSystem(graphicDevice.GraphicsDevice);
+				FontSystem.AddFont(resource);
+				SpriteFont = FontSystem.GetFont(fontSize);
+				FontSystem.DefaultCharacter = '\uFFFD';
+				FontSystem.CurrentAtlasFull += DynamicSpriteFont_CurrentAtlasFull;
 			}
+		}
+
+		protected virtual FontSystem CreateFontSystem(GraphicsDevice device)
+		{
+			return FontSystemFactory.Create(device);
 		}
 
 		private void DynamicSpriteFont_CurrentAtlasFull(object sender, EventArgs e)
@@ -73,7 +93,7 @@ namespace FontBuddyLib
 
 		public Vector2 MeasureString(string text)
 		{
-			return DynamicSpriteFont.MeasureString(text);
+			return SpriteFont.MeasureString(text);
 		}
 
 		public float Write(string text, Vector2 position, Justify justification, float scale, Color color, SpriteBatch spriteBatch, GameClock time)
@@ -94,7 +114,7 @@ namespace FontBuddyLib
 		public void DrawString(string text, Vector2 position, float scale, Color color, SpriteBatch spriteBatch)
 		{
 			//okay, draw the actual string
-			spriteBatch.DrawString(DynamicSpriteFont, text, position, color, new Vector2(scale));
+			spriteBatch.DrawString(SpriteFont, text, position, color, new Vector2(scale));
 		}
 
 		public List<string> BreakTextIntoList(string text, int rowWidth)
