@@ -46,6 +46,10 @@ namespace FontBuddyLib
 			SpriteEffects = SpriteEffects.None;
 		}
 
+		public void Dispose()
+		{
+		}
+
 		/// <summary>
 		/// Get the size of a specific peice of text.
 		/// </summary>

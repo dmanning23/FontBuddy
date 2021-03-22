@@ -64,6 +64,10 @@ namespace FontBuddyLib
 			Text = new FontStringCache();
 		}
 
+		public override void Dispose()
+		{
+		}
+
 		public override float Write(string text,
 			Vector2 position,
 			Justify justification,

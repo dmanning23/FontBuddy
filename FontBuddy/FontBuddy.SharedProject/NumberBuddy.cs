@@ -124,6 +124,14 @@ namespace FontBuddyLib
 			TargetNumber = startNum;
 		}
 
+		public void Dispose()
+		{
+			NormalFont?.Dispose();
+			NormalFont = null;
+			BouncyFont?.Dispose();
+			BouncyFont = null;
+		}
+
 		public Vector2 MeasureString(string text)
 		{
 			return NormalFont.MeasureString(text);

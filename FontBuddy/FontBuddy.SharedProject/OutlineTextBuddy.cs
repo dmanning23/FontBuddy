@@ -43,6 +43,10 @@ namespace FontBuddyLib
 			OutlineSize = 5;
 		}
 
+		public override void Dispose()
+		{
+		}
+
 		public override float Write(string text,
 			Vector2 position,
 			Justify justification,

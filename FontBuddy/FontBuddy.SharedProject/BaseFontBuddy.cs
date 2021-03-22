@@ -8,6 +8,8 @@ namespace FontBuddyLib
 {
 	public abstract class BaseFontBuddy : IFontBuddy
 	{
+		#region Properties
+
 		/// <summary>
 		/// font buddy we are going to use to draw the outline
 		/// </summary>
@@ -48,6 +50,12 @@ namespace FontBuddyLib
 				}
 			}
 		}
+
+		#endregion //Properties
+
+		#region Methods
+
+		public abstract void Dispose();
 
 		public void LoadContent(ContentManager content, string resourceName, bool useFontBuddyPlus = false, int fontSize = 24)
 		{
@@ -96,5 +104,7 @@ namespace FontBuddyLib
 		{
 			Font.DrawString(text, position, scale, color, spriteBatch);
 		}
+
+		#endregion //Methods
 	}
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace FontBuddyLib
@@ -9,7 +10,7 @@ namespace FontBuddyLib
 	/// <summary>
 	/// An interface for the font buddies.
 	/// </summary>
-	public interface IFontBuddy
+	public interface IFontBuddy : IDisposable
 	{
 		SpriteEffects SpriteEffects { get; set; }
 

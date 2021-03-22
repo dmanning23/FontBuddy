@@ -43,6 +43,10 @@ namespace FontBuddyLib
 			ShadowSize = 1.05f;
 		}
 
+		public override void Dispose()
+		{
+		}
+
 		public override float Write(string text,
 			Vector2 position,
 			Justify justification,
