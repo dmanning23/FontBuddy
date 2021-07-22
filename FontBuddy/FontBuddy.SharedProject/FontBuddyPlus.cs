@@ -83,7 +83,7 @@ namespace FontBuddyLib
 
 		protected virtual FontSystem CreateFontSystem(GraphicsDevice device)
 		{
-			return FontSystemFactory.Create(device);
+			return new FontSystem();
 		}
 
 		private void DynamicSpriteFont_CurrentAtlasFull(object sender, EventArgs e)

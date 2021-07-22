@@ -14,7 +14,13 @@ namespace FontBuddyLib
 
 		protected override FontSystem CreateFontSystem(GraphicsDevice device)
 		{
-			return FontSystemFactory.CreateStroked(device, OutlineSize);
+			var settings = new FontSystemSettings
+			{
+				Effect = FontSystemEffect.Stroked,
+				EffectAmount = OutlineSize
+			};
+			settings.Effect = FontSystemEffect.Stroked;
+			return new FontSystem(settings);
 		}
 	}
 }

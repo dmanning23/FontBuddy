@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using GameTimer;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddyLib
@@ -64,9 +62,9 @@ namespace FontBuddyLib
 #endif
 
 			//draw the outline
-			for (int x = -OutlineSize; x <= OutlineSize; x += OutlineSize / 2)
+			for (float x = -OutlineSize; x <= OutlineSize; x += OutlineSize / 2f)
 			{
-				for (int y = -OutlineSize; y <= OutlineSize; y += OutlineSize / 2)
+				for (float y = -OutlineSize; y <= OutlineSize; y += OutlineSize / 2f)
 				{
 					bool xEdge = ((x == -OutlineSize) || (x == OutlineSize));
 					bool yEdge = ((y == -OutlineSize) || (y == OutlineSize));
