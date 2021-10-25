@@ -72,13 +72,19 @@ namespace FontBuddyLib
 					throw new ArgumentNullException(nameof(IGraphicsDeviceService));
 				}
 
-				var resource = content.Load<byte[]>(resourceName);
 				FontSystem = CreateFontSystem(graphicDevice.GraphicsDevice);
-				FontSystem.AddFont(resource);
-				SpriteFont = FontSystem.GetFont(fontSize);
-				FontSystem.DefaultCharacter = '\uFFFD';
-				FontSystem.CurrentAtlasFull += DynamicSpriteFont_CurrentAtlasFull;
+
+				AddFont(content, resourceName, fontSize);
 			}
+		}
+
+		public void AddFont(ContentManager content, string resourceName, int fontSize = 24)
+		{
+			var resource = content.Load<byte[]>(resourceName);
+			FontSystem.AddFont(resource);
+			SpriteFont = FontSystem.GetFont(fontSize);
+			FontSystem.DefaultCharacter = '\uFFFD';
+			FontSystem.CurrentAtlasFull += DynamicSpriteFont_CurrentAtlasFull;
 		}
 
 		protected virtual FontSystem CreateFontSystem(GraphicsDevice device)
