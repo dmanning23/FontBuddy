@@ -1,4 +1,5 @@
-﻿using FontStashSharp;
+﻿#if !WEB
+using FontStashSharp;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FontBuddyLib
@@ -24,3 +25,4 @@ namespace FontBuddyLib
 		}
 	}
 }
+#endif //WEB

@@ -1,4 +1,5 @@
-﻿using FontStashSharp;
+﻿#if !WEB
+using FontStashSharp;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -99,7 +100,9 @@ namespace FontBuddyLib
 
 		public Vector2 MeasureString(string text)
 		{
-			return SpriteFont.MeasureString(text);
+			var width = SpriteFont.MeasureString(text).X;
+			var height = SpriteFont.MeasureString("yY").Y; //make sure the string height includes both ascender and descender
+			return new Vector2(width, height);
 		}
 
 		public float Write(string text, Vector2 position, Justify justification, float scale, Color color, SpriteBatch spriteBatch, GameClock time)
@@ -146,3 +149,4 @@ namespace FontBuddyLib
 		#endregion //Methods
 	}
 }
+#endif

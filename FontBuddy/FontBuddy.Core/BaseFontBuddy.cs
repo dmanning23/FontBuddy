@@ -61,7 +61,9 @@ namespace FontBuddyLib
 		{
 			if (useFontBuddyPlus)
 			{
+#if !WEB
 				Font = new FontBuddyPlus();
+#endif
 			}
 			else
 			{
@@ -105,6 +107,6 @@ namespace FontBuddyLib
 			Font.DrawString(text, position, scale, color, spriteBatch);
 		}
 
-		#endregion //Methods
+#endregion //Methods
 	}
 }

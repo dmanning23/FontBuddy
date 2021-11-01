@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>FontBuddy.Bridge</id>
+		<version>2.0.27</version>
+		<title>FontBuddy</title>
+		<authors>dmanning23</authors>
+		<owners>dmanning23</owners>
+		<projectUrl>https://github.com/dmanning23/FontBuddy</projectUrl>
+		<licenseUrl>https://github.com/dmanning23/FontBuddy/blob/master/LICENSE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Put some text on the screen easier with MonoGame</description>
+		<releaseNotes />
+		<copyright>Copyright 2016</copyright>
+		<tags>android, ios, windows universal, monogame, xamarin</tags>
+		<dependencies>
+
+			<group targetFramework="net47">
+				<dependency id="MonoGame.Framework.Bridge" version="3.7"/>
+				<dependency id="GameTimer.Bridge" version="2.3"/>
+			</group>
+
+		</dependencies>
+	</metadata>
+	<files>
+
+		<file src="FontBuddy.Bridge\bin\Release\FontBuddyLib.Bridge.pdb" target="lib\net47\FontBuddyLib.Bridge.pdb" />
+		<file src="FontBuddy.Bridge\bin\Release\FontBuddyLib.Bridge.dll" target="lib\net47\FontBuddyLib.Bridge.dll" />
+
+	</files>
+</package>
