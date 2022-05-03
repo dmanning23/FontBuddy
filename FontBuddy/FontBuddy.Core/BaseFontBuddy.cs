@@ -61,16 +61,14 @@ namespace FontBuddyLib
 		{
 			if (useFontBuddyPlus)
 			{
-#if !WEB
 				Font = new FontBuddyPlus();
-#endif
 			}
 			else
 			{
 				Font = new FontBuddy();
 				Font.SpriteEffects = SpriteEffects;
-				Font.Rotation = Rotation;
 			}
+			Font.Rotation = Rotation;
 
 			Font.LoadContent(content, resourceName, useFontBuddyPlus, fontSize);
 		}

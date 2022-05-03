@@ -52,6 +52,8 @@ namespace FontBuddySample
 
 			//buddies.Add(new FontBuddy());
 			buddies.Add(new ShadowTextBuddy() { SpriteEffects = SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally });
+			//buddies.Add(new ShadowTextBuddy() { Rotation = (float)(Math.PI / 2f) });
+			buddies.Add(new ShadowTextBuddy());
 			buddies.Add(new WrongTextBuddy());
 			buddies.Add(new ShakyTextBuddy());
 			buddies.Add(new OppositeTextBuddy());
@@ -92,8 +94,9 @@ namespace FontBuddySample
 			// TODO: use this.Content to load your game content here
 			foreach (IFontBuddy myBuddy in buddies)
 			{
-				//myBuddy.LoadContent(Content, "ariblk", true, 64);
-				myBuddy.LoadContent(Content, "TestFont", false, 64);
+				//myBuddy.Rotation = MathHelper.ToRadians(90);
+				myBuddy.LoadContent(Content, "ariblk", true, 64);
+				//myBuddy.LoadContent(Content, "TestFont", false, 64);
 			}
 		}
 
@@ -146,7 +149,7 @@ namespace FontBuddySample
 
 			//get the start point
 			Rectangle screen = graphics.GraphicsDevice.Viewport.TitleSafeArea;
-			Vector2 position = new Vector2(screen.Left + 32, screen.Top);
+			Vector2 position = new Vector2(screen.Left, screen.Top);
 
 			string test = "Fontbuddy!";
 
@@ -180,4 +183,3 @@ namespace FontBuddySample
 		#endregion //Methods
 	}
 }
-

@@ -1,5 +1,4 @@
-﻿#if !WEB
-using FontStashSharp;
+﻿using FontStashSharp;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -30,17 +29,7 @@ namespace FontBuddyLib
 			}
 		}
 
-		public float Rotation
-		{
-			get => 0.0f;
-			set
-			{
-				if (value != 0f)
-				{
-					throw new NotImplementedException();
-				}
-			}
-		}
+		public float Rotation { get; set; }
 
 		public float Spacing => FontSystem.CharacterSpacing;
 
@@ -123,7 +112,7 @@ namespace FontBuddyLib
 		public void DrawString(string text, Vector2 position, float scale, Color color, SpriteBatch spriteBatch)
 		{
 			//okay, draw the actual string
-			spriteBatch.DrawString(SpriteFont, text, position, color, new Vector2(scale));
+			spriteBatch.DrawString(SpriteFont, text, position, color, new Vector2(scale), Rotation, Vector2.Zero, 0);
 		}
 
 		public List<string> BreakTextIntoList(string text, int rowWidth)
@@ -149,4 +138,3 @@ namespace FontBuddyLib
 		#endregion //Methods
 	}
 }
-#endif

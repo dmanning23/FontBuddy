@@ -14,6 +14,31 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin arial.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:arial.ttf
+
+#begin arialbd.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:arialbd.ttf
+
+#begin arialbi.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:arialbi.ttf
+
+#begin ariali.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:ariali.ttf
+
+#begin ariblk.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:ariblk.ttf
+
 #begin TestFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
