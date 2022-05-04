@@ -114,7 +114,7 @@ namespace FontBuddyLib
 				return position.X;
 			}
 
-			position = LineFormatter.JustifiedPosition(text, position, justification, scale, this);
+			position = LineFormatter.JustifiedPosition(text, position, this, justification, scale);
 
 			//okay, draw the actual string
 			DrawString(text, position, scale, color, spriteBatch);

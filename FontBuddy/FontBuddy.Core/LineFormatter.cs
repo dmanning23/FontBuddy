@@ -86,10 +86,10 @@ namespace FontBuddyLib
 			return textSize.X > rowWidth;
 		}
 
-		public static Vector2 JustifiedPosition(string text, Vector2 position, Justify justification, float scale, IFontBuddy font)
+		public static Vector2 JustifiedPosition(string text, Vector2 position, IFontBuddy font, Justify justification = Justify.Left, float scale = 1f)
 		{
 			//Get the correct location
-			Vector2 textSize = (!string.IsNullOrEmpty(text) ? (font.MeasureString(text) * scale) : Vector2.Zero);
+			var textSize = (!string.IsNullOrEmpty(text) ? (font.MeasureString(text) * scale) : Vector2.Zero);
 
 			switch (justification)
 			{
@@ -106,6 +106,60 @@ namespace FontBuddyLib
 					{
 						//move teh x value
 						position.X -= (textSize.X / 2.0f);
+					}
+					break;
+			}
+
+			return position;
+		}
+
+		public static Vector2 GetRotate90JustifiedPosition(string text, Vector2 position, IFontBuddy font, Justify justification = Justify.Left, float scale = 1f)
+		{
+			//Get the correct location
+			var textSize = (!string.IsNullOrEmpty(text) ? (font.MeasureString(text) * scale) : Vector2.Zero);
+
+			switch (justification)
+			{
+				//left = use teh x value (no cahnge)
+
+				case Justify.Right:
+					{
+						//move teh x value
+						position.Y -= textSize.X;
+					}
+					break;
+
+				case Justify.Center:
+					{
+						//move teh x value
+						position.Y -= (textSize.X / 2.0f);
+					}
+					break;
+			}
+
+			return position;
+		}
+
+		public static Vector2 GetRotate270JustifiedPosition(string text, Vector2 position, IFontBuddy font, Justify justification = Justify.Left, float scale = 1f)
+		{
+			//Get the correct location
+			var textSize = (!string.IsNullOrEmpty(text) ? (font.MeasureString(text) * scale) : Vector2.Zero);
+
+			switch (justification)
+			{
+				//left = use teh x value (no cahnge)
+
+				case Justify.Right:
+					{
+						//move teh x value
+						position.Y += textSize.X;
+					}
+					break;
+
+				case Justify.Center:
+					{
+						//move teh x value
+						position.Y += (textSize.X / 2.0f);
 					}
 					break;
 			}
