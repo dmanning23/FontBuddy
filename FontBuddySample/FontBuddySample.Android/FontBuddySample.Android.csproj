@@ -53,8 +53,17 @@
     <Reference Include="Cyotek.Drawing.BitmapFont, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
       <HintPath>..\packages\Cyotek.Drawing.BitmapFont.2.0.4\lib\netstandard2.1\Cyotek.Drawing.BitmapFont.dll</HintPath>
     </Reference>
-    <Reference Include="FontStashSharp.MonoGame, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontStashSharp.MonoGame.1.0.4\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
+    <Reference Include="FontBuddyLib.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontBuddy.2.0.31\lib\MonoAndroid10\FontBuddyLib.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="FontStashSharp.Base, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.Base.1.1.8\lib\netstandard2.0\FontStashSharp.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="FontStashSharp.MonoGame, Version=1.2.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.MonoGame.1.2.8\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
+    </Reference>
+    <Reference Include="FontStashSharp.Rasterizers.StbTrueTypeSharp, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.Rasterizers.StbTrueTypeSharp.1.1.8\lib\netstandard2.0\FontStashSharp.Rasterizers.StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GameTimer.2.3.0\lib\MonoAndroid10\GameTimer.Android.dll</HintPath>
@@ -68,11 +77,11 @@
     <Reference Include="SpriteFontPlus, Version=0.7.0.22, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SpriteFontPlus.MonoGame.0.7.0.22\lib\netstandard2.0\SpriteFontPlus.dll</HintPath>
     </Reference>
-    <Reference Include="StbImageSharp, Version=2.27.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StbImageSharp.2.27.8\lib\netstandard2.0\StbImageSharp.dll</HintPath>
+    <Reference Include="StbImageSharp, Version=2.27.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StbImageSharp.2.27.13\lib\netstandard2.0\StbImageSharp.dll</HintPath>
     </Reference>
-    <Reference Include="StbTrueTypeSharp, Version=1.26.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StbTrueTypeSharp.1.26.9\lib\netstandard2.0\StbTrueTypeSharp.dll</HintPath>
+    <Reference Include="StbTrueTypeSharp, Version=1.26.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StbTrueTypeSharp.1.26.11\lib\netstandard2.0\StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -108,12 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FontBuddy\FontBuddy.Android\FontBuddyLib.Android.csproj">
-      <Project>{d7f6fcb7-905c-497e-83d4-6a51fbf4df15}</Project>
-      <Name>FontBuddyLib.Android</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\FontBuddySample.SharedProject\FontBuddySample.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

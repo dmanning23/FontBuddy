@@ -36,8 +36,14 @@
     <Reference Include="Cyotek.Drawing.BitmapFont, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
       <HintPath>..\packages\Cyotek.Drawing.BitmapFont.2.0.4\lib\netstandard2.1\Cyotek.Drawing.BitmapFont.dll</HintPath>
     </Reference>
-    <Reference Include="FontStashSharp.MonoGame, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontStashSharp.MonoGame.1.0.4\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
+    <Reference Include="FontStashSharp.Base, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.Base.1.1.8\lib\netstandard2.0\FontStashSharp.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="FontStashSharp.MonoGame, Version=1.2.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.MonoGame.1.2.8\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
+    </Reference>
+    <Reference Include="FontStashSharp.Rasterizers.StbTrueTypeSharp, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.Rasterizers.StbTrueTypeSharp.1.1.8\lib\netstandard2.0\FontStashSharp.Rasterizers.StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GameTimer.2.3.0\lib\Xamarin.iOS10\GameTimer.iOS.dll</HintPath>
@@ -45,11 +51,11 @@
     <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.iOS.3.7.1.189\lib\XamariniOS\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="StbImageSharp, Version=2.27.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StbImageSharp.2.27.8\lib\netstandard2.0\StbImageSharp.dll</HintPath>
+    <Reference Include="StbImageSharp, Version=2.27.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StbImageSharp.2.27.13\lib\netstandard2.0\StbImageSharp.dll</HintPath>
     </Reference>
-    <Reference Include="StbTrueTypeSharp, Version=1.26.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StbTrueTypeSharp.1.26.9\lib\netstandard2.0\StbTrueTypeSharp.dll</HintPath>
+    <Reference Include="StbTrueTypeSharp, Version=1.26.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StbTrueTypeSharp.1.26.11\lib\netstandard2.0\StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

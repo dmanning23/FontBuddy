@@ -31,7 +31,8 @@ namespace FontBuddyLib
 
 		public float Rotation { get; set; }
 
-		public float Spacing => FontSystem.CharacterSpacing;
+		//public float Spacing => FontSystem.CharacterSpacing;
+		public float Spacing => 0;
 
 		#endregion //Properties
 
