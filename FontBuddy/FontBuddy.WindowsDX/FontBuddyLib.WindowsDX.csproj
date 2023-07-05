@@ -46,7 +46,7 @@
       <HintPath>..\packages\FontStashSharp.Rasterizers.StbTrueTypeSharp.1.1.8\lib\net471\FontStashSharp.Rasterizers.StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GameTimer.2.3.0\lib\net452\GameTimer.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\GameTimer.4.0.0\lib\net452\GameTimer.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.7.1.189\lib\net45\MonoGame.Framework.dll</HintPath>

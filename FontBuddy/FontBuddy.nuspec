@@ -2,37 +2,33 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>FontBuddy</id>
-		<version>2.0.31</version>
+		<version>4.0.0</version>
 		<title>FontBuddy</title>
 		<authors>dmanning23</authors>
-		<owners>dmanning23</owners>
 		<projectUrl>https://github.com/dmanning23/FontBuddy</projectUrl>
 		<licenseUrl>https://github.com/dmanning23/FontBuddy/blob/master/LICENSE.txt</licenseUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Put some text on the screen easier with MonoGame</description>
-		<releaseNotes />
-		<copyright>Copyright 2016</copyright>
 		<tags>android, ios, windows universal, monogame, xamarin</tags>
 		<dependencies>
 
 			<!--Xamarin.Android-->
 			<group targetFramework="MonoAndroid10">
 				<dependency id="MonoGame.Framework.Android" version="3.7"/>
-				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="FontStashSharp.MonoGame" version="0.9"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="FontStashSharp.MonoGame" version="1.0"/>
 			</group>
 
 			<!--Xamarin.iOS Unified-->
 			<group targetFramework="Xamarin.iOS10">
 				<dependency id="MonoGame.Framework.iOS" version="3.7"/>
-				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="FontStashSharp.MonoGame" version="0.9"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="FontStashSharp.MonoGame" version="1.0"/>
 			</group>
 
 			<group targetFramework="net451">
 				<dependency id="MonoGame.Framework.WindowsDX" version="3.7"/>
-				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="FontStashSharp.MonoGame" version="0.9"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="FontStashSharp.MonoGame" version="1.0"/>
 			</group>
 
 		</dependencies>

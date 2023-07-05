@@ -108,7 +108,7 @@
       <HintPath>..\packages\Cyotek.Drawing.BitmapFont.2.0.4\lib\netstandard2.1\Cyotek.Drawing.BitmapFont.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.2.0.31\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.4.0.0\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
     </Reference>
     <Reference Include="FontStashSharp.Base, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontStashSharp.Base.1.1.8\lib\netstandard2.0\FontStashSharp.Base.dll</HintPath>
@@ -120,7 +120,7 @@
       <HintPath>..\packages\FontStashSharp.Rasterizers.StbTrueTypeSharp.1.1.8\lib\netstandard2.0\FontStashSharp.Rasterizers.StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GameTimer.2.3.0\lib\Xamarin.iOS10\GameTimer.iOS.dll</HintPath>
+      <HintPath>..\packages\GameTimer.4.0.0\lib\Xamarin.iOS10\GameTimer.iOS.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.iOS.3.7.1.189\lib\XamariniOS\MonoGame.Framework.dll</HintPath>

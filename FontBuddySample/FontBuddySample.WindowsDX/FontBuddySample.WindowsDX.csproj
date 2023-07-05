@@ -72,7 +72,7 @@
       <HintPath>..\packages\Cyotek.Drawing.BitmapFont.2.0.4\lib\net48\Cyotek.Drawing.BitmapFont.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.2.0.31\lib\net451\FontBuddyLib.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.4.0.0\lib\net451\FontBuddyLib.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="FontStashSharp.Base, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontStashSharp.Base.1.1.8\lib\net471\FontStashSharp.Base.dll</HintPath>
@@ -84,7 +84,7 @@
       <HintPath>..\packages\FontStashSharp.Rasterizers.StbTrueTypeSharp.1.1.8\lib\net471\FontStashSharp.Rasterizers.StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GameTimer.2.3.0\lib\net452\GameTimer.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\GameTimer.4.0.0\lib\net452\GameTimer.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
