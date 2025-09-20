@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>FontBuddy</id>
+		<version>4.0.0</version>
+		<title>FontBuddy</title>
+		<authors>dmanning23</authors>
+		<projectUrl>https://github.com/dmanning23/FontBuddy</projectUrl>
+		<licenseUrl>https://github.com/dmanning23/FontBuddy/blob/master/LICENSE.txt</licenseUrl>
+		<description>Put some text on the screen easier with MonoGame</description>
+		<tags>android, ios, windows universal, monogame, xamarin</tags>
+		<dependencies>
+
+			<!--Xamarin.Android-->
+			<group targetFramework="MonoAndroid10">
+				<dependency id="MonoGame.Framework.Android" version="3.7"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="FontStashSharp.MonoGame" version="1.0"/>
+			</group>
+
+			<!--Xamarin.iOS Unified-->
+			<group targetFramework="Xamarin.iOS10">
+				<dependency id="MonoGame.Framework.iOS" version="3.7"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="FontStashSharp.MonoGame" version="1.0"/>
+			</group>
+
+			<group targetFramework="net451">
+				<dependency id="MonoGame.Framework.WindowsDX" version="3.7"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="FontStashSharp.MonoGame" version="1.0"/>
+			</group>
+
+		</dependencies>
+	</metadata>
+	<files>
+
+		<!--Xamarin.Android-->
+		<file src="FontBuddy.Android\bin\Release\FontBuddyLib.Android.pdb" target="lib\MonoAndroid10\FontBuddyLib.Android.pdb" />
+		<file src="FontBuddy.Android\bin\Release\FontBuddyLib.Android.dll" target="lib\MonoAndroid10\FontBuddyLib.Android.dll" />
+
+		<!--Xamarin.iOS Unified-->
+		<file src="FontBuddy.iOS\bin\Release\FontBuddyLib.iOS.pdb" target="lib\Xamarin.iOS10\FontBuddyLib.iOS.pdb" />
+		<file src="FontBuddy.iOS\bin\Release\FontBuddyLib.iOS.dll" target="lib\Xamarin.iOS10\FontBuddyLib.iOS.dll" />
+		
+		<!--WindowsDX-->
+		<file src="FontBuddy.WindowsDX\bin\Release\FontBuddyLib.WindowsDX.pdb" target="lib\net451\FontBuddyLib.WindowsDX.pdb" />
+		<file src="FontBuddy.WindowsDX\bin\Release\FontBuddyLib.WindowsDX.dll" target="lib\net451\FontBuddyLib.WindowsDX.dll" />
+
+	</files>
+</package>

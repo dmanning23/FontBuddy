@@ -1,0 +1,48 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:Windows
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:SpriteFontPlus.Content.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin arial.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:arial.ttf
+
+#begin arialbd.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:arialbd.ttf
+
+#begin arialbi.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:arialbi.ttf
+
+#begin ariali.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:ariali.ttf
+
+#begin ariblk.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:ariblk.ttf
+
+#begin TestFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:TestFont.spritefont
+
