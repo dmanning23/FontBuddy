@@ -25,8 +25,8 @@ dotnet pack --configuration Release --no-build
 
 # Copy to local NuGet folder
 echo "Copying to local NuGet repository..."
-cp ./bin/Release/*.nupkg C:/Mac/Home/Documents/Source/Nugets
-cp ./bin/Release/*.snupkg C:/Mac/Home/Documents/Source/Nugets
+cp ./bin/Release/*.nupkg ~/Documents/Source/Nugets
+cp ./bin/Release/*.snupkg ~/Documents/Source/Nugets
 
 # Upload to NuGet.org
 echo "Uploading to NuGet.org..."
