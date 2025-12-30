@@ -62,8 +62,8 @@ namespace FontBuddyLib
 		{
 			if (useFontBuddyPlus)
 			{
-				throw new NotImplementedException("FontBuddyPlus is not working right now.");
-				//Font = new FontBuddyPlus();
+				//throw new NotImplementedException("FontBuddyPlus is not working right now.");
+				Font = new FontBuddyPlus();
 			}
 			else
 			{

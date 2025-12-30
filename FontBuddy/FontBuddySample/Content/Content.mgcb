@@ -10,33 +10,14 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\..\..\grimoire\Grimoire.Content\Content\SpriteFontPlus.Content.dll
-/reference:..\..\..\..\grimoire\Grimoire.Content\Content\XmlBuddy.Content.dll
+/reference:SpriteFontPlus.Content.dll
 
 #---------------------------------- Content ---------------------------------#
 
-#begin All_Animations.xml
-/importer:XmlSourceImporter
-/processor:XmlDocumentProcessor
-/build:All_Animations.xml
-
-#begin AnimationBuddyShader.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:AnimationBuddyShader.fx
-
-#begin DSC01364.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:DSC01364.jpg
+#begin arial.ttf
+/importer:BinaryFontSourceImporter
+/processor:BinaryFontDocumentProcessor
+/build:arial.ttf
 
 #begin File.spritefont
 /importer:FontDescriptionImporter
@@ -49,16 +30,4 @@
 /importer:BinaryFontSourceImporter
 /processor:BinaryFontDocumentProcessor
 /build:FontdinerdotcomSparkly.ttf
-
-#begin gamestart.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:gamestart.wav
-
-#begin MainMenu.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:MainMenu.mp3
 

@@ -102,8 +102,8 @@ namespace FontBuddySample
             foreach (IFontBuddy myBuddy in buddies)
             {
                 //myBuddy.Rotation = MathHelper.ToRadians(90);
-                //myBuddy.LoadContent(Content, "ariblk", true, 64);
-                myBuddy.LoadContent(Content, "File", false, 64);
+                myBuddy.LoadContent(Content, "arial", true, 64);
+                //myBuddy.LoadContent(Content, "File", false, 64);
             }
         }
 
