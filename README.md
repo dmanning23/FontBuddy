@@ -13,7 +13,7 @@ dotnet add package FontBuddy
 
 Or in your `.csproj`:
 ```xml
-<PackageReference Include="FontBuddy" Version="4.0.0" />
+<PackageReference Include="FontBuddy" Version="5.*" />
 ```
 
 ## Quick Start
