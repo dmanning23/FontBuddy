@@ -308,7 +308,7 @@ See the `/FontBuddySample` folder in this repository for a complete working exam
 
 ## Requirements
 
-- MonoGame 3.7+
+- MonoGame 3.8+
 - .NET Standard 2.0+
 
 ## Platforms
@@ -336,7 +336,7 @@ Issues and pull requests welcome! This is a hobby project but I maintain it for 
 
 **Quick Integration Guide:**
 
-1. **Add the package:** `<PackageReference Include="FontBuddy" Version="4.0.0" />`
+1. **Add the package:** `<PackageReference Include="FontBuddy" Version="5.*" />`
 
 2. **Add GameTimer dependency:** FontBuddy requires the GameTimer library for the `GameClock` parameter
    ```xml
