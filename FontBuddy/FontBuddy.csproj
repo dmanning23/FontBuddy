@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <PackageId>FontBuddy</PackageId>
-    <Version>5.0.3</Version>
+    <Version>5.0.4</Version>
     <Title>FontBuddy</Title>
     <Authors>dmanning23</Authors>
     <description>Simple, flexible text rendering for MonoGame with built-in effects and easy justification.</description>
