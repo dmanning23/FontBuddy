@@ -6,23 +6,28 @@ using System.Collections.Generic;
 
 namespace FontBuddyLib
 {
+	/// <summary>
+	/// Defines the contract for font renderers that support shadow effects.
+	/// </summary>
 	public interface IShadowTextBuddy
 	{
 		/// <summary>
-		/// color to draw the shadow
+		/// Gets or sets the color used to draw the text shadow.
 		/// </summary>
+		/// <value>The shadow color. Default is typically <see cref="Color.Black"/>.</value>
 		Color ShadowColor { get; set; }
 
 		/// <summary>
-		/// offset of our text to draw the shadow
-		/// defaults to 0.0f, 3.0f
+		/// Gets or sets the pixel offset of the shadow from the main text position.
 		/// </summary>
+		/// <value>The shadow offset as a <see cref="Vector2"/>. Default is (0, 3).</value>
 		Vector2 ShadowOffset { get; set; }
 
 		/// <summary>
-		/// How much bigger than our text to make the shadow... this is a multiplier of the font size, NOT A POINT SIZE!!!
-		/// defaults to 1.05f
+		/// Gets or sets the scale multiplier for the shadow relative to the main text.
+		/// This is a multiplier of the font scale, not a point size.
 		/// </summary>
+		/// <value>The shadow size multiplier. Default is 1.05.</value>
 		float ShadowSize { get; set; }
 	}
 }

@@ -6,8 +6,14 @@ using System;
 namespace FontBuddyLib
 {
 	/// <summary>
-	/// This dude writes the text in big pulsating letters, with the outline below it.
+	/// A text renderer designed for menu items that pulsates when selected.
+	/// The pulsation effect fades in/out smoothly when the selection state changes.
 	/// </summary>
+	/// <remarks>
+	/// This effect is ideal for menu systems where selected items should visually "pop".
+	/// The pulsation only occurs when <see cref="Selected"/> is true, and smoothly
+	/// transitions in and out rather than abruptly starting/stopping.
+	/// </remarks>
 	public class WrongTextBuddy : ShadowTextBuddy
 	{
 		#region Fields
@@ -20,16 +26,23 @@ namespace FontBuddyLib
 
 		#region Members
 
+		/// <summary>
+		/// Gets or sets the current fade value for the selection effect (0.0 to 1.0).
+		/// </summary>
 		private float SelectionFade { get; set; }
 
 		/// <summary>
-		/// how big the pulsate the text
+		/// Gets or sets the amplitude of the pulsation effect.
+		/// Higher values result in more dramatic size changes.
 		/// </summary>
+		/// <value>The pulsation amplitude. Default is 1.0.</value>
 		public float PulsateSize { get; set; }
 
 		/// <summary>
-		/// How fast to pulsate the speed. Default value is 25f
+		/// Gets or sets the speed of the pulsation animation.
+		/// Higher values result in faster pulsing.
 		/// </summary>
+		/// <value>The pulsation speed. Default is 25.0.</value>
 		public float PulsateSpeed
 		{
 			get
@@ -47,14 +60,16 @@ namespace FontBuddyLib
 		}
 
 		/// <summary>
-		/// If the pulsate is turned on/off, it will ease into the pulsating
+		/// Gets or sets whether this menu item is currently selected.
+		/// When true, the text will pulsate; when false, the pulsation fades out.
 		/// </summary>
+		/// <value><c>true</c> if the item is selected; otherwise, <c>false</c>. Default is <c>true</c>.</value>
 		public bool Selected { get; set; }
 
 		#endregion //Members
 
 		/// <summary>
-		/// Constructor
+		/// Initializes a new instance of the <see cref="WrongTextBuddy"/> class with default settings.
 		/// </summary>
 		public WrongTextBuddy()
 		{
@@ -68,6 +83,18 @@ namespace FontBuddyLib
 			};
 		}
 
+		/// <summary>
+		/// Renders text with a selection-based pulsating effect and shadow.
+		/// The pulsation smoothly fades in when selected and fades out when deselected.
+		/// </summary>
+		/// <param name="text">The text to render.</param>
+		/// <param name="position">The position to render at. Interpretation depends on justification.</param>
+		/// <param name="justification">The text justification mode.</param>
+		/// <param name="scale">The base scale multiplier for the font size.</param>
+		/// <param name="color">The color to render the text in.</param>
+		/// <param name="spriteBatch">The SpriteBatch to use for rendering.</param>
+		/// <param name="time">The game clock for the animation timing.</param>
+		/// <returns>The X position at the end of the rendered text.</returns>
 		public override float Write(string text,
 			Vector2 position,
 			Justify justification,

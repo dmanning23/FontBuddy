@@ -7,72 +7,81 @@ using System.Text;
 namespace FontBuddyLib
 {
 	/// <summary>
-	/// This takes a number and counts up to it for one second
-	/// then gets big at the end
+	/// A text renderer that displays numbers with an animated count-up effect followed by a scale pop.
+	/// The number counts from a start value to a target value, then scales up dramatically before settling.
 	/// </summary>
+	/// <remarks>
+	/// The animation consists of three phases:
+	/// 1. Count-up phase: The number rapidly counts from start to target
+	/// 2. Scale phase: The number pops to a larger size then shrinks back
+	/// 3. Display phase: The final number is displayed at a slightly larger scale until IsDead becomes true
+	/// </remarks>
 	public class BouncyNumbers : OutlineTextBuddy
 	{
 		#region Properties
 
 		/// <summary>
-		/// The number we are starting to count at
+		/// Gets or sets the starting number for the count animation.
 		/// </summary>
 		private int StartNumber { get; set; }
 
 		/// <summary>
-		/// The number we are counting up to
+		/// Gets or sets the target number that the animation counts towards.
 		/// </summary>
 		private int TargetNumber { get; set; }
 
 		/// <summary>
-		/// the range between start and target
+		/// Gets or sets the difference between target and start numbers.
 		/// </summary>
 		private int Delta { get; set; }
 
 		/// <summary>
-		/// thing used to count up from 0 -> target number
-		/// call start on this dude when you want to display
+		/// Gets or sets the timer used to control the animation phases.
 		/// </summary>
 		private CountdownTimer Timer { get; set; }
 
 		/// <summary>
-		/// After the thing is done counting up, how much to scale it.
-		/// Defaults ot 1.5f
+		/// Gets or sets the scale multiplier applied during the pop phase.
+		/// The number will momentarily scale to this size before shrinking.
 		/// </summary>
+		/// <value>The peak scale during the pop. Default is 2.5.</value>
 		public float ScaleAtEnd { get; set; }
 
 		/// <summary>
-		/// how long to count up from 0
-		/// defaults to 1.0
+		/// Gets or sets the duration of the count-up phase in seconds.
+		/// This is automatically calculated based on the delta.
 		/// </summary>
 		private float CountUpTime { get; set; }
 
 		/// <summary>
-		/// How long to pause before scaling th number at the end
-		/// Defaults to 1.0f
+		/// Gets or sets the minimum pause duration before the scale pop begins.
 		/// </summary>
+		/// <value>The minimum pause in seconds. Default is 1.0.</value>
 		public float ScalePause { get; set; }
 
 		/// <summary>
-		/// how long should scale from countup time to normal size
-		/// defaulst to 1.0f
+		/// Gets or sets the duration of the scale pop phase in seconds.
 		/// </summary>
+		/// <value>The scale animation duration. Default is 1.0.</value>
 		public float ScaleTime { get; set; }
 
 		/// <summary>
-		/// How long to display this number after the scale time runs out
+		/// Gets or sets how long the number remains visible after the scale animation completes.
 		/// </summary>
+		/// <value>The display duration after scaling. Default is 3.0.</value>
 		public float KillTime { get; set; }
 
 		/// <summary>
-		/// We want this number to be a little bit bigger after the scale runs out...
-		/// deafulst to 1.2f
+		/// Gets or sets the final scale multiplier after the pop animation settles.
+		/// The number will be displayed at this scale until IsDead becomes true.
 		/// </summary>
+		/// <value>The final resting scale. Default is 1.2.</value>
 		public float Rescale { get; set; }
 
 		/// <summary>
-		/// once the text hits CountUpTime + ScaleTime + ScaleTime it is dead
+		/// Gets whether the animation has completed and the number should no longer be displayed by this renderer.
 		/// </summary>
+		/// <value><c>true</c> if the animation is complete; otherwise, <c>false</c>.</value>
 		public bool IsDead
 		{
 			get
@@ -82,6 +91,10 @@ namespace FontBuddyLib
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets whether the scale animation expands from the center horizontally.
+		/// </summary>
+		/// <value><c>true</c> to expand from center; otherwise, <c>false</c>. Default is <c>true</c>.</value>
 		public bool StraightPulsate
 		{
 			get; set;
@@ -92,7 +105,7 @@ namespace FontBuddyLib
 		#region Methods
 
 		/// <summary>
-		/// Cosntructor!
+		/// Initializes a new instance of the <see cref="BouncyNumbers"/> class with default settings.
 		/// </summary>
 		public BouncyNumbers()
 		{
@@ -106,6 +119,11 @@ namespace FontBuddyLib
 			ScalePause = 1f;
 		}
 
+		/// <summary>
+		/// Starts the count animation from a start number to a target number.
+		/// </summary>
+		/// <param name="startNumber">The number to start counting from.</param>
+		/// <param name="targetNumber">The number to count to.</param>
 		public void Start(int startNumber, int targetNumber)
 		{
 			StartNumber = startNumber;
@@ -120,6 +138,17 @@ namespace FontBuddyLib
 			Timer.Start(CountUpTime + ScaleTime + KillTime);
 		}
 
+		/// <summary>
+		/// Renders the animated number with count-up and scale effects.
+		/// </summary>
+		/// <param name="text">The prefix text to render before the number.</param>
+		/// <param name="position">The position to render at. Interpretation depends on justification.</param>
+		/// <param name="justification">The text justification mode.</param>
+		/// <param name="scale">The base scale multiplier for the font size.</param>
+		/// <param name="color">The color to render the text in.</param>
+		/// <param name="spriteBatch">The SpriteBatch to use for rendering.</param>
+		/// <param name="time">The game clock for the animation timing.</param>
+		/// <returns>The X position at the end of the rendered text, or the original X if the animation hasn't started.</returns>
 		public override float Write(string text,
 			Vector2 position,
 			Justify justification,
