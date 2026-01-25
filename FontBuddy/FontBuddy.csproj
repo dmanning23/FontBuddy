@@ -5,7 +5,7 @@
     <Version>5.0.3</Version>
     <Title>FontBuddy</Title>
     <Authors>dmanning23</Authors>
-    <description>Put some text on the screen easier with MonoGame</description>
+    <description>Simple, flexible text rendering for MonoGame with built-in effects and easy justification.</description>
     <PackageProjectUrl>https://github.com/dmanning23/FontBuddy</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/dmanning23/FontBuddy</RepositoryUrl>
@@ -15,7 +15,11 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FontStashSharp.MonoGame" Version="1.5.*" />
     <PackageReference Include="GameTimer" Version="5.*" />
