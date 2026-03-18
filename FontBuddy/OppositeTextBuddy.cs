@@ -144,6 +144,9 @@ namespace FontBuddyLib
 			//this is some shit we are gonna use to positaion a shadow
 			var shadowPosition = position;
 
+			var cosRot = (float)Math.Cos(Rotation);
+			var sinRot = (float)Math.Sin(Rotation);
+
 			//draw the individual letter of the shadow first
 			var letterTime = time.CurrentTime;
 			for (var i = 0; i < Text.StringCache.Count; i++)
@@ -157,8 +160,9 @@ namespace FontBuddyLib
 				//Clamp (because we dont want pure black and white)
 				Font.DrawString(subString, shadowPosition + ShadowOffset, scale * ShadowSize, Color.Lerp(ShadowColor, color, pulsate), spriteBatch);
 
-				shadowPosition.X += (Font.MeasureString(subString) * scale).X;
-				shadowPosition.X += fKerning;
+				var shadowAdvance = (Font.MeasureString(subString) * scale).X + fKerning;
+				shadowPosition.X += shadowAdvance * cosRot;
+				shadowPosition.Y += shadowAdvance * sinRot;
 			}
 
 			letterTime = time.CurrentTime; //reset the time
@@ -173,8 +177,9 @@ namespace FontBuddyLib
 				//get the opposite color of the shadow
 				Font.DrawString(subString, position, scale, Color.Lerp(color, ShadowColor, pulsate), spriteBatch);
 
-				position.X += (Font.MeasureString(subString) * scale).X;
-				position.X += fKerning;
+				var advance = (Font.MeasureString(subString) * scale).X + fKerning;
+				position.X += advance * cosRot;
+				position.Y += advance * sinRot;
 			}
 
 			//return the end of that string

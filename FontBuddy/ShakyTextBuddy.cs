@@ -124,6 +124,9 @@ namespace FontBuddyLib
 					break;
 			}
 
+			var cosRot = (float)Math.Cos(Rotation);
+			var sinRot = (float)Math.Sin(Rotation);
+
 			//ok, draw each individual letter
 			for (int i = 0; i < Text.StringCache.Count; i++)
 			{
@@ -140,8 +143,9 @@ namespace FontBuddyLib
 				//Clamp (because we dont want pure black and white)
 				Font.DrawString(subString, pulsingPosition, scale, color, spriteBatch);
 
-				position.X += Font.MeasureString(subString).X * scale;
-				position.X += fKerning;
+				var advance = Font.MeasureString(subString).X * scale + fKerning;
+				position.X += advance * cosRot;
+				position.Y += advance * sinRot;
 			}
 
 			//return the end of that string

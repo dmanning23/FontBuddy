@@ -163,6 +163,9 @@ namespace FontBuddyLib
 
 			WriteShadow(text, position, justification, scale, spriteBatch, time);
 
+			var cosRot = (float)System.Math.Cos(Rotation);
+			var sinRot = (float)System.Math.Sin(Rotation);
+
 			var currentTime = time.CurrentTime;
 			currentTime *= RainbowSpeed;
 			currentTime += text.Length;
@@ -189,8 +192,9 @@ namespace FontBuddyLib
 
 				Font.DrawString(subString, position, scale, letterColor, spriteBatch);
 
-				position.X += (Font.MeasureString(subString) * scale).X;
-				position.X += Kerning;
+				var advance = (Font.MeasureString(subString) * scale).X + Kerning;
+				position.X += advance * cosRot;
+				position.Y += advance * sinRot;
 			}
 
 			//return the end of that string
@@ -213,6 +217,9 @@ namespace FontBuddyLib
 			SpriteBatch spriteBatch,
 			GameClock time)
 		{
+			var cosRot = (float)System.Math.Cos(Rotation);
+			var sinRot = (float)System.Math.Sin(Rotation);
+
 			for (int i = 0; i < Text.StringCache.Count; i++)
 			{
 				//draw the title
@@ -220,8 +227,9 @@ namespace FontBuddyLib
 
 				Font.DrawString(subString, position + ShadowOffset, scale * ShadowSize, ShadowColor, spriteBatch);
 
-				position.X += (Font.MeasureString(subString) * scale).X;
-				position.X += Kerning;
+				var advance = (Font.MeasureString(subString) * scale).X + Kerning;
+				position.X += advance * cosRot;
+				position.Y += advance * sinRot;
 			}
 		}
 
